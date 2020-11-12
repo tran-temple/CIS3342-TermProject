@@ -1,0 +1,55 @@
+﻿body {
+}
+
+
+.navAdmin {
+    margin-bottom: 20px;
+}
+
+.navMember {
+    margin-bottom: 20px;
+}
+
+.navGuest {
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+li {
+    float: left;
+}
+
+    li a {
+        font-size: 16px;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+        /* Change the link color to #111 (black) on hover */
+        li a:hover {
+            background-color: darkkhaki;
+            color: white;
+        }
+
+
+
+
+#lblLoggedInAs {
+    color: white;
+    display: inline-block;
+    padding: 14px 16px;
+    text-align: center;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 16px;
+}
