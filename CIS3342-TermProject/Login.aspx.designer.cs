@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CIS3342_TermProject {
-    
-    
-    public partial class Login {
-        
+namespace CIS3342_TermProject
+{
+
+
+    public partial class Login
+    {
+
         /// <summary>
         /// form1 control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CIS3342_TermProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
+
         /// <summary>
         /// lblGeneral_Error control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace CIS3342_TermProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblGeneral_Error;
-        
+
         /// <summary>
         /// txtUsername control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace CIS3342_TermProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtUsername;
-        
+
         /// <summary>
         /// btnLogin control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace CIS3342_TermProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnLogin;
-        
+
         /// <summary>
         /// btnVisit control.
         /// </summary>
@@ -56,8 +58,9 @@ namespace CIS3342_TermProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnVisit;
-        
+
         /// <summary>
 
-    
+
+    }
 }
