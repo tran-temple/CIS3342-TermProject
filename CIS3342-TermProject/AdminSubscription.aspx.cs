@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace CIS3342_TermProject
 {
-    public partial class AdminNavUC : System.Web.UI.UserControl
+    public partial class AdminSubscription : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

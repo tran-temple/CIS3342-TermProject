@@ -76,7 +76,7 @@ namespace CIS3342_TermProject
 
         protected void btnModifySubscription_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("AdminSubscription.aspx");
         }
     }
 }

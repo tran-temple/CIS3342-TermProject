@@ -104,33 +104,33 @@
     <Compile Include="ProductPage.aspx.designer.cs">
       <DependentUpon>ProductPage.aspx</DependentUpon>
     </Compile>
-    <Content Include="AdminNavUC.ascx" />
-    <Content Include="GuestNavUC.ascx" />
-    <Content Include="MemberNavUC.ascx" />
+    <Content Include="UserControls\AdminNavUC.ascx" />
+    <Content Include="UserControls\GuestNavUC.ascx" />
+    <Content Include="UserControls\MemberNavUC.ascx" />
     <Content Include="MySubscription.aspx" />
-    <Content Include="StyleNavigation.css" />
+    <Content Include="styles\StyleNavigation.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdminNavUC.ascx.cs">
+    <Compile Include="UserControls\AdminNavUC.ascx.cs">
       <DependentUpon>AdminNavUC.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdminNavUC.ascx.designer.cs">
+    <Compile Include="UserControls\AdminNavUC.ascx.designer.cs">
       <DependentUpon>AdminNavUC.ascx</DependentUpon>
     </Compile>
-    <Compile Include="GuestNavUC.ascx.cs">
+    <Compile Include="UserControls\GuestNavUC.ascx.cs">
       <DependentUpon>GuestNavUC.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="GuestNavUC.ascx.designer.cs">
+    <Compile Include="UserControls\GuestNavUC.ascx.designer.cs">
       <DependentUpon>GuestNavUC.ascx</DependentUpon>
     </Compile>
-    <Compile Include="MemberNavUC.ascx.cs">
+    <Compile Include="UserControls\MemberNavUC.ascx.cs">
       <DependentUpon>MemberNavUC.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MemberNavUC.ascx.designer.cs">
+    <Compile Include="UserControls\MemberNavUC.ascx.designer.cs">
       <DependentUpon>MemberNavUC.ascx</DependentUpon>
     </Compile>
     <Compile Include="MySubscription.aspx.cs">
@@ -159,9 +159,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UserControls\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\EcommerceLibrary\EcommerceLibrary.csproj">
       <Project>{821c4038-50a9-4ca9-9c0f-93c9be279e39}</Project>
