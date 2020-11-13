@@ -103,6 +103,7 @@
     </Compile>
     <Compile Include="ProductPage.aspx.designer.cs">
       <DependentUpon>ProductPage.aspx</DependentUpon>
+    </Compile>
     <Content Include="AdminNavUC.ascx" />
     <Content Include="GuestNavUC.ascx" />
     <Content Include="MemberNavUC.ascx" />
@@ -124,13 +125,6 @@
     </Compile>
     <Compile Include="GuestNavUC.ascx.designer.cs">
       <DependentUpon>GuestNavUC.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="MasterPage.Master.cs">
-      <DependentUpon>MasterPage.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MasterPage.Master.designer.cs">
-      <DependentUpon>MasterPage.Master</DependentUpon>
     </Compile>
     <Compile Include="MemberNavUC.ascx.cs">
       <DependentUpon>MemberNavUC.ascx</DependentUpon>
@@ -157,7 +151,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Main.Master" />
-    <Content Include="MasterPage.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
