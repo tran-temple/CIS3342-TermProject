@@ -1,0 +1,53 @@
+﻿body {
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 60px; /* Margin bottom by footer height */
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+#navbar {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+}
+
+.navbar {
+    padding: 0;
+}
+
+.navbar-brand {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+    .navbar-brand img {
+        height: 56px;
+        width: 56px;
+    }
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px; /* Set the fixed height of the footer here */
+    line-height: 60px; /* Vertically center the text there */
+    background-color: rgb(33, 37, 41);
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.hiddenCol {
+    display: none;
+}
