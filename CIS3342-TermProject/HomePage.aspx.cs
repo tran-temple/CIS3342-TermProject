@@ -14,21 +14,49 @@ namespace CIS3342_TermProject
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            DBConnect objDB = new DBConnect();
-            SqlCommand objCommand = new SqlCommand();
 
-            objCommand.CommandType = CommandType.StoredProcedure;
-            objCommand.CommandText = "TP_GetAllSubscriptions";
-            DataSet myDS = objDB.GetDataSetUsingCmdObj(objCommand);
-
-            if (myDS.Tables[0].Rows.Count > 0)
+            if (!IsPostBack)
             {
-                DLSubscriptions.DataSource = myDS;
-                DLSubscriptions.DataBind();
-            }
+                DBConnect objDB = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
 
+                objCommand.CommandType = CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_GetAllSubscriptions";
+                DataSet myDS = objDB.GetDataSetUsingCmdObj(objCommand);
+
+                if (myDS.Tables[0].Rows.Count > 0)
+                {
+                    DLSubscriptions.DataSource = myDS;
+                    DLSubscriptions.DataBind();
+                }
+
+
+            }
+        }
+
+        protected void DLSubscriptions_ItemCommand(Object sender, System.Web.UI.WebControls.DataListCommandEventArgs e)
+
+        {
+
+            // Retrieve the row index for the item that fired the ItemCommand event
+
+            int rowIndex = e.Item.ItemIndex;
+
+
+
+            // Retrieve a value from a control in the DL's Items collection
+
+            Label myLabel = (Label)DLSubscriptions.Items[rowIndex].FindControl("lblSubscriptionID");
+
+            String subscriptionID = myLabel.Text;
+
+
+
+            lblSubscriptionIDShow.Text = "You selected Subscription ID " + subscriptionID;
 
         }
+
+
 
         protected void dlSubscriptions_SelectedIndexChanged(object sender, EventArgs e)
         {

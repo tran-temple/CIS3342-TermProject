@@ -13,6 +13,15 @@ namespace CIS3342_TermProject {
     public partial class HomePage {
         
         /// <summary>
+        /// lblSubscriptionIDShow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSubscriptionIDShow;
+        
+        /// <summary>
         /// DLSubscriptions control.
         /// </summary>
         /// <remarks>

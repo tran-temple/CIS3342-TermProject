@@ -36,14 +36,19 @@
     height: 300px;
 }
 
+.hide {
+    color: white;
+    font-size: 0.1px;
+}
+
 
 
     </style>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server" >
 
-
-       <asp:DataList ID="DLSubscriptions" runat="server" RepeatDirection="Horizontal">
+       <asp:Label ID="lblSubscriptionIDShow" runat="server" Text="Label"></asp:Label>
+       <asp:DataList ID="DLSubscriptions" runat="server" RepeatDirection="Horizontal"  OnItemCommand="DLSubscriptions_ItemCommand">
        <ItemTemplate>
            <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
 
@@ -51,9 +56,13 @@
       <div class="card-deck mb-3 text-center">
         <div class="card mb-4 box-shadow">
           <div class="card-header">
+
             <h4 class="my-0 font-weight-normal"> <asp:Label ID="Label1" runat="server"  Text='<%# Bind("SubscriptionName") %>'> </asp:Label></h4>
+                <h4 class="my-0 font-weight-normal" aria-hidden="true"> <asp:Label ID="lblSubscriptionID" runat="server" CssClass="hide" Text='<%# Bind("SubscriptionID") %>'> </asp:Label></h4>
           </div>
           <div class="card-body">
+
+
             <h1 class="card-title pricing-card-title">  <asp:Label ID="Label2" runat="server"  Text= '<%# DataBinder.Eval(Container.DataItem, "SubscriptionPrice") %>'> </asp:Label><small class="text-muted"> <asp:Label ID="Label3" runat="server"  Text='<%# DataBinder.Eval(Container.DataItem, "SubscriptionBillingTime") %>'> </asp:Label>  </small></h1>
             <ul class="list-unstyled mt-3 mb-4">
                 <li>
@@ -66,6 +75,7 @@
                 </div>
             </div>
           </div>
+ 
     </div>
        
        </ItemTemplate>     
