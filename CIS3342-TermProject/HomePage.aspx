@@ -42,11 +42,21 @@
 }
 
 
+.subtitle {
+    text-align: center;
+    font-size: 20px;
+    color: darkkhaki;
+
+}
+
+
 
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server" >
-
+   
+    <asp:Label ID ="lblSubtitle" runat="server" CssClass="subtitle">Subscriptions</asp:Label>
+    <br /><br />
        <asp:Label ID="lblSubscriptionIDShow" runat="server" Text="Label"></asp:Label>
        <asp:DataList ID="DLSubscriptions" runat="server" RepeatDirection="Horizontal"  OnItemCommand="DLSubscriptions_ItemCommand">
        <ItemTemplate>
@@ -83,7 +93,7 @@
 </asp:DataList>
 
     
-
+     <asp:Label ID ="lblProductsTitle" runat="server" CssClass="subtitle">Products</asp:Label>
   
          
 

@@ -13,6 +13,15 @@ namespace CIS3342_TermProject {
     public partial class HomePage {
         
         /// <summary>
+        /// lblSubtitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSubtitle;
+        
+        /// <summary>
         /// lblSubscriptionIDShow control.
         /// </summary>
         /// <remarks>
@@ -29,5 +38,14 @@ namespace CIS3342_TermProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DataList DLSubscriptions;
+        
+        /// <summary>
+        /// lblProductsTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblProductsTitle;
     }
 }

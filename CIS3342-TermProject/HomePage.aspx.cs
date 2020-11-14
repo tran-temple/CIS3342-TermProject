@@ -53,6 +53,7 @@ namespace CIS3342_TermProject
 
 
             lblSubscriptionIDShow.Text = "You selected Subscription ID " + subscriptionID;
+            // WIll be used to add to cart later on
 
         }
 
