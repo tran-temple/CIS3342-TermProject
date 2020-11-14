@@ -72,13 +72,13 @@ namespace CIS3342_TermProject
             TextBox TboxSubscriptionPrice;
             TboxSubscriptionPrice = (TextBox)gvSubscriptions.Rows[rowIndex].Cells[4].Controls[0];
 
-            if(TboxSubscriptionPrice.Text == "")
+            if (TboxSubscriptionPrice.Text == "")
             {
                 lblError.Text = " Please enter a valid subscription price..";
 
             }
 
-            else if(TboxSubscriptionPrice.Text!="")
+            else if (TboxSubscriptionPrice.Text != "")
             {
                 lblError.Text = "";
             }
@@ -86,14 +86,14 @@ namespace CIS3342_TermProject
             TextBox TboxSubscriptionBillingTime;
             TboxSubscriptionBillingTime = (TextBox)gvSubscriptions.Rows[rowIndex].Cells[5].Controls[0];
 
-            if(TboxSubscriptionBillingTime.Text=="")
+            if (TboxSubscriptionBillingTime.Text == "")
             {
                 lblError.Text = " Please enter a valid billing time";
 
 
             }
 
-            else if(TboxSubscriptionBillingTime.Text!="")
+            else if (TboxSubscriptionBillingTime.Text != "")
             {
                 lblError.Text = "";
             }
@@ -101,18 +101,19 @@ namespace CIS3342_TermProject
             TextBox TboxSubscriptionDescription;
             TboxSubscriptionDescription = (TextBox)gvSubscriptions.Rows[rowIndex].Cells[6].Controls[0];
 
-            if(TboxSubscriptionDescription.Text=="")
+            if (TboxSubscriptionDescription.Text == "")
             {
                 lblError.Text = " Please enter a valid subscription description";
 
 
             }
 
-            else if (TboxSubscriptionDescription.Text!="") {
+            else if (TboxSubscriptionDescription.Text != "")
+            {
                 lblError.Text = "";
             }
 
-            if(lblError.Text=="")
+            if (lblError.Text == "")
             {
 
                 string newName = TboxSubscriptionName.Text;
@@ -136,7 +137,12 @@ namespace CIS3342_TermProject
                 gvSubscriptions.EditIndex = -1;
                 gvSubscriptions.DataBind();
                 Response.Redirect("AdminSubscription.aspx");
-                
+
+            }
+
+            else
+            {
+                lblError.Text = "Please enter valid info";
             }
         }
 
@@ -166,7 +172,7 @@ namespace CIS3342_TermProject
 
 
 
-
+       
 
 
 
@@ -177,9 +183,42 @@ namespace CIS3342_TermProject
 
         }
 
-     
+        protected void btnAdd_Click(Object sender, EventArgs e)
+        {
+            // Add validation here
+            lblError.Text = "Button works";
+            string NewSubscriptionImage = imgNewSubscriptionImage.PostedFile.FileName.ToString();
+            string NewSubscriptionName = txtNewSubscriptionName.Text;
+            string NewSubscriptionDescription = txtNewSubscriptionDescription.Text;
+            string NewSubscriptionPrice = txtNewSubscriptionPrice.Text;
+            string NewSubscriptionBillingTime = txtNewSubscriptionDescription.Text;
+
+
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.Parameters.Clear();
+
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_AddNewSubscription";
+
+            objCommand.Parameters.AddWithValue("@NewSubscriptionImage", NewSubscriptionImage);
+            objCommand.Parameters.AddWithValue("@NewSubscriptionName", NewSubscriptionName);
+            objCommand.Parameters.AddWithValue("@NewSubscriptionDescription", NewSubscriptionDescription);
+            objCommand.Parameters.AddWithValue("@NewSubscriptionPrice", NewSubscriptionPrice);
+            objCommand.Parameters.AddWithValue("@NewSubscriptionBilling", NewSubscriptionBillingTime);
+
+
+            objDB.DoUpdateUsingCmdObj(objCommand);
+
+            gvSubscriptions.DataBind();
+
+            Response.Redirect("AdminSubscription.aspx");
+            lblSuccess.Text = "Your subscription has been added." + NewSubscriptionBillingTime + NewSubscriptionDescription + NewSubscriptionName + NewSubscriptionPrice;
+
+
+        }
 
     }
+   
 
 }
-    

@@ -31,6 +31,15 @@ namespace CIS3342_TermProject {
         protected global::System.Web.UI.WebControls.GridView gvSubscriptions;
         
         /// <summary>
+        /// lblSuccess control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSuccess;
+        
+        /// <summary>
         /// txtNewSubscriptionName control.
         /// </summary>
         /// <remarks>
@@ -67,21 +76,21 @@ namespace CIS3342_TermProject {
         protected global::System.Web.UI.WebControls.TextBox txtNewSubscriptionBilling;
         
         /// <summary>
-        /// FileUpload1 control.
+        /// imgNewSubscriptionImage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
+        protected global::System.Web.UI.WebControls.FileUpload imgNewSubscriptionImage;
         
         /// <summary>
-        /// btnAddNewSubscription control.
+        /// btnAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddNewSubscription;
+        protected global::System.Web.UI.WebControls.Button btnAdd;
     }
 }

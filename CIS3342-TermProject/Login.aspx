@@ -20,7 +20,7 @@
     <form id="form1" runat="server">
         <div class="col-lg-4 offset-lg-4 mt-2">
             <div class="row form-group justify-content-center mt-2">
-                <img src="images/logo.jpg" width="200" height="200" class="d-inline-block img-fluid" alt="Logo" />                
+                <img src="images/logo2.png" width="500" height="500" class="d-inline-block img-fluid" alt="Logo" />                
             </div>            
         </div>        
         <div class="col-lg-4 offset-lg-4 mt-2 border">            

@@ -70,6 +70,8 @@
     <Content Include="AdminSubscription.aspx" />
     <Content Include="HomePage.aspx" />
     <Content Include="images\logo.jpg" />
+    <Content Include="images\logo2.png" />
+    <Content Include="images\logo2Transparent.png" />
     <Content Include="Login.aspx" />
     <Content Include="ProductPage.aspx" />
     <Content Include="Registration.aspx" />
