@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
 
-    <asp:Label ID="lblError" runat="server" Text=""> ERROR </asp:Label>
+    <asp:Label ID="lblError" runat="server"></asp:Label>
                 <asp:GridView ID="gvSubscriptions" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal"  EnableViewState="False" OnRowCommand="gvSubscriptions_RowCommand" OnRowEditing="gvSubscriptions_RowEditing" OnRowUpdating="gvSubscriptions_RowUpdating" OnSelectedIndexChanged="gvSubscriptions_SelectedIndexChanged" OnRowCancelingEdit="gvSubscriptions_RowCancelingEdit">
         <Columns>
                         <asp:BoundField DataField="SubscriptionID" HeaderText="Subscription ID" ReadOnly="True" Visible="false" />
@@ -11,10 +11,17 @@
 
 <ControlStyle CssClass="btn btn-outline-dark"></ControlStyle>
                         </asp:ButtonField>
-
-            <asp:ImageField DataImageUrlField="SubscriptionImage" HeaderText="Image" ControlStyle-Width="100" ControlStyle-Height = "100">
-<ControlStyle Height="100px" Width="100px"></ControlStyle>
-            </asp:ImageField>
+            <asp:TemplateField HeaderText="Image" HeaderStyle-Width="200px">  
+                <ItemTemplate>  
+                    <asp:Image ID="imgSub" runat="server" ImageUrl='<%# Eval("SubscriptionImage") %>' Height="100px" Width="100px" />  
+                </ItemTemplate>  
+                <EditItemTemplate>  
+                    
+                    <br />  
+                  <asp:FileUpload ID="FileUploadControl2" runat="server" />
+                </EditItemTemplate>
+                 </asp:TemplateField>  
+            
             <asp:BoundField DataField="SubscriptionName" HeaderText="Subscription Name" SortExpression="SubscriptionName" />
             <asp:BoundField DataField="SubscriptionPrice" HeaderText="Price" SortExpression="SubscriptionPrice" />
             <asp:BoundField DataField="SubscriptionBillingTime" HeaderText="Billing Time" SortExpression="SubscriptionBillingTime" />
@@ -35,10 +42,11 @@
                     <SortedDescendingHeaderStyle BackColor="#242121" />
 
     </asp:GridView>
-
+ 
+   
     <br />
     <br />
-
+    <asp:Image ID="imageFile" runat="server" />
 
 
 
@@ -57,29 +65,39 @@
         <h4 class="modal-title">Add New Subscription</h4>
       </div>
       <div class="modal-body">
-          <div class="form-group row justify-content-around">
-              <label for="txtNewSubscriptionName" class="float-left"> Subscription Name</label>
-        <asp:TextBox ID="txtNewSubscriptionName" runat="server" CssClass="float-right"> </asp:TextBox>
+          <div class="form-group">
+              
+              <asp:Label ID="lblFormError" runat="server" CssClass="error"> </asp:Label>
+              <br /><br />
+              <label for="txtNewSubscriptionName" class="col-form-label"> Subscription Name</label>
+        <asp:TextBox ID="txtNewSubscriptionName" runat="server" CssClass="form-control"> </asp:TextBox>
         <br />
-                <label for="txtNewSubscriptionDescription" class="float-left"> Subscription Description</label>
-        <asp:TextBox ID="txtNewSubscriptionDescription" runat="server" CssClass="float-right"> </asp:TextBox>
+                <label for="txtNewSubscriptionDescription" class="col-form-label"> Subscription Description</label>
+        <asp:TextBox ID="txtNewSubscriptionDescription" runat="server" CssClass="form-control"> </asp:TextBox>
               <br />
-                <label for="txtNewSubcriptionPrice" > Subscription Price</label>
-        <asp:TextBox ID="txtNewSubscriptionPrice" runat="server"> </asp:TextBox>
+                <label for="txtNewSubcriptionPrice" class="col-form-label" > Subscription Price</label>
+        <asp:TextBox ID="txtNewSubscriptionPrice" runat="server" CssClass="form-control"> </asp:TextBox>
               <br />
-                <label for="txtNewSubscriptionBilling" class="col-sm-5 col-form-label"> Subscription Billing Time</label>
-        <asp:TextBox ID="txtNewSubscriptionBilling" runat="server" > </asp:TextBox>
-
+                <label for="txtNewSubscriptionBilling" class="col-form-label"> Subscription Billing Time</label>
+      
+              <asp:DropDownList ID="ddlBilling" runat="server">
+                  <asp:ListItem Value="/week"> Weekly </asp:ListItem>
+                   <asp:ListItem Value="/mo"> Monthly </asp:ListItem>
+                   <asp:ListItem Value="/bi-annually"> Bi Annually </asp:ListItem>
+                   <asp:ListItem Value="/year"> Yearly </asp:ListItem>
+              </asp:DropDownList>
               <br />
-              <label for="imageUpload" class="col-sm-5 col-form-label"> Subscription Image</label>
-              <asp:FileUpload ID="imgNewSubscriptionImage" runat="server" />
-
+              <label for="imageUpload" class="col-form-label"> Subscription Image</label>
+              <asp:FileUpload ID="FileUploadControl" runat="server" CssClass="form-control-file" />
+               
+    <br /><br />
+  
           </div>
        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-              <asp:Button type="button" class="btn btn-primary" ID="btnAdd" runat="server" Text="Add"></asp:Button>
+              <asp:Button type="button" class="btn btn-success" ID="btnAdd" runat="server" Text="Add" onclick="btnAdd_Click"></asp:Button>
       </div>
     </div>
 

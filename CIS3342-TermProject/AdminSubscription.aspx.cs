@@ -7,7 +7,8 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using EcommerceLibrary;
-
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace CIS3342_TermProject
 {
@@ -51,8 +52,18 @@ namespace CIS3342_TermProject
         protected void gvSubscriptions_RowUpdating(Object sender, System.Web.UI.WebControls.GridViewUpdateEventArgs e)
         {
 
+            FileUpload FileUpload2 = (FileUpload)gvSubscriptions.Rows[e.RowIndex].FindControl("FileUpload2");
+            if (FileUpload2.HasFile)
+            {
+                string filename = Path.GetFileName(FileUpload2.PostedFile.FileName);
+                FileUpload2.SaveAs(Server.MapPath("~/") + filename);
 
-
+            }
+            else
+            {
+                // use previous user image if new image is not changed    
+               
+            }
             int rowIndex = e.RowIndex;
             string selectedSubID = gvSubscriptions.DataKeys[rowIndex].Value.ToString();
 
@@ -117,9 +128,11 @@ namespace CIS3342_TermProject
             {
 
                 string newName = TboxSubscriptionName.Text;
-                string newBilling = TboxSubscriptionBillingTime.Text;
-                string newPrice = TboxSubscriptionPrice.Text;
                 string newDescription = TboxSubscriptionDescription.Text;
+                string newPrice = TboxSubscriptionPrice.Text;
+                string newBilling = TboxSubscriptionBillingTime.Text;
+
+                string newImage = FileUpload2.PostedFile.FileName.ToString();
 
                 DBConnect objDB = new DBConnect();
                 SqlCommand objCommand = new SqlCommand();
@@ -128,9 +141,11 @@ namespace CIS3342_TermProject
                 objCommand.CommandText = "TP_EditSubscription";
                 objCommand.Parameters.AddWithValue("@SubscriptionID", selectedSubID);
                 objCommand.Parameters.AddWithValue("@NewName", newName);
-                objCommand.Parameters.AddWithValue("@NewBilling", newBilling);
-                objCommand.Parameters.AddWithValue("@NewPrice", newPrice);
                 objCommand.Parameters.AddWithValue("@NewDescription", newDescription);
+                objCommand.Parameters.AddWithValue("@NewPrice", newPrice);
+                objCommand.Parameters.AddWithValue("@NewBilling", newBilling);
+                objCommand.Parameters.AddWithValue("@NewImage", newImage);
+
 
                 objDB.DoUpdateUsingCmdObj(objCommand);
 
@@ -185,38 +200,68 @@ namespace CIS3342_TermProject
 
         protected void btnAdd_Click(Object sender, EventArgs e)
         {
+
+            if (FileUploadControl.HasFile)
+            {
+                try
+                {
+                    string filename = Path.GetFileName(FileUploadControl.PostedFile.FileName);
+                    FileUploadControl.SaveAs(Server.MapPath("~/") + filename);
+                   
+                    Object file = (Server.MapPath("~/ ") + filename);
+                    BinaryFormatter serializer = new BinaryFormatter();
+                    MemoryStream memStream = new MemoryStream();
+                    serializer.Serialize(memStream, file);
+                    byte[] byteArray;
+                    byteArray = memStream.ToArray();
+                    lblError.Text = byteArray.ToString();
+                }
+                catch (Exception ex)
+                {
+                    lblError.Text = ex.ToString();
+                }
+            }
             // Add validation here
-            lblError.Text = "Button works";
-            string NewSubscriptionImage = imgNewSubscriptionImage.PostedFile.FileName.ToString();
-            string NewSubscriptionName = txtNewSubscriptionName.Text;
-            string NewSubscriptionDescription = txtNewSubscriptionDescription.Text;
-            string NewSubscriptionPrice = txtNewSubscriptionPrice.Text;
-            string NewSubscriptionBillingTime = txtNewSubscriptionDescription.Text;
+            if (txtNewSubscriptionName.Text == "" || txtNewSubscriptionDescription.Text=="" ||  txtNewSubscriptionPrice.Text=="")
+            {
+                lblFormError.Text = " One or more fields were left blank. Please enter all fields and try again.";
+            }
 
 
-            DBConnect objDB = new DBConnect();
-            SqlCommand objCommand = new SqlCommand();
-            objCommand.Parameters.Clear();
-
-            objCommand.CommandType = CommandType.StoredProcedure;
-            objCommand.CommandText = "TP_AddNewSubscription";
-
-            objCommand.Parameters.AddWithValue("@NewSubscriptionImage", NewSubscriptionImage);
-            objCommand.Parameters.AddWithValue("@NewSubscriptionName", NewSubscriptionName);
-            objCommand.Parameters.AddWithValue("@NewSubscriptionDescription", NewSubscriptionDescription);
-            objCommand.Parameters.AddWithValue("@NewSubscriptionPrice", NewSubscriptionPrice);
-            objCommand.Parameters.AddWithValue("@NewSubscriptionBilling", NewSubscriptionBillingTime);
+           else if (lblFormError.Text == "")
+            {
+                string NewSubscriptionImage = FileUploadControl.PostedFile.FileName.ToString();
+                string NewSubscriptionName = txtNewSubscriptionName.Text;
+                string NewSubscriptionDescription = txtNewSubscriptionDescription.Text;
+                string NewSubscriptionPrice = txtNewSubscriptionPrice.Text;
+                string NewSubscriptionBillingTime = ddlBilling.SelectedValue;
 
 
-            objDB.DoUpdateUsingCmdObj(objCommand);
+                DBConnect objDB = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+                objCommand.Parameters.Clear();
 
-            gvSubscriptions.DataBind();
+                objCommand.CommandType = CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_AddNewSubscription";
 
-            Response.Redirect("AdminSubscription.aspx");
-            lblSuccess.Text = "Your subscription has been added." + NewSubscriptionBillingTime + NewSubscriptionDescription + NewSubscriptionName + NewSubscriptionPrice;
+                objCommand.Parameters.AddWithValue("@NewSubscriptionImage", NewSubscriptionImage);
+                objCommand.Parameters.AddWithValue("@NewSubscriptionName", NewSubscriptionName);
+                objCommand.Parameters.AddWithValue("@NewSubscriptionDescription", NewSubscriptionDescription);
+                objCommand.Parameters.AddWithValue("@NewSubscriptionPrice", NewSubscriptionPrice);
+                objCommand.Parameters.AddWithValue("@NewSubscriptionBilling", NewSubscriptionBillingTime);
 
+
+                objDB.DoUpdateUsingCmdObj(objCommand);
+
+                gvSubscriptions.DataBind();
+
+                Response.Redirect("AdminSubscription.aspx");
+                lblSuccess.Text = "Your subscription has been added." + NewSubscriptionBillingTime + NewSubscriptionDescription + NewSubscriptionName + NewSubscriptionPrice;
+            }
 
         }
+
+       
 
     }
    

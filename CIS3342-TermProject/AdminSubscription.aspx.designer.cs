@@ -31,6 +31,15 @@ namespace CIS3342_TermProject {
         protected global::System.Web.UI.WebControls.GridView gvSubscriptions;
         
         /// <summary>
+        /// imageFile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imageFile;
+        
+        /// <summary>
         /// lblSuccess control.
         /// </summary>
         /// <remarks>
@@ -38,6 +47,15 @@ namespace CIS3342_TermProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblSuccess;
+        
+        /// <summary>
+        /// lblFormError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFormError;
         
         /// <summary>
         /// txtNewSubscriptionName control.
@@ -67,22 +85,22 @@ namespace CIS3342_TermProject {
         protected global::System.Web.UI.WebControls.TextBox txtNewSubscriptionPrice;
         
         /// <summary>
-        /// txtNewSubscriptionBilling control.
+        /// ddlBilling control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNewSubscriptionBilling;
+        protected global::System.Web.UI.WebControls.DropDownList ddlBilling;
         
         /// <summary>
-        /// imgNewSubscriptionImage control.
+        /// FileUploadControl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload imgNewSubscriptionImage;
+        protected global::System.Web.UI.WebControls.FileUpload FileUploadControl;
         
         /// <summary>
         /// btnAdd control.
