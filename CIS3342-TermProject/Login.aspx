@@ -35,14 +35,25 @@
                     <span>Username: </span>
                 </div>
                 <div class="col-md-8">
-                    <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox><br />
+                    <asp:Label ID="lblUserName_Error" runat="server" CssClass="text-danger"></asp:Label>
                 </div>
-            </div>            
+            </div>
+            <div class="row form-group">       
+                <div class="col">
+                    <span>Password: </span>
+                </div>
+                <div class="col-md-8">
+                    <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox><br />
+                    <asp:Label ID="lblPassword_Error" runat="server" CssClass="text-danger"></asp:Label>
+                </div>
+            </div>
             <div class="row form-group">
                 <div class="col">
                 </div>
                 <div class="col-md-8">
-                    <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn-primary" OnClick="btnLogin_Click"/>                
+                    <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn-primary" OnClick="btnLogin_Click"/>&nbsp;&nbsp;&nbsp;&nbsp;                
+                    <asp:CheckBox ID="chkRememberMe" runat="server" Text="Remember Me" CssClass="btn-primary" />                
                 </div>                
             </div>
             <div class="row form-group">

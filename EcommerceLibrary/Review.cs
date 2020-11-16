@@ -10,7 +10,7 @@ namespace EcommerceLibrary
     {
         //properties
         private int reviewID;
-        private int customerID;
+        private int userID;
         private int productID;
         private int rating;
         private string comments;
@@ -23,7 +23,7 @@ namespace EcommerceLibrary
 
         // Encapsulate fields
         public int ReviewID { get => reviewID; set => reviewID = value; }
-        public int CustomerID { get => customerID; set => customerID = value; }
+        public int UserID { get => userID; set => userID = value; }
         public int ProductID { get => productID; set => productID = value; }
         public int Rating { get => rating; set => rating = value; }
         public string Comments { get => comments; set => comments = value; }

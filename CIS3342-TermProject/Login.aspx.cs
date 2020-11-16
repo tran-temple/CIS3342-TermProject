@@ -4,18 +4,28 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Diagnostics;
 using EcommerceLibrary;
 
 namespace CIS3342_TermProject
 {
     public partial class Login : System.Web.UI.Page
-    {
-        User objUser;
-        Utilities utilities = new Utilities();
+    {        
+        LoginService loginService = new LoginService();
+        Utilities utils = new Utilities();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            // Read user info login from cookie
+            if (!IsPostBack && Request.Cookies["LoginCookie"] != null)
+            {
+                HttpCookie myCookie = Request.Cookies["LoginCookie"];
+                txtUsername.Text = myCookie.Values["Username"];
+                //Decrypt the encrypted password
+                String encryptedPassword = myCookie.Values["Password"];
+                String plainTextPassword = utils.Decrypt(encryptedPassword);
+                txtPassword.Text = plainTextPassword;
+            }
         }
 
         protected void btnVisit_Click(object sender, EventArgs e)
@@ -35,27 +45,30 @@ namespace CIS3342_TermProject
         {
             try
             {
-                // main process after created procedure and have data user
-                /*GetUserLogin(txtUsername.Text);
                 lblGeneral_Error.Text = "";
-                if (string.IsNullOrWhiteSpace(objUser.Username))
+                string username = txtUsername.Text;
+                string password = txtPassword.Text;
+
+                if (!ValidateUserLogin())
                 {
-                    lblGeneral_Error.Text = "Login failed! Please input a valid username!";
+                    lblGeneral_Error.Text = "Login failed!";
                     return;
                 }
+                User objUser = GetUserLogin(username);
                 Session["userid"] = objUser.UserID;
                 Session["username"] = objUser.Username;
-                Session["usertype"] = objUser.UserType;*/
+                Session["usertype"] = objUser.UserType;
 
-                //testing nav bar with default owner
-               // Session["userid"] = 7;
-                //Session["username"] = "test_1";
-                //Session["usertype"] = Constant.OWNER;
-
-                //testing nav bar with default registered customer
-                Session["userid"] = 7;
-                Session["username"] = "test_2";
-                Session["usertype"] = Constant.CUSTOMER;
+                // Write username and encrypted password to a cookie
+                if (chkRememberMe.Checked)
+                {
+                    string encryptedPassword = utils.Encrypt(password);
+                    HttpCookie myCookie = new HttpCookie("LoginCookie");
+                    myCookie.Values["Username"] = username;
+                    myCookie.Values["Password"] = encryptedPassword;
+                    myCookie.Expires = new DateTime(2022, 1, 1);
+                    Response.Cookies.Add(myCookie);
+                }                
 
                 Response.Redirect("HomePage.aspx");
             }
@@ -65,9 +78,64 @@ namespace CIS3342_TermProject
             }
         }
 
-        private void GetUserLogin(string username)
+        private User GetUserLogin(string username)
         {
-            objUser = utilities.GetUserByUsername(username);
+            User objUser = loginService.GetUserByUsername(username);
+            return objUser;
+        }
+
+        private void ClearTextbox()
+        {
+            txtUsername.Text = string.Empty;
+            txtPassword.Text = string.Empty;
+        }
+
+        private void ClearErrorMessage()
+        {            
+            lblGeneral_Error.Text = "";
+            lblUserName_Error.Text = "";
+            lblPassword_Error.Text = "";
+        }
+
+        //Valid user login
+        private bool ValidateUserLogin()
+        {
+            ClearErrorMessage();
+            bool result = true;
+            string username = txtUsername.Text;
+            string password = txtPassword.Text;
+            User objUser = new User();
+
+            if (String.IsNullOrWhiteSpace(username))
+            {
+                lblUserName_Error.Text = "Please input username!";
+                result = false;
+            }
+            if (String.IsNullOrWhiteSpace(password))
+            {
+                lblPassword_Error.Text = "Please input Password!";
+                result = false;
+            }
+            if (!String.IsNullOrWhiteSpace(username) && !String.IsNullOrWhiteSpace(password))
+            {
+                objUser = loginService.GetUserByUsername(username);
+                if (String.IsNullOrWhiteSpace(objUser.Username))
+                {
+                    lblUserName_Error.Text = "Username non-existed!";                 
+                    result = false;
+                }
+                else
+                {
+                    string encryptedPassword = utils.EncryptPassword(password);
+                    if (!String.Equals(encryptedPassword, objUser.Password))
+                    {
+                        lblPassword_Error.Text = "Wrong Password!";
+                        result = false;
+                    }
+                }                
+            }            
+            
+            return result;
         }
     }
 }
