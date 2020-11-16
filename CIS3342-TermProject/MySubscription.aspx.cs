@@ -4,20 +4,83 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using EcommerceLibrary;
+using System.Data;
+using System.Data.SqlClient;
+
 
 namespace CIS3342_TermProject
 {
     public partial class MySubscription : System.Web.UI.Page
     {
+
+        DBConnect objDB = new DBConnect();
+        SqlCommand objCommand = new SqlCommand();
+    
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Check session storage & make sure user type is member
-            // If user type is member then get their username 
-            // If user type is member then check to see if they have a subscription from DB 
-            // If they have a subscription then Cancel Subscription button is not hidden
-            // If they have a subscription and its != highest type of subscription then Upgrade button is not hidden
-            // else if {
-            // they have no subcription then cancel subscription  button and upgrade are hidden and only add new is shown 
+
+            string subID;
+            panelHasSubscription.Visible = false;
+            panelNoSubscription.Visible = false;
+             string userid = Session["userid"].ToString();
+
+         
+            // Get username from session storage
+            //  Check DB to see if they have a subscription ID under that username
+            // If yes display existing subscription panel
+            // If no display " You have no subscriptions, you can browse our subscriptions here" 
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_GetSubscriptionByUserID";
+
+            SqlParameter inputParameter = new SqlParameter("@UserID", userid);
+            inputParameter.Direction = ParameterDirection.Input;
+            inputParameter.SqlDbType = SqlDbType.Int;
+
+            objCommand.Parameters.Add(inputParameter);
+
+            DataSet myDS = objDB.GetDataSetUsingCmdObj(objCommand);
+           
+            if (myDS.Tables[0].Rows.Count > 0)
+            {
+
+                subID = ((myDS.Tables[0].Rows[0]["SubscriptionID"]).ToString());
+                
+                string subName = ((myDS.Tables[0].Rows[0]["SubscriptionName"]).ToString());
+                string subDescription = ((myDS.Tables[0].Rows[0]["SubscriptionDescription"]).ToString());
+                string subImage = ((myDS.Tables[0].Rows[0]["SubscriptionImage"]).ToString());
+                string subPrice = ((myDS.Tables[0].Rows[0]["SubscriptionPrice"]).ToString());
+                string subBillingTime = ((myDS.Tables[0].Rows[0]["SubscriptionBillingTime"]).ToString());
+
+                imgSubscription.ImageUrl = subImage;
+                lblSubscriptionName.Text = subName;
+                lblSubscriptionDescription.Text = subDescription;
+                lblSubscriptionPrice.Text = subPrice;
+                lblSubscriptionBillingTime.Text = subBillingTime;
+                panelHasSubscription.Visible = true;
+
+
+                objCommand.Parameters.Clear();
+                objCommand.CommandType = CommandType.StoredProcedure;
+                objCommand.CommandText = "TP_GetUpgradeOptions";
+              
+                objCommand.Parameters.AddWithValue("@SubscriptionID", subID);
+                DataSet myDS3 = objDB.GetDataSetUsingCmdObj(objCommand);
+                ddlSubscriptionTypes.DataSource = myDS3;
+                ddlSubscriptionTypes.DataTextField = "SubscriptionName";
+                ddlSubscriptionTypes.DataValueField = "SubscriptionID";
+                ddlSubscriptionTypes.DataBind();
+            }
+
+            else
+            {
+                panelHasSubscription.Visible = false;
+                panelNoSubscription.Visible = true;
+            }
+
+
+
         }
 
         protected void btnCancelSubscription_Click(object sender, EventArgs e)
@@ -43,9 +106,43 @@ namespace CIS3342_TermProject
 
         }
 
-        protected void btnAddSubscription_Click(object sender, EventArgs e)
+        protected void btnConfirm_Click(object sender, EventArgs e)
         {
-            // Select subscription type and add it to the users cart 
+
+            int newID = int.Parse(ddlSubscriptionTypes.SelectedValue);
+            string userid = Session["userid"].ToString();
+            objCommand.Parameters.Clear();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_UpgradeDowngrade";
+
+            objCommand.Parameters.AddWithValue("@SubscriptionID", newID);
+            objCommand.Parameters.AddWithValue("@UserID", userid);
+            objDB.DoUpdateUsingCmdObj(objCommand);
+
+            Response.Redirect("MySubscription.aspx");
+
+
+        }
+            
+
+        
+
+        protected void btnYesCancel_Click(Object sender, EventArgs e)
+        {
+
+           objCommand.Parameters.Clear();
+            string userid = Session["userid"].ToString();
+            int cancelled = 0;
+         
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_CancelSub";
+            objCommand.Parameters.AddWithValue("@UserID", userid);
+            objCommand.Parameters.AddWithValue("@Cancelled", cancelled);
+            objDB.DoUpdateUsingCmdObj(objCommand);
+            
+             //   panelHasSubscription.Visible = false;
+                Response.Redirect("MySubscription.aspx");
+
+            }
         }
     }
-}

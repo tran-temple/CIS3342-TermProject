@@ -48,14 +48,14 @@ namespace CIS3342_TermProject
                 Session["usertype"] = objUser.UserType;*/
 
                 //testing nav bar with default owner
-                Session["userid"] = 1;
-                Session["username"] = "test_1";
-                Session["usertype"] = Constant.OWNER;
+               // Session["userid"] = 7;
+                //Session["username"] = "test_1";
+                //Session["usertype"] = Constant.OWNER;
 
                 //testing nav bar with default registered customer
-                /*Session["userid"] = 2;
+                Session["userid"] = 7;
                 Session["username"] = "test_2";
-                Session["usertype"] = Constant.CUSTOMER;*/
+                Session["usertype"] = Constant.CUSTOMER;
 
                 Response.Redirect("HomePage.aspx");
             }

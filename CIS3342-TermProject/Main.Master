@@ -7,6 +7,13 @@ The Term Project: ECommercesite (online chocolate store)
 -->
 <html>
 <head runat="server">
+    <style>
+
+        .signedInAs {
+            color: white;
+            padding-right: 5px;
+        }
+    </style>
     <!-- Required meta tags -->
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
@@ -64,8 +71,9 @@ The Term Project: ECommercesite (online chocolate store)
                 <ul class="navbar-nav ml-auto mt-auto">
                     <li class="nav-item">
                         <asp:LinkButton ID="btnSignUp" runat="server" class="nav-link pl-2" OnClick="btnSignUp_Click" Text="Sign up" Visible="false"></asp:LinkButton>
+                                  <asp:Label ID="lblUsername" runat="server" CssClass="signedInAs" Visible="false"></asp:Label>
                         <asp:LinkButton ID="btnSignOut" runat="server" class="nav-link pl-2" OnClick="btnSignOut_Click" Text="Sign out" Visible="false"></asp:LinkButton>
-                        <asp:Label ID="lblUsername" runat="server" CssClass="bg-light" Visible="false"></asp:Label>
+              
                     </li>
                 </ul>
             </div>
