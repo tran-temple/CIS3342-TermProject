@@ -1,8 +1,18 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="AdminSubscription.aspx.cs" Inherits="CIS3342_TermProject.AdminSubscription" %>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
+
+
+    
+<link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300&display=swap" rel="stylesheet">
+   <link rel="stylesheet" type="text/css" href="styles/AdminSubscriptionStyle.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
-
+    <div class="gvContainer">
     <asp:Label ID="lblError" runat="server"></asp:Label>
                 <asp:GridView ID="gvSubscriptions" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal"  EnableViewState="False" OnRowCommand="gvSubscriptions_RowCommand" OnRowEditing="gvSubscriptions_RowEditing" OnRowUpdating="gvSubscriptions_RowUpdating" OnSelectedIndexChanged="gvSubscriptions_SelectedIndexChanged" OnRowCancelingEdit="gvSubscriptions_RowCancelingEdit">
         <Columns>
@@ -48,7 +58,7 @@
     <br />
     <asp:Image ID="imageFile" runat="server" />
 
-
+          </div>
 
 
 
@@ -104,7 +114,7 @@
   </div>
 </div>
 
-    
+  
 
 
 

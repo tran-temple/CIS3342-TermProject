@@ -52,21 +52,37 @@ namespace CIS3342_TermProject
         protected void gvSubscriptions_RowUpdating(Object sender, System.Web.UI.WebControls.GridViewUpdateEventArgs e)
         {
 
-            FileUpload FileUpload2 = (FileUpload)gvSubscriptions.Rows[e.RowIndex].FindControl("FileUpload2");
-            if (FileUpload2.HasFile)
-            {
-                string filename = Path.GetFileName(FileUpload2.PostedFile.FileName);
-                FileUpload2.SaveAs(Server.MapPath("~/") + filename);
-
-            }
-            else
-            {
-                // use previous user image if new image is not changed    
-               
-            }
             int rowIndex = e.RowIndex;
             string selectedSubID = gvSubscriptions.DataKeys[rowIndex].Value.ToString();
 
+            FileUpload FileUpload2 = (FileUpload)gvSubscriptions.Rows[e.RowIndex].FindControl("FileUpload2");
+            if (FileUpload2.HasFile)
+            {
+                try
+                {
+                    string filename2 = Path.GetFileName(FileUpload2.PostedFile.FileName);
+                    FileUploadControl.SaveAs(Server.MapPath("~/") + filename2);
+
+                    Object file = (Server.MapPath("~/ ") + filename2);
+                    BinaryFormatter serializer = new BinaryFormatter();
+                    MemoryStream memStream = new MemoryStream();
+                    serializer.Serialize(memStream, file);
+                    byte[] byteArray;
+                    byteArray = memStream.ToArray();
+                    lblError.Text = byteArray.ToString();
+                }
+                catch (Exception ex)
+                {
+                    lblError.Text = ex.ToString();
+                }
+            }
+
+
+            // use previous user image if new image is not changed    
+
+
+
+            string newImage = FileUpload2.PostedFile.FileName.ToString();
             TextBox TboxSubscriptionName;
             TboxSubscriptionName = (TextBox)gvSubscriptions.Rows[rowIndex].Cells[3].Controls[0];
 
@@ -132,7 +148,7 @@ namespace CIS3342_TermProject
                 string newPrice = TboxSubscriptionPrice.Text;
                 string newBilling = TboxSubscriptionBillingTime.Text;
 
-                string newImage = FileUpload2.PostedFile.FileName.ToString();
+            
 
                 DBConnect objDB = new DBConnect();
                 SqlCommand objCommand = new SqlCommand();

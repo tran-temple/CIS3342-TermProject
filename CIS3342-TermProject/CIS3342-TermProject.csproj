@@ -75,6 +75,7 @@
     <Content Include="Login.aspx" />
     <Content Include="ProductPage.aspx" />
     <Content Include="Registration.aspx" />
+    <Content Include="styles\AdminSubscriptionStyle.css" />
     <Content Include="styles\styles.css" />
     <Content Include="Web.config" />
   </ItemGroup>
