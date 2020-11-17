@@ -12,6 +12,9 @@ namespace CIS3342_TermProject
 {
     public partial class HomePage : System.Web.UI.Page
     {
+        ProductService productService = new ProductService();
+        DataSet productDS;
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -30,7 +33,9 @@ namespace CIS3342_TermProject
                     DLSubscriptions.DataBind();
                 }
 
-
+                //Show list categories and products
+                ShowCategoriesList();
+                ShowProductsList();
             }
         }
 
@@ -60,6 +65,43 @@ namespace CIS3342_TermProject
 
 
         protected void dlSubscriptions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        //Show the list of categories
+        private void ShowCategoriesList()
+        {
+            DataSet ds = productService.GetCategories();
+            if (ds.Tables.Count > 0)
+            {
+                foreach (DataRow row in ds.Tables[0].Rows)
+                {
+                    ddlCategory.Items.Add(new ListItem() { Text = row["CategoryName"].ToString(), Value = row["CategoryID"].ToString() });
+                }
+            }
+        }
+
+        //Show the list of all products
+        private void ShowProductsList()
+        {
+            productDS = productService.GetProducts();
+            gvProducts.DataSource = productDS;
+            gvProducts.DataBind();
+
+            Session["productDS"] = productDS;
+        }
+
+        protected void gvProducts_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            // Set the GridView to display the correct page
+            gvProducts.PageIndex = e.NewPageIndex;
+            productDS = (DataSet)Session["productDS"];
+            gvProducts.DataSource = productDS;
+            gvProducts.DataBind();
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
         {
 
         }
