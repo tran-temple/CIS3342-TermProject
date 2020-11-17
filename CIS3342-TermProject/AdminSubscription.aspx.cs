@@ -55,13 +55,13 @@ namespace CIS3342_TermProject
             int rowIndex = e.RowIndex;
             string selectedSubID = gvSubscriptions.DataKeys[rowIndex].Value.ToString();
 
-            FileUpload FileUpload2 = (FileUpload)gvSubscriptions.Rows[e.RowIndex].FindControl("FileUpload2");
+            FileUpload FileUpload2 = (FileUpload)gvSubscriptions.Rows[e.RowIndex].FindControl("FileUploadControl2");
             if (FileUpload2.HasFile)
             {
                 try
                 {
                     string filename2 = Path.GetFileName(FileUpload2.PostedFile.FileName);
-                    FileUploadControl.SaveAs(Server.MapPath("~/") + filename2);
+                    FileUpload2.SaveAs(Server.MapPath("~/") + filename2);
 
                     Object file = (Server.MapPath("~/ ") + filename2);
                     BinaryFormatter serializer = new BinaryFormatter();
@@ -79,7 +79,6 @@ namespace CIS3342_TermProject
 
 
             // use previous user image if new image is not changed    
-
 
 
             string newImage = FileUpload2.PostedFile.FileName.ToString();

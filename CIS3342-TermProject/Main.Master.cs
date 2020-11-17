@@ -18,7 +18,7 @@ namespace CIS3342_TermProject
                 {
                     lblUsername.Visible = true;
                     btnSignOut.Visible = true;
-                    lblUsername.Text = "Logged in as " + Session["username"];
+                    lblUsername.Text = "Logged in as " + Session["username"] + Session["userid"];
                 }
                 else
                 {
@@ -71,7 +71,16 @@ namespace CIS3342_TermProject
 
         protected void btnMyCart_Click(object sender, EventArgs e)
         {
+            Response.Redirect("HomePage.aspx");
+        }
+        protected void btnMySub_Click (object sender, EventArgs e)
+        {
+            Response.Redirect("MySubscription.aspx");
+        }
 
+       protected void btnPurchaseHistory_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("PurchaseHistory.aspx");
         }
 
         protected void btnModifySubscription_Click(object sender, EventArgs e)

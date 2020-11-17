@@ -95,7 +95,7 @@
 
     <asp:Panel ID="panelNoSubscription" runat="server">
 
-        <asp:Label ID="lblNoSubscription" runat="server"> You currently have no subscription. </asp:Label>
+        <asp:Label ID="lblNoSubscription" runat="server"> You currently have no subscription. You can find our subscription options <a href="HomePage.aspx"> here </a> </asp:Label>
     </asp:Panel>
 
 

@@ -67,6 +67,15 @@ namespace CIS3342_TermProject {
         protected global::System.Web.UI.WebControls.LinkButton btnPurchaseHistory;
         
         /// <summary>
+        /// btnMySub control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnMySub;
+        
+        /// <summary>
         /// btnMyCart control.
         /// </summary>
         /// <remarks>

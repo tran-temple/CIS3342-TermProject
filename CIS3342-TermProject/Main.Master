@@ -62,8 +62,11 @@ The Term Project: ECommercesite (online chocolate store)
                         <asp:LinkButton ID="btnAddProduct" runat="server" CssClass="nav-link" Text="Add Product" Visible="false" OnClick="btnAddProduct_Click"></asp:LinkButton>
                     </li>
                     <li class="nav-item mx-2" id="navlinkPurchaseHistory">
-                        <asp:LinkButton ID="btnPurchaseHistory" runat="server" CssClass="nav-link" Text="Purchase History" Visible="false"></asp:LinkButton>
+                        <asp:LinkButton ID="btnPurchaseHistory" runat="server" CssClass="nav-link" Text="Purchase History" Visible="false" OnClick="btnPurchaseHistory_Click"></asp:LinkButton>
                     </li>
+                     <li class="nav-item mx-2" id="navLinkMySub">
+                        <asp:LinkButton ID="btnMySub" runat="server" CssClass="nav-link" Text="My Subscription" Visible="true" OnClick="btnMySub_Click"></asp:LinkButton>
+                    </li>    
                     <li class="nav-item mx-2" id="navlinkCart">
                         <asp:LinkButton ID="btnMyCart" runat="server" CssClass="nav-link" Text="My Cart" Visible="false" OnClick="btnMyCart_Click"></asp:LinkButton>
                     </li>                    
