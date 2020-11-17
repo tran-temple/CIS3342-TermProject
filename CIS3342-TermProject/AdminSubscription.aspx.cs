@@ -54,12 +54,11 @@ namespace CIS3342_TermProject
 
             int rowIndex = e.RowIndex;
             string selectedSubID = gvSubscriptions.DataKeys[rowIndex].Value.ToString();
-
+            string newImage;
             FileUpload FileUpload2 = (FileUpload)gvSubscriptions.Rows[e.RowIndex].FindControl("FileUploadControl2");
             if (FileUpload2.HasFile)
             {
-                try
-                {
+                
                     string filename2 = Path.GetFileName(FileUpload2.PostedFile.FileName);
                     FileUpload2.SaveAs(Server.MapPath("~/") + filename2);
 
@@ -70,18 +69,21 @@ namespace CIS3342_TermProject
                     byte[] byteArray;
                     byteArray = memStream.ToArray();
                     lblError.Text = byteArray.ToString();
-                }
-                catch (Exception ex)
-                {
-                    lblError.Text = ex.ToString();
-                }
+                 newImage = FileUpload2.PostedFile.FileName.ToString();
             }
+
+
+               else 
+                {
+                  newImage = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png";
+                }
+            
 
 
             // use previous user image if new image is not changed    
 
 
-            string newImage = FileUpload2.PostedFile.FileName.ToString();
+           
             TextBox TboxSubscriptionName;
             TboxSubscriptionName = (TextBox)gvSubscriptions.Rows[rowIndex].Cells[3].Controls[0];
 
@@ -216,26 +218,7 @@ namespace CIS3342_TermProject
         protected void btnAdd_Click(Object sender, EventArgs e)
         {
 
-            if (FileUploadControl.HasFile)
-            {
-                try
-                {
-                    string filename = Path.GetFileName(FileUploadControl.PostedFile.FileName);
-                    FileUploadControl.SaveAs(Server.MapPath("~/") + filename);
-                   
-                    Object file = (Server.MapPath("~/ ") + filename);
-                    BinaryFormatter serializer = new BinaryFormatter();
-                    MemoryStream memStream = new MemoryStream();
-                    serializer.Serialize(memStream, file);
-                    byte[] byteArray;
-                    byteArray = memStream.ToArray();
-                    lblError.Text = byteArray.ToString();
-                }
-                catch (Exception ex)
-                {
-                    lblError.Text = ex.ToString();
-                }
-            }
+           
             // Add validation here
             if (txtNewSubscriptionName.Text == "" || txtNewSubscriptionDescription.Text=="" ||  txtNewSubscriptionPrice.Text=="")
             {
@@ -245,7 +228,7 @@ namespace CIS3342_TermProject
 
            else if (lblFormError.Text == "")
             {
-                string NewSubscriptionImage = FileUploadControl.PostedFile.FileName.ToString();
+                string NewSubscriptionImage = ImageUploadUC.uploadedImage;
                 string NewSubscriptionName = txtNewSubscriptionName.Text;
                 string NewSubscriptionDescription = txtNewSubscriptionDescription.Text;
                 string NewSubscriptionPrice = txtNewSubscriptionPrice.Text;

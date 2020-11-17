@@ -1,5 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="AdminSubscription.aspx.cs" Inherits="CIS3342_TermProject.AdminSubscription" %>
 
+<%@ Register Src="~/UserControls/ImageUploadUC.ascx" TagPrefix="ucUpload" TagName="ImageUpload1" %>
+
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
@@ -98,8 +101,7 @@
                    <asp:ListItem Value="/year"> Yearly </asp:ListItem>
               </asp:DropDownList>
               <br />
-              <label for="imageUpload" class="col-form-label"> Subscription Image</label>
-              <asp:FileUpload ID="FileUploadControl" runat="server" CssClass="form-control-file" />
+              <ucUpload:ImageUpload1 runat="server" ID="ImageUploadUC" />
                
     <br /><br />
   

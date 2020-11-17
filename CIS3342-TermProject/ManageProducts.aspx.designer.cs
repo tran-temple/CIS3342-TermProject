@@ -10,34 +10,16 @@
 namespace CIS3342_TermProject {
     
     
-    public partial class AdminSubscription {
+    public partial class ManageProducts {
         
         /// <summary>
-        /// lblError control.
+        /// gvProducts control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblError;
-        
-        /// <summary>
-        /// gvSubscriptions control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvSubscriptions;
-        
-        /// <summary>
-        /// imageFile control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imageFile;
+        protected global::System.Web.UI.WebControls.GridView gvProducts;
         
         /// <summary>
         /// lblSuccess control.
@@ -58,40 +40,49 @@ namespace CIS3342_TermProject {
         protected global::System.Web.UI.WebControls.Label lblFormError;
         
         /// <summary>
-        /// txtNewSubscriptionName control.
+        /// txtNewProductName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNewSubscriptionName;
+        protected global::System.Web.UI.WebControls.TextBox txtNewProductName;
         
         /// <summary>
-        /// txtNewSubscriptionDescription control.
+        /// txtNewProductDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNewSubscriptionDescription;
+        protected global::System.Web.UI.WebControls.TextBox txtNewProductDescription;
         
         /// <summary>
-        /// txtNewSubscriptionPrice control.
+        /// txtNewProductPrice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNewSubscriptionPrice;
+        protected global::System.Web.UI.WebControls.TextBox txtNewProductPrice;
         
         /// <summary>
-        /// ddlBilling control.
+        /// txtNewProductQuantity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlBilling;
+        protected global::System.Web.UI.WebControls.TextBox txtNewProductQuantity;
+        
+        /// <summary>
+        /// txtNewProductCategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNewProductCategory;
         
         /// <summary>
         /// ImageUploadUC control.
