@@ -23,7 +23,7 @@ namespace WebAPI.Controllers
             DBConnect objDB = new DBConnect();
 
 
-            // Need to write stored procedure for this.
+            // Need to use stored procedure for this.
             DataSet ds = objDB.GetDataSet("SELECT * FROM TP_Products");
 
             List<Product> products = new List<Product>();
@@ -54,8 +54,70 @@ namespace WebAPI.Controllers
             return products;
 
         }
-    
 
+        [HttpPost()]              
+
+        [HttpPost("AddProduct")]   // POST api/AddProduct/
+
+        public Boolean AddCustomer([FromBody]Product product)
+
+        {
+
+            if (product != null)
+
+            {
+
+                DBConnect objDB = new DBConnect();
+
+                SqlCommand objCommand = new SqlCommand();
+
+
+
+                objCommand.CommandType = CommandType.StoredProcedure;
+
+                objCommand.CommandText = "TP_AddNewProduct";
+
+
+
+                objCommand.Parameters.AddWithValue("@newProductName", product.ProductName);
+
+                objCommand.Parameters.AddWithValue("@newProductDescription", product.Description);
+
+                objCommand.Parameters.AddWithValue("@newProductCategoryID", product.CategoryID);
+
+                objCommand.Parameters.AddWithValue("@newProductPrice", product.ProductPrice);
+
+                objCommand.Parameters.AddWithValue("@newProductQuantity", product.ProductQuantity);
+
+                objCommand.Parameters.AddWithValue("@newProductImage", product.ImageURL);
+
+              
+
+
+
+                int retVal = objDB.DoUpdateUsingCmdObj(objCommand);
+
+
+
+                if (retVal > 0)
+
+                    return true;
+
+                else
+
+                    return false;
+
+            }
+
+            else
+
+            {
+
+                return false;
+
+            }
+
+        }
         // GET api/<controller>/5
         [HttpGet("{id}")]
         public string Get(int id)

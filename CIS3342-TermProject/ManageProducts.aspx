@@ -5,12 +5,20 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
-
-    <asp:GridView ID="gvProducts" runat="server" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal">
+    <asp:Label ID="lblDisplay" runat="server"></asp:Label>
+    <asp:GridView ID="gvProducts" runat="server" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" AutoGenerateColumns="False" OnSelectedIndexChanged="gvProducts_SelectedIndexChanged"  EnableViewState="False" OnRowCommand="gvProducts_RowCommand" OnRowEditing="gvProducts_RowEditing" OnRowUpdating="gvProducts_RowUpdating" OnRowCancelingEdit="gvProducts_RowCancelingEdit">
         <Columns>
+               <asp:BoundField DataField="ProductID" HeaderText="Product ID" ReadOnly="True" SortExpression="ProductID"  Visible="false" />
+            <asp:CommandField ButtonType="Button" HeaderText="Delete" ShowDeleteButton="True" ShowHeader="True" ControlStyle-CssClass="btn btn-outline-dark" />
+         
             <asp:ImageField DataImageUrlField="ImageURL" HeaderText="Image" ControlStyle-Width="100" ControlStyle-Height = "100">
 <ControlStyle Height="100px" Width="100px"></ControlStyle>
             </asp:ImageField>
+            <asp:BoundField DataField="ProductName" HeaderText="Name" SortExpression="ProductName" />
+            <asp:BoundField DataField="Description" HeaderText="Description" SortExpression="Description" />
+            <asp:BoundField DataField="ProductPrice" HeaderText="Price" SortExpression="ProductPrice" />
+            <asp:BoundField DataField="ProductQuantity" HeaderText="Quantity" SortExpression="ProductQuantity" />
+            <asp:CommandField ButtonType="Button" HeaderText="Edit" ShowEditButton="True" ShowHeader="True" ControlStyle-CssClass="btn btn-outline-dark" />
         </Columns>
         <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
         <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
