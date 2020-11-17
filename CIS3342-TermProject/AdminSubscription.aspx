@@ -33,10 +33,10 @@
                 </EditItemTemplate>
                  </asp:TemplateField>  
             
-            <asp:BoundField DataField="SubscriptionName" HeaderText="Subscription Name" SortExpression="SubscriptionName" />
-            <asp:BoundField DataField="SubscriptionPrice" HeaderText="Price" SortExpression="SubscriptionPrice" />
-            <asp:BoundField DataField="SubscriptionBillingTime" HeaderText="Billing Time" SortExpression="SubscriptionBillingTime" />
-            <asp:BoundField DataField="SubscriptionDescription" HeaderText="Description" SortExpression="SubscriptionDescription" />
+            <asp:BoundField DataField="SubscriptionName" HeaderText="Subscription Name" SortExpression="SubscriptionName" ControlStyle-Width="60" />
+            <asp:BoundField DataField="SubscriptionPrice" HeaderText="Price" SortExpression="SubscriptionPrice" ControlStyle-Width="40" />
+            <asp:BoundField DataField="SubscriptionBillingTime" HeaderText="Billing Time" SortExpression="SubscriptionBillingTime" ControlStyle-Width="40"/>
+            <asp:BoundField DataField="SubscriptionDescription" HeaderText="Description" SortExpression="SubscriptionDescription" ControlStyle-Width="170" />
      
             <asp:CommandField ButtonType="Button" HeaderText="Edit" ShowEditButton="True" ShowHeader="False"  ControlStyle-CssClass="btn btn-outline-dark" >
 <ControlStyle CssClass="btn btn-outline-dark"></ControlStyle>
