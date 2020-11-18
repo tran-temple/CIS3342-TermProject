@@ -10,12 +10,14 @@ using Newtonsoft.Json.Serialization;
 
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace WebAPI.Controllers
 {
+    [Produces("application/json")]
     [Route("api/Products")]
     public class ProductController : Controller
     {
+        ProductService productService = new ProductService();
+
         // GET: api/<controller>
         [HttpGet]
        public List<Product> Get()
@@ -118,6 +120,42 @@ namespace WebAPI.Controllers
             }
 
         }
+
+        // This method receives an id for a product and returns a product object with the field values from the database record.    
+        [HttpGet("GetProductByID/{id}")]  // GET api/Products/GetProductByID/
+        public Product GetProductByID(int id)
+        {
+            Product product = null;
+            product = productService.GetProductByID(id);
+            return product;
+        }
+
+        // This method receives a product id to get reviews of a product from the database records
+        [HttpGet("GetReviewsByProductID/{id}")]  // GET api/Products/GetReviewsByProductID/
+        public List<Review> GetReviewsByProductID(int id)
+        {
+            List<Review> reviewList = new List<Review>();
+            DataSet resultDS = productService.GetReviewsByProductID(id);
+
+            int count = resultDS.Tables[0].Rows.Count;
+            if (count > 0)
+            {
+                foreach (DataRow row in resultDS.Tables[0].Rows)
+                {
+                    Review review = new Review();
+                    review.ReviewID = int.Parse(row["ReviewID"].ToString());
+                    review.UserID = int.Parse(row["UserID"].ToString());
+                    review.ProductID = int.Parse(row["ProductID"].ToString());
+                    review.Rating = int.Parse(row["Rating"].ToString());
+                    review.Comments = row["Comments"].ToString();
+                    review.ReviewDate = DateTime.Parse(row["ReviewDate"].ToString());
+                    reviewList.Add(review);
+                }
+            }
+            return reviewList;
+        }
+
+        /* sample -----------------------
         // GET api/<controller>/5
         [HttpGet("{id}")]
         public string Get(int id)
@@ -142,6 +180,7 @@ namespace WebAPI.Controllers
         public void Delete(int id)
         {
         }
+        -----------------------------------------------*/
     }
 }
 

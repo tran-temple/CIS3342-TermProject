@@ -15,6 +15,9 @@ namespace CIS3342_TermProject
         ProductService productService = new ProductService();
         DataSet productDS;
 
+        //INDEX of USED columns
+        private const int PRODUCTID_COLUMN = 6;
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -37,36 +40,6 @@ namespace CIS3342_TermProject
                 ShowCategoriesList();
                 ShowProductsList();
             }
-        }
-
-        protected void DLSubscriptions_ItemCommand(Object sender, System.Web.UI.WebControls.DataListCommandEventArgs e)
-
-        {
-
-            // Retrieve the row index for the item that fired the ItemCommand event
-
-            int rowIndex = e.Item.ItemIndex;
-
-
-
-            // Retrieve a value from a control in the DL's Items collection
-
-            Label myLabel = (Label)DLSubscriptions.Items[rowIndex].FindControl("lblSubscriptionID");
-
-            String subscriptionID = myLabel.Text;
-
-
-
-            lblSubscriptionIDShow.Text = "You selected Subscription ID " + subscriptionID;
-            // WIll be used to add to cart later on
-
-        }
-
-
-
-        protected void dlSubscriptions_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         //Show the list of categories
@@ -92,6 +65,34 @@ namespace CIS3342_TermProject
             Session["productDS"] = productDS;
         }
 
+        protected void DLSubscriptions_ItemCommand(Object sender, System.Web.UI.WebControls.DataListCommandEventArgs e)
+
+        {
+
+            // Retrieve the row index for the item that fired the ItemCommand event
+
+            int rowIndex = e.Item.ItemIndex;
+
+
+
+            // Retrieve a value from a control in the DL's Items collection
+
+            Label myLabel = (Label)DLSubscriptions.Items[rowIndex].FindControl("lblSubscriptionID");
+
+            String subscriptionID = myLabel.Text;
+
+
+
+            lblSubscriptionIDShow.Text = "You selected Subscription ID " + subscriptionID;
+            // WIll be used to add to cart later on
+
+        }
+               
+        protected void dlSubscriptions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
         protected void gvProducts_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             // Set the GridView to display the correct page
@@ -103,7 +104,12 @@ namespace CIS3342_TermProject
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
+            
+        }
 
+        protected void gvProducts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Response.Redirect("ViewProductDetail.aspx?ProdID=" + gvProducts.SelectedRow.Cells[PRODUCTID_COLUMN].Text);
         }
     }
 }

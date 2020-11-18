@@ -83,6 +83,7 @@
     <Content Include="styles\AdminSubscriptionStyle.css" />
     <Content Include="styles\styles.css" />
     <Content Include="UserControls\ImageUploadUC.ascx" />
+    <Content Include="ViewProductDetail.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -135,6 +136,13 @@
     <Compile Include="UserControls\ImageUploadUC.ascx.designer.cs">
       <DependentUpon>ImageUploadUC.ascx</DependentUpon>
     </Compile>
+    <Compile Include="ViewProductDetail.aspx.cs">
+      <DependentUpon>ViewProductDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewProductDetail.aspx.designer.cs">
+      <DependentUpon>ViewProductDetail.aspx</DependentUpon>
+    </Compile>
     <Content Include="MySubscription.aspx" />
     <Content Include="styles\StyleNavigation.css" />
     <Content Include="Web.config" />
@@ -173,7 +181,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EcommerceLibrary\EcommerceLibrary.csproj">
       <Project>{821c4038-50a9-4ca9-9c0f-93c9be279e39}</Project>

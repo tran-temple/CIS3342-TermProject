@@ -125,7 +125,8 @@
             <div class="row justify-content-center mt-2">
                 <div class="col m-2">
                     <asp:GridView ID="gvProducts" runat="server" AutoGenerateColumns="false" AllowPaging="true" PageSize="5"
-                        CellPadding="8" ForeColor="#333333" GridLines="None" OnPageIndexChanging="gvProducts_PageIndexChanging" CssClass="w-100">
+                        CellPadding="8" ForeColor="#333333" GridLines="None" OnPageIndexChanging="gvProducts_PageIndexChanging" 
+                        OnSelectedIndexChanged="gvProducts_SelectedIndexChanged" CssClass="w-100">
                         <Columns>                            
                             <asp:TemplateField HeaderText="Image">
                                 <ItemTemplate>
