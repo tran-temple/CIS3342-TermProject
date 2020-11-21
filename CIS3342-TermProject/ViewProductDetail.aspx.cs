@@ -139,7 +139,9 @@ namespace CIS3342_TermProject
 
         protected void btnModifyProduct_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ProductPage.aspx?action=modify");
+            //Get product ID from URL
+            int prodID = int.Parse(Request.QueryString["ProdID"]);
+            Response.Redirect("ProductPage.aspx?ProdID=" + prodID + "&action=modify");
         }
     }
 }

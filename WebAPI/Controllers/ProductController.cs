@@ -18,7 +18,7 @@ namespace WebAPI.Controllers
     {
         ProductService productService = new ProductService();
 
-        // GET: api/<controller>
+        /*// GET: api/<controller>
         [HttpGet]
        public List<Product> Get()
         {
@@ -119,7 +119,7 @@ namespace WebAPI.Controllers
 
             }
 
-        }
+        }*/
 
         // This method receives an id for a product and returns a product object with the field values from the database record.    
         [HttpGet("GetProductByID/{id}")]  // GET api/Products/GetProductByID/
@@ -153,6 +153,36 @@ namespace WebAPI.Controllers
                 }
             }
             return reviewList;
+        }
+
+        // This method receives a product to insert that product into database records
+        [HttpPost("AddProduct")]   // POST api/Products/AddProduct/
+        public int AddProduct([FromBody]Product product)
+        {
+            int productID = 0;
+            if (product != null)
+            {
+                productID = productService.InsertProduct(product);
+            }            
+            return productID;
+        }
+
+        // This method receives a product to update that product into database records
+        [HttpPut("ModifyProduct")]  // PUT api/Products/ModifyProduct/
+        public Boolean ModifyProduct([FromBody]Product product)
+        {
+            if (product != null)
+            {
+                int retVal = productService.UpdateProduct(product);
+                if (retVal > 0)
+                    return true;
+                else
+                    return false;
+            }
+            else
+            {
+                return false;
+            }                
         }
 
         /* sample -----------------------

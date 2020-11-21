@@ -83,5 +83,60 @@ namespace EcommerceLibrary
             DataSet resultDS = objDB.GetDataSetUsingCmdObj(objCommand);
             return resultDS;
         }
+
+        //Insert Product
+        public int InsertProduct(Product product)
+        {
+            int id = 0;
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_InsertProduct";            
+            SqlParameter outParam = new SqlParameter("@theID", product.ProductID);
+            outParam.Direction = ParameterDirection.Output;
+            outParam.SqlDbType = SqlDbType.Int;
+            outParam.Size = 4;
+            objCommand.Parameters.Add(outParam);
+
+            ConvertProductToParams(objCommand, product);
+
+            objDB.DoUpdateUsingCmdObj(objCommand);
+            if (outParam.Value != DBNull.Value)
+            {
+                id = Convert.ToInt32(outParam.Value);
+            }
+            return id;
+        }
+
+        //Update Product
+        public int UpdateProduct(Product product)
+        {
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_UpdateProduct";
+            ConvertProductToParams(objCommand, product);
+            return objDB.DoUpdateUsingCmdObj(objCommand);
+        }
+
+        //Convert Product to params of DB
+        private void ConvertProductToParams(SqlCommand objCommand, Product product)
+        {
+            //set value for input parameter
+            SqlParameter inputParam;
+            if (product.ProductID != 0)
+            {
+                inputParam = new SqlParameter("@theID", product.ProductID);
+                inputParam.Direction = ParameterDirection.Input;
+                inputParam.SqlDbType = SqlDbType.Int;
+                inputParam.Size = 4;
+                objCommand.Parameters.Add(inputParam);
+            }
+
+            objCommand.Parameters.AddWithValue("@theCategoryID", product.CategoryID);
+            objCommand.Parameters.AddWithValue("@theProductName", product.ProductName);
+            objCommand.Parameters.AddWithValue("@theDescription", product.Description);
+            objCommand.Parameters.AddWithValue("@thePrice", product.ProductPrice);
+            objCommand.Parameters.AddWithValue("@theQuantity", product.ProductQuantity);
+            objCommand.Parameters.AddWithValue("@theImage", product.ImageURL);
+        }
     }
 }
