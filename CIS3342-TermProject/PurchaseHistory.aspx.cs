@@ -13,10 +13,12 @@ namespace CIS3342_TermProject
 {
     public partial class PurchaseHistory : System.Web.UI.Page
     {
+        OrderSvc.OrderService pxy = new OrderSvc.OrderService();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
-
+            //Test Webservice
+            lblDisplay.Text = pxy.HelloWorld();                 
         }
     }
 }

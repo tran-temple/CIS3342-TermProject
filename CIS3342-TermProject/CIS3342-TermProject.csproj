@@ -47,6 +47,8 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -84,6 +86,11 @@
     <Content Include="styles\styles.css" />
     <Content Include="UserControls\ImageUploadUC.ascx" />
     <Content Include="ViewProductDetail.aspx" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\OrderSvc\OrderService.disco" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -129,6 +136,11 @@
     <Compile Include="ProductPage.aspx.designer.cs">
       <DependentUpon>ProductPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ImageUploadUC.ascx.cs">
       <DependentUpon>ImageUploadUC.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -142,6 +154,11 @@
     </Compile>
     <Compile Include="ViewProductDetail.aspx.designer.cs">
       <DependentUpon>ViewProductDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\OrderSvc\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
     </Compile>
     <Content Include="MySubscription.aspx" />
     <Content Include="styles\StyleNavigation.css" />
@@ -174,6 +191,11 @@
   <ItemGroup>
     <Content Include="Main.Master" />
     <None Include="packages.config" />
+    <None Include="Web References\OrderSvc\OrderService.wsdl" />
+    <Content Include="Web References\OrderSvc\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -189,6 +211,22 @@
       <Project>{821c4038-50a9-4ca9-9c0f-93c9be279e39}</Project>
       <Name>EcommerceLibrary</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://localhost:52372/OrderService.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\OrderSvc\</RelPath>
+      <UpdateFromURL>http://localhost:52372/OrderService.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>CIS3342_TermProject_OrderSvc_OrderService</CachedSettingsPropName>
+    </WebReferenceUrl>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

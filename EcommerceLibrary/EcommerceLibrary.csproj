@@ -46,7 +46,10 @@
   <ItemGroup>
     <Compile Include="Connection.cs" />
     <Compile Include="Constant.cs" />
+    <Compile Include="CreditCard.cs" />
     <Compile Include="LoginService.cs" />
+    <Compile Include="Order.cs" />
+    <Compile Include="OrderItem.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
