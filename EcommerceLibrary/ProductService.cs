@@ -155,5 +155,34 @@ namespace EcommerceLibrary
 
             return objDB.DoUpdateUsingCmdObj(objCommand);
         }
+
+        //Insert Review
+        public int InsertReview(Review review)
+        {
+            int id = 0;
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_InsertReview";
+
+            SqlParameter outParam = new SqlParameter("@theID", review.ReviewID);
+            outParam.Direction = ParameterDirection.Output;
+            outParam.SqlDbType = SqlDbType.Int;
+            outParam.Size = 4;
+            objCommand.Parameters.Add(outParam);
+            
+            //input parameters
+            objCommand.Parameters.AddWithValue("@theUserID", review.UserID);
+            objCommand.Parameters.AddWithValue("@theProductID", review.ProductID);
+            objCommand.Parameters.AddWithValue("@theRating", review.Rating);
+            objCommand.Parameters.AddWithValue("@theComments", review.Comments);
+
+            objDB.DoUpdateUsingCmdObj(objCommand);
+
+            if (outParam.Value != DBNull.Value)
+            {
+                id = Convert.ToInt32(outParam.Value);
+            }
+            return id;
+        }
     }
 }

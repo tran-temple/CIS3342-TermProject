@@ -4,6 +4,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
     <div class="col-lg-8 offset-lg-2 mt-3 shadow border">        
         <!-- Add / Modify a Product -->                
@@ -66,4 +67,5 @@
             </asp:Panel>
         </div>
     </div>
+
 </asp:Content>

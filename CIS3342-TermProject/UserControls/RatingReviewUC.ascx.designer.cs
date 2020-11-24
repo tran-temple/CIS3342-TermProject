@@ -7,153 +7,117 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CIS3342_TermProject {
+namespace CIS3342_TermProject.UserControls {
     
     
-    public partial class ViewProductDetail {
+    public partial class RatingReviewUC {
         
         /// <summary>
-        /// RatingReviewUC control.
+        /// pnlRatingReview control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::CIS3342_TermProject.UserControls.RatingReviewUC RatingReviewUC;
+        protected global::System.Web.UI.WebControls.Panel pnlRatingReview;
         
         /// <summary>
-        /// lblGeneral_Error control.
+        /// lblMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblGeneral_Error;
+        protected global::System.Web.UI.WebControls.Label lblMessage;
         
         /// <summary>
-        /// pnlViewProfile control.
+        /// hidProductID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlViewProfile;
+        protected global::System.Web.UI.WebControls.HiddenField hidProductID;
         
         /// <summary>
-        /// imgProduct control.
+        /// hidUserID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgProduct;
+        protected global::System.Web.UI.WebControls.HiddenField hidUserID;
         
         /// <summary>
-        /// btnAddToCart control.
+        /// lblRating_Error control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddToCart;
+        protected global::System.Web.UI.WebControls.Label lblRating_Error;
         
         /// <summary>
-        /// btnAddReview control.
+        /// rdoStar1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnAddReview;
+        protected global::System.Web.UI.WebControls.RadioButton rdoStar1;
         
         /// <summary>
-        /// btnModifyProduct control.
+        /// rdoStar2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnModifyProduct;
+        protected global::System.Web.UI.WebControls.RadioButton rdoStar2;
         
         /// <summary>
-        /// btnDeleteProduct control.
+        /// rdoStar3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDeleteProduct;
+        protected global::System.Web.UI.WebControls.RadioButton rdoStar3;
         
         /// <summary>
-        /// lblName control.
+        /// rdoStar4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblName;
+        protected global::System.Web.UI.WebControls.RadioButton rdoStar4;
         
         /// <summary>
-        /// lblDescription control.
+        /// rdoStar5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDescription;
+        protected global::System.Web.UI.WebControls.RadioButton rdoStar5;
         
         /// <summary>
-        /// lblPrice control.
+        /// txtComments control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPrice;
+        protected global::System.Web.UI.WebControls.TextBox txtComments;
         
         /// <summary>
-        /// pnlQuantity control.
+        /// btnPost control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlQuantity;
-        
-        /// <summary>
-        /// lblQuantity control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblQuantity;
-        
-        /// <summary>
-        /// lblTotalRate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotalRate;
-        
-        /// <summary>
-        /// lblOutOfStock control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOutOfStock;
-        
-        /// <summary>
-        /// rptReviews control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptReviews;
+        protected global::System.Web.UI.WebControls.Button btnPost;
     }
 }
