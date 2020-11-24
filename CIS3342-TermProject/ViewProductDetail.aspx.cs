@@ -122,6 +122,7 @@ namespace CIS3342_TermProject
                     break;
                 case Constant.OWNER:
                     btnModifyProduct.Visible = true;
+                    btnDeleteProduct.Visible = true;
                     pnlQuantity.Visible = true;
                     break;
             }
@@ -142,6 +143,32 @@ namespace CIS3342_TermProject
             //Get product ID from URL
             int prodID = int.Parse(Request.QueryString["ProdID"]);
             Response.Redirect("ProductPage.aspx?ProdID=" + prodID + "&action=modify");
+        }
+
+        protected void btnDeleteProduct_Click(object sender, EventArgs e)
+        {
+            //Get product ID from URL
+            int prodID = int.Parse(Request.QueryString["ProdID"]);
+
+            // Create an HTTP Web Request and get the HTTP Web Response from the server.
+            WebRequest request = WebRequest.Create(webApiUrl + "DeleteProduct/" + prodID);
+            request.Method = "DELETE";
+            WebResponse response = request.GetResponse();
+
+            // Read data from the Web response, which requires working with streams
+            Stream theDataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(theDataStream);
+            String data = reader.ReadToEnd();
+            reader.Close();
+            response.Close();
+            if (data == "true")
+            {
+                Response.Redirect("HomePage.aspx");
+            }
+            else
+            {
+                lblGeneral_Error.Text = "Cannot delete product!";
+            }            
         }
     }
 }

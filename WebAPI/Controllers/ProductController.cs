@@ -185,6 +185,17 @@ namespace WebAPI.Controllers
             }                
         }
 
+        // This method receives a product id to delete that product from database
+        [HttpDelete("DeleteProduct/{id}")]  // PUT api/Products/DeleteProduct/
+        public Boolean DeleteProduct(int id)
+        {
+            int retVal = productService.DeleteProduct(id);
+            if (retVal > 0)
+                return true;
+            else
+                return false;           
+        }
+
         /* sample -----------------------
         // GET api/<controller>/5
         [HttpGet("{id}")]

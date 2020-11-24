@@ -138,5 +138,22 @@ namespace EcommerceLibrary
             objCommand.Parameters.AddWithValue("@theQuantity", product.ProductQuantity);
             objCommand.Parameters.AddWithValue("@theImage", product.ImageURL);
         }
+
+        //Delete Product
+        public int DeleteProduct(int id)
+        {
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_DeleteProduct";
+
+            //set value for input parameter
+            SqlParameter inputParam = new SqlParameter("@theID", id);
+            inputParam.Direction = ParameterDirection.Input;
+            inputParam.SqlDbType = SqlDbType.Int;
+            inputParam.Size = 4;
+            objCommand.Parameters.Add(inputParam);
+
+            return objDB.DoUpdateUsingCmdObj(objCommand);
+        }
     }
 }
