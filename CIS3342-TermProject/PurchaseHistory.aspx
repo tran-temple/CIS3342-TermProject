@@ -17,8 +17,11 @@
                     <div class="col-md-8">
                         <asp:Label ID="lblDisplay" runat="server" CssClass="text-danger"></asp:Label>
                     </div>
-                </div>                
+                </div>     
+                
+                    <asp:GridView ID="gvHistory" runat="server"></asp:GridView>
             </asp:Panel>
+        
         </div>
     </div>    
 </asp:Content>

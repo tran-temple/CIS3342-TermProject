@@ -58,32 +58,32 @@ namespace CIS3342_TermProject
             FileUpload FileUpload2 = (FileUpload)gvSubscriptions.Rows[e.RowIndex].FindControl("FileUploadControl2");
             if (FileUpload2.HasFile)
             {
-                
-                    string filename2 = Path.GetFileName(FileUpload2.PostedFile.FileName);
-                    FileUpload2.SaveAs(Server.MapPath("~/") + filename2);
 
-                    Object file = (Server.MapPath("~/ ") + filename2);
-                    BinaryFormatter serializer = new BinaryFormatter();
-                    MemoryStream memStream = new MemoryStream();
-                    serializer.Serialize(memStream, file);
-                    byte[] byteArray;
-                    byteArray = memStream.ToArray();
-                    lblError.Text = byteArray.ToString();
-                 newImage = FileUpload2.PostedFile.FileName.ToString();
+                string filename2 = Path.GetFileName(FileUpload2.PostedFile.FileName);
+                FileUpload2.SaveAs(Server.MapPath("~/") + filename2);
+
+                Object file = (Server.MapPath("~/ ") + filename2);
+                BinaryFormatter serializer = new BinaryFormatter();
+                MemoryStream memStream = new MemoryStream();
+                serializer.Serialize(memStream, file);
+                byte[] byteArray;
+                byteArray = memStream.ToArray();
+                lblError.Text = byteArray.ToString();
+                newImage = FileUpload2.PostedFile.FileName.ToString();
             }
 
 
-               else 
-                {
-                  newImage = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png";
-                }
-            
+            else
+            {
+                newImage = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png";
+            }
+
 
 
             // use previous user image if new image is not changed    
 
 
-           
+
             TextBox TboxSubscriptionName;
             TboxSubscriptionName = (TextBox)gvSubscriptions.Rows[rowIndex].Cells[3].Controls[0];
 
@@ -149,7 +149,7 @@ namespace CIS3342_TermProject
                 string newPrice = TboxSubscriptionPrice.Text;
                 string newBilling = TboxSubscriptionBillingTime.Text;
 
-            
+
 
                 DBConnect objDB = new DBConnect();
                 SqlCommand objCommand = new SqlCommand();
@@ -196,6 +196,7 @@ namespace CIS3342_TermProject
 
                 objDB.DoUpdateUsingCmdObj(objCommand);
                 gvSubscriptions.DataBind();
+                Response.Write("<script>alert('The subscription with subscription id" + selectedSubID + " has succesfully been deleted.')</script>");
                 Response.Redirect("AdminSubscription.aspx");
 
             }
@@ -204,7 +205,7 @@ namespace CIS3342_TermProject
 
 
 
-       
+
 
 
 
@@ -215,18 +216,22 @@ namespace CIS3342_TermProject
 
         }
 
+
+
         protected void btnAdd_Click(Object sender, EventArgs e)
         {
 
-           
+
             // Add validation here
-            if (txtNewSubscriptionName.Text == "" || txtNewSubscriptionDescription.Text=="" ||  txtNewSubscriptionPrice.Text=="")
+            if (txtNewSubscriptionName.Text == "" || txtNewSubscriptionDescription.Text == "" || txtNewSubscriptionPrice.Text == "")
             {
+                Response.Write("<script>alert('One or more fields were left blank. Please enter all fields and try again')</script>");
                 lblFormError.Text = " One or more fields were left blank. Please enter all fields and try again.";
+
             }
 
 
-           else if (lblFormError.Text == "")
+            else if (lblFormError.Text == "")
             {
                 string NewSubscriptionImage = ImageUploadUC.uploadedImage;
                 string NewSubscriptionName = txtNewSubscriptionName.Text;
@@ -254,14 +259,15 @@ namespace CIS3342_TermProject
                 gvSubscriptions.DataBind();
 
                 Response.Redirect("AdminSubscription.aspx");
-                lblSuccess.Text = "Your subscription has been added." + NewSubscriptionBillingTime + NewSubscriptionDescription + NewSubscriptionName + NewSubscriptionPrice;
+
+
+
             }
+
+
 
         }
 
-       
 
     }
-   
-
 }

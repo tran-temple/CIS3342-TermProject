@@ -1,24 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.Script.Serialization;  // needed for JSON serializers
+﻿using EcommerceLibrary;                      // needed for the product class
+using System;
 using System.IO;                        // needed for Stream and Stream Reader
 using System.Net;                       // needed for the Web Request
-using EcommerceLibrary;                      // needed for the product class
+using System.Web.Script.Serialization;  // needed for JSON serializers
 
 namespace CIS3342_TermProject
 {
 
     //TO DO:
 
-       // Change GV to non auto generate, use boundfields
+    // Change GV to non auto generate, use boundfields
 
-       // Delete product
-       // Edit product
-       // Change product category textbox to DDL and load categories from DB
+    // Delete product
+    // Edit product
+    // Change product category textbox to DDL and load categories from DB
 
     public partial class ManageProducts : System.Web.UI.Page
     {
@@ -53,9 +48,9 @@ namespace CIS3342_TermProject
 
 
             gvProducts.DataSource = products;
-          //  String[] names = new string[1];
-         //   names[0] = "ProductID";
-         //   gvProducts.DataKeyNames = names;
+            //  String[] names = new string[1];
+            //   names[0] = "ProductID";
+            //   gvProducts.DataKeyNames = names;
             gvProducts.DataBind();
         }
 
@@ -175,21 +170,21 @@ namespace CIS3342_TermProject
 
         protected void gvProducts_RowEditing(Object sender, System.Web.UI.WebControls.GridViewEditEventArgs e)
         {
-       
+
 
         }
 
         protected void gvProducts_RowUpdating(Object sender, System.Web.UI.WebControls.GridViewUpdateEventArgs e)
         {
-            
+
         }
 
 
         protected void gvProducts_RowCommand(Object sender, System.Web.UI.WebControls.GridViewCommandEventArgs e)
         {
-         
 
-            
+
+
         }
 
 
@@ -201,8 +196,8 @@ namespace CIS3342_TermProject
 
         protected void gvProducts_RowCancelingEdit(Object sender, System.Web.UI.WebControls.GridViewCancelEditEventArgs e)
         {
-        
+
 
         }
     }
-    }
+}

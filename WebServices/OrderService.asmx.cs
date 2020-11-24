@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data;
+using EcommerceLibrary;
+using System.Collections;
+
 using System.Web.Services;
 
 namespace WebServices
@@ -18,9 +22,16 @@ namespace WebServices
     {
 
         [WebMethod]
-        public string HelloWorld()
+        public DataSet HelloWorld()
         {
-            return "Hello World";
+            DBConnect objDB = new DBConnect();
+           
+            DataSet ds = objDB.GetDataSet("SELECT * FROM TP_Orders");
+            return ds;
         }
+      
+       
+
+     
     }
 }

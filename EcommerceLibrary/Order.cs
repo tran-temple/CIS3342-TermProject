@@ -15,7 +15,7 @@ namespace EcommerceLibrary
         private double orderTotal;
         private DateTime orderDate;
         private string paymentMethod;
-        private byte[] creditcard;
+        public byte[] creditcard;
 
         public Order()
         {

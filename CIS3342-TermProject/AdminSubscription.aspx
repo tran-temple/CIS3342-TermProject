@@ -91,7 +91,7 @@
               <br />
                 <label for="txtNewSubcriptionPrice" class="col-form-label" > Subscription Price</label>
         <asp:TextBox ID="txtNewSubscriptionPrice" runat="server" CssClass="form-control"> </asp:TextBox>
-              <br />
+              <br />  
                 <label for="txtNewSubscriptionBilling" class="col-form-label"> Subscription Billing Time</label>
       
               <asp:DropDownList ID="ddlBilling" runat="server">

@@ -36,6 +36,8 @@ namespace CIS3342_TermProject
                     DLSubscriptions.DataBind();
                 }
 
+
+
                 //Show list categories and products
                 ShowCategoriesList();
                 ShowProductsList();
