@@ -3,7 +3,8 @@ using System;
 using System.IO;                        // needed for Stream and Stream Reader
 using System.Net;                       // needed for the Web Request
 using System.Web.Script.Serialization;  // needed for JSON serializers
-
+using System.Data;
+using System.Data.SqlClient;
 namespace CIS3342_TermProject
 {
 
@@ -56,6 +57,18 @@ namespace CIS3342_TermProject
 
         protected void btnAdd_Click(Object sender, EventArgs e)
         {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+
+            objCommand.Parameters.Clear();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_GetCategories";
+
+            DataSet myDS2 = objDB.GetDataSetUsingCmdObj(objCommand);
+            ddlProductCategory.DataSource = myDS2;
+            ddlProductCategory.DataTextField = "CategoryName";
+            ddlProductCategory.DataValueField = "CategoryID";
+            ddlProductCategory.DataBind();
 
             Product product = new Product();
 
@@ -67,7 +80,7 @@ namespace CIS3342_TermProject
 
             product.ProductPrice = double.Parse(txtNewProductPrice.Text);
 
-            product.CategoryID = int.Parse(txtNewProductCategory.Text);
+            product.CategoryID = int.Parse(ddlProductCategory.SelectedValue);
 
             product.ProductQuantity = int.Parse(txtNewProductQuantity.Text);
 

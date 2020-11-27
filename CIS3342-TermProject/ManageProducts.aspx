@@ -60,7 +60,8 @@
               <br />
                 <label for="txtNewProductCategory" class="col-form-label"> Product Category</label>
        <asp:TextBox ID="txtNewProductCategory" runat="server" CssClass="form-control"> </asp:TextBox>
-           
+              <asp:DropDownList ID="ddlProductCategory" runat="server"></asp:DropDownList>
+
               <br />
      
               <uc1:ImageUploadUC runat="server" ID="ImageUploadUC" />
