@@ -27,6 +27,6 @@ namespace EcommerceLibrary
         public int ProductID { get => productID; set => productID = value; }
         public int Rating { get => rating; set => rating = value; }
         public string Comments { get => comments; set => comments = value; }
-        public DateTime ReviewDate { get => reviewDate; set => reviewDate = value; }        
+        public DateTime ReviewDate { get => reviewDate; set => reviewDate = value; }
     }
 }

@@ -31,6 +31,15 @@ namespace CIS3342_TermProject {
         protected global::System.Web.UI.WebControls.Label lblGeneral_Error;
         
         /// <summary>
+        /// lblActive_Error control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblActive_Error;
+        
+        /// <summary>
         /// txtUsername control.
         /// </summary>
         /// <remarks>

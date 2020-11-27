@@ -132,12 +132,7 @@ namespace CIS3342_TermProject
         {
 
         }
-
-        protected void btnAddReview_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        
         protected void btnModifyProduct_Click(object sender, EventArgs e)
         {
             //Get product ID from URL

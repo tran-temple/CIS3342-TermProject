@@ -28,6 +28,7 @@ namespace EcommerceLibrary
         private int questionID3;
         private string answer3;
         private int subscriptionID;
+        private int status;
 
         public User()
         {
@@ -54,5 +55,6 @@ namespace EcommerceLibrary
         public int QuestionID3 { get => questionID3; set => questionID3 = value; }
         public string Answer3 { get => answer3; set => answer3 = value; }
         public int SubscriptionID { get => subscriptionID; set => subscriptionID = value; }
+        public int Status { get => status; set => status = value; }
     }
 }

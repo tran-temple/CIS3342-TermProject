@@ -1,8 +1,23 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="ViewProductDetail.aspx.cs" Inherits="CIS3342_TermProject.ViewProductDetail" %>
+
+<%@ Register Src="~/UserControls/RatingReviewUC.ascx" TagPrefix="uc1" TagName="RatingReviewUC" %>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .fa {
+            font-size: 25px;
+        }
+
+        .checked {
+            color: orange;
+        }
+    </style>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server"> 
     <div class="col-lg-8 offset-lg-2 mt-3 shadow border">
+        <uc1:RatingReviewUC runat="server" ID="RatingReviewUC" />
         <div class="row form-group justify-content-center">
             <asp:Label ID="lblGeneral_Error" runat="server" CssClass="text-danger"></asp:Label>
         </div>
@@ -12,9 +27,10 @@
                 <div class="col">
                     <div class="row mt-2 ml-1 mb-2"><asp:Image ID="imgProduct" Width="200px" Height="200px" runat="server" CssClass="border shadow"/></div>
                     <div class="row ml-1"><asp:Button ID="btnAddToCart" runat="server" Text="Add to cart" CssClass="btn-primary mt-2" Visible="false" OnClick="btnAddToCart_Click" /></div>
-                    <div class="row ml-1"><asp:Button ID="btnAddReview" runat="server" Text="Add Review" CssClass="btn-primary mt-2" Visible="false" OnClick="btnAddReview_Click" /></div>
+                    <div class="row ml-1">
+                        <asp:LinkButton ID="btnAddReview" runat="server" CssClass="btn-link mt-2" data-toggle="modal" data-target="#modalRatingReview" Visible="false">Write a review</asp:LinkButton></div>                    
                     <div class="row ml-1"><asp:Button ID="btnModifyProduct" runat="server" Text="Modify Product" CssClass="btn-primary mt-2" Visible="false" OnClick="btnModifyProduct_Click" /></div>
-                    <div class="row ml-1"><asp:Button ID="btnDeleteProduct" runat="server" Text="Delete Product" CssClass="btn-primary mt-2" Visible="false" OnClick="btnDeleteProduct_Click" /></div>
+                    <div class="row ml-1"><asp:Button ID="btnDeleteProduct" runat="server" Text="Delete Product" CssClass="btn-primary mt-2" Visible="false" OnClick="btnDeleteProduct_Click" /></div>                    
                 </div>
                 <div class="col-md-8">
                     <div class="row mt-2 ml-1">
@@ -69,5 +85,5 @@
                 </div>
             </div>
         </asp:Panel>
-    </div>
+    </div>       
 </asp:Content>

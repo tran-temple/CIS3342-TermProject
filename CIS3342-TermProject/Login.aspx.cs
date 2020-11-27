@@ -126,11 +126,19 @@ namespace CIS3342_TermProject
                 }
                 else
                 {
-                    string encryptedPassword = utils.EncryptPassword(password);
+                    string encryptedPassword = utils.EncryptSensitiveInfo(password);
                     if (!String.Equals(encryptedPassword, objUser.Password))
                     {
                         lblPassword_Error.Text = "Wrong Password!";
                         result = false;
+                    }
+                    else
+                    {
+                        if (objUser.Status == 0)
+                        {
+                            lblActive_Error.Text = "You have not actived account yet. Please go to your email to verify account!";
+                            result = false;
+                        }
                     }
                 }                
             }            
