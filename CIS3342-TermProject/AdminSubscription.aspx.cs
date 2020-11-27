@@ -16,7 +16,10 @@ namespace CIS3342_TermProject
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            // make sure the user is an ADMIN and not a member.
+            // get user type from session obj
+            // if user type == amdin { 
+            // else {  " you do not have access to this page"
             DBConnect objDB = new DBConnect();
             SqlCommand objCommand = new SqlCommand();
 

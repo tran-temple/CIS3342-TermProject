@@ -67,6 +67,8 @@ namespace CIS3342_TermProject
             Session["productDS"] = productDS;
         }
 
+
+      
         protected void DLSubscriptions_ItemCommand(Object sender, System.Web.UI.WebControls.DataListCommandEventArgs e)
 
         {
@@ -106,10 +108,45 @@ namespace CIS3342_TermProject
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            
+            string searchText = txtSearch.Text;
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.Parameters.Clear();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_SearchByText";
+            objCommand.Parameters.AddWithValue("@SearchText", searchText);
+            DataSet myDS4 = objDB.GetDataSetUsingCmdObj(objCommand);
+
+            if (myDS4.Tables[0].Rows.Count > 0)
+            {
+                gvProducts.DataSource = myDS4;
+                gvProducts.DataBind();
+
+
+            }
+
+        }
+        protected void ddlCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string categorySelected = ddlCategory.SelectedValue;
+
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.Parameters.Clear();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_SearchByCategory";
+            objCommand.Parameters.AddWithValue("@CategorySelected", categorySelected);
+            DataSet myDS3 = objDB.GetDataSetUsingCmdObj(objCommand);
+
+            if (myDS3.Tables[0].Rows.Count > 0)
+            {
+                gvProducts.DataSource = myDS3;
+                gvProducts.DataBind();
+
+            }
         }
 
-        protected void gvProducts_SelectedIndexChanged(object sender, EventArgs e)
+            protected void gvProducts_SelectedIndexChanged(object sender, EventArgs e)
         {
             Response.Redirect("ViewProductDetail.aspx?ProdID=" + gvProducts.SelectedRow.Cells[PRODUCTID_COLUMN].Text);
         }

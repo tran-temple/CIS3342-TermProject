@@ -113,7 +113,7 @@
                     <asp:TextBox ID="txtSearch" runat="server" CssClass="w-100"></asp:TextBox>
                 </div>
                 <div class="col m-2">
-                    <asp:DropDownList ID="ddlCategory" runat="server">
+                    <asp:DropDownList ID="ddlCategory" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged">
                         <asp:ListItem Value="-1" Selected="True">Select a category...</asp:ListItem>
                     </asp:DropDownList>
                     &nbsp;&nbsp;
@@ -126,7 +126,7 @@
                 <div class="col m-2">
                     <asp:GridView ID="gvProducts" runat="server" AutoGenerateColumns="false" AllowPaging="true" PageSize="5"
                         CellPadding="8" ForeColor="#333333" GridLines="None" OnPageIndexChanging="gvProducts_PageIndexChanging" 
-                        OnSelectedIndexChanged="gvProducts_SelectedIndexChanged" CssClass="w-100">
+                        OnSelectedIndexChanged="gvProducts_SelectedIndexChanged" CssClass="w-100" EnableViewState="false">
                         <Columns>                            
                             <asp:TemplateField HeaderText="Image">
                                 <ItemTemplate>
@@ -143,7 +143,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField>
                                 <ItemTemplate>
-                                    <asp:Button ID="btnAddToCart" runat="server" Text="Add to cart" CssClass="btn-primary"></asp:Button>
+                                   <asp:Button ID="btnAddCart" runat="server" Text="Add To Cart" Enabled='<%# Eval("ProductQuantity").ToString() == "0" ? false : true %>' />
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:CommandField ButtonType="Link" ShowSelectButton="true" SelectText="Detail" ControlStyle-CssClass="text-primary"></asp:CommandField>
