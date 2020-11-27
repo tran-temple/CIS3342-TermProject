@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using System.Security.Cryptography;     // needed for the encryption classes
 using System.IO;                        // needed for the MemoryStream
+using System.Net.Mail;
 
 namespace EcommerceLibrary
 {
@@ -84,16 +85,57 @@ namespace EcommerceLibrary
             return plainTextPassword;
         }
 
-        // Encrypt password to store DB - sensitive info
-        public string EncryptPassword(string password)
+        // Encrypt sensitive info to store DB
+        public string EncryptSensitiveInfo(string sensInfo)
         {
             string encryptedPassword;
 
             SHA256 mySHA256 = SHA256.Create();
-            byte[] result = mySHA256.ComputeHash(Encoding.UTF8.GetBytes(password));
+            byte[] result = mySHA256.ComputeHash(Encoding.UTF8.GetBytes(sensInfo));
 
             encryptedPassword = Convert.ToBase64String(result);
             return encryptedPassword;
+        }
+
+        public string CreateConfirmUrl(string host, int port, string key)
+        {
+            string confirmUrl = "http://" + host + ":" + port + "/ConfirmUser.aspx?key=" + key;
+            return confirmUrl;
+        }
+
+        public string CreateKey(string username)
+        {
+            string key = EncryptSensitiveInfo(username);
+            return key;
+        }
+
+        public void SendEmail(string key, string recipient, string url)
+        {
+            try
+            {
+                //For the production - the credential should be in the config file.
+                //This credential is temporary for this term project
+                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
+                smtpClient.Port = 587;
+                smtpClient.Credentials = new System.Net.NetworkCredential("tran.temple.2020@gmail.com", "Temple2020!");
+                smtpClient.EnableSsl = true;
+
+                MailMessage mail = new MailMessage();
+
+                mail.From = new MailAddress("tran.temple.2020@gmail.com");
+                mail.To.Add(recipient);
+                mail.Subject = "RH Chocolate Store";
+                mail.Body = "Please click the link to activate your account! " +
+                    "<br/> <a href='" + url + "'>" + url + "</a>" ;
+                mail.IsBodyHtml = true;
+
+                smtpClient.Send(mail);
+                //System.Diagnostics.Debug.WriteLine("Sent Email");
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.StackTrace);
+            }
         }
     }
 }

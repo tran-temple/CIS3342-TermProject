@@ -40,6 +40,23 @@ namespace EcommerceLibrary
                     user.Firstname = row["FirstName"].ToString();
                     user.Lastname = row["LastName"].ToString();
                     user.UserType = row["UserType"].ToString();
+                    user.Email = row["Email"].ToString();
+                    user.QuestionID1 = int.Parse(row["QuestionID_1"].ToString());
+                    user.QuestionID2 = int.Parse(row["QuestionID_2"].ToString());
+                    user.QuestionID3 = int.Parse(row["QuestionID_3"].ToString());
+                    user.Answer1 = row["Answer_1"].ToString();
+                    user.Answer2 = row["Answer_2"].ToString();
+                    user.Answer3 = row["Answer_3"].ToString();
+                    user.Street = row["Street"].ToString();
+                    user.City = row["City"].ToString();
+                    user.State = row["State"].ToString();
+                    user.Zipcode = row["Zipcode"].ToString();
+                    user.Status = int.Parse(row["Status"].ToString());
+                    string subcriptionId = row["SubscriptionID"].ToString();
+                    if (!string.IsNullOrWhiteSpace(subcriptionId))
+                    {
+                        user.SubscriptionID = int.Parse(row["SubscriptionID"].ToString());
+                    }
                 }
             }
             return user;
@@ -83,6 +100,77 @@ namespace EcommerceLibrary
             objCommand.Parameters.AddWithValue("@theAnswer3", user.Answer3);
 
             return objDB.DoUpdateUsingCmdObj(objCommand);
+        }
+
+        //Update user status
+        public int UpdateUserStatus(int userID, int status)
+        {
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_UpdateUserStatus";
+
+            //set value for input parameter
+            objCommand.Parameters.AddWithValue("@theID", userID);
+            objCommand.Parameters.AddWithValue("@theStatus", status);
+
+            return objDB.DoUpdateUsingCmdObj(objCommand);
+        }
+
+        //Insert verified user
+        public int InsertVerifiedUser(int userID, string userKey)
+        {
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_InsertVerifiedUser";
+
+            //set value for input parameter
+            objCommand.Parameters.AddWithValue("@theID", userID);
+            objCommand.Parameters.AddWithValue("@theKey", userKey);
+
+            return objDB.DoUpdateUsingCmdObj(objCommand);
+        }
+
+        //Delete verified user
+        public int DeleteVerifiedUser(String userKey)
+        {
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_DeleteVerifiedUser";
+
+            //set value for input parameter
+            objCommand.Parameters.AddWithValue("@theKey", userKey);
+
+            return objDB.DoUpdateUsingCmdObj(objCommand);
+        }
+
+        //Get verified user
+        public UserConfirm GetVerifiedUser(string userKey)
+        {
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_GetVerifiedUser";
+
+            //set value for input parameter
+            SqlParameter inputParam = new SqlParameter("@theKey", userKey);
+            inputParam.Direction = ParameterDirection.Input;
+            inputParam.SqlDbType = SqlDbType.VarChar;
+            inputParam.Size = 60;
+            objCommand.Parameters.Add(inputParam);
+            DataSet resultDS = objDB.GetDataSetUsingCmdObj(objCommand);
+
+            UserConfirm userConfirm = null;
+
+            if (resultDS.Tables.Count > 0)
+            {
+                userConfirm = new UserConfirm();
+                foreach (DataRow row in resultDS.Tables[0].Rows)
+                {
+                    userConfirm.UserID = int.Parse(row["UserID"].ToString());
+                    userConfirm.Key = row["UserKey"].ToString();
+         
+                }
+            }
+            return userConfirm;
         }
     }
 }

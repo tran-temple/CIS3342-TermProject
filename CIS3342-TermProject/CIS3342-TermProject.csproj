@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminSubscription.aspx" />
+    <Content Include="ConfirmUser.aspx" />
     <Content Include="HomePage.aspx" />
     <Content Include="images\logo.jpg" />
     <Content Include="images\logo2.png" />
@@ -101,6 +102,13 @@
     </Compile>
     <Compile Include="AdminSubscription.aspx.designer.cs">
       <DependentUpon>AdminSubscription.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ConfirmUser.aspx.cs">
+      <DependentUpon>ConfirmUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ConfirmUser.aspx.designer.cs">
+      <DependentUpon>ConfirmUser.aspx</DependentUpon>
     </Compile>
     <Compile Include="HomePage.aspx.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>

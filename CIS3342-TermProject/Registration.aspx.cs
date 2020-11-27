@@ -37,7 +37,21 @@ namespace CIS3342_TermProject
                 {
                     int ret = loginService.InsertUser(objUser);
 
-                    if (ret == 1) Response.Redirect("Login.aspx");
+                    if (ret == 1)
+                    {
+                        User createdUser = loginService.GetUserByUsername(objUser.Username);
+                        // insert data to User confirmation
+                        string key = utils.CreateKey(createdUser.Username);
+                        loginService.InsertVerifiedUser(createdUser.UserID, key);
+                        // send confirmation email to user     
+                        string host = HttpContext.Current.Request.Url.Host;
+                        int port = HttpContext.Current.Request.Url.Port;
+                        string confirmUrl = utils.CreateConfirmUrl(host, port, key);
+                        
+                        utils.SendEmail(key, createdUser.Email, confirmUrl);
+                        // redirect to login page
+                        Response.Redirect("Login.aspx");
+                    } 
                     else lblGeneral_Error.Text = "Cannot create user!";                    
                 }
                 else return;
@@ -79,7 +93,7 @@ namespace CIS3342_TermProject
             if (!String.IsNullOrWhiteSpace(txtPassword.Text))
             {
                 //encrypt sensitive password to store DB
-                string encryptPassword = utils.EncryptPassword(txtPassword.Text);
+                string encryptPassword = utils.EncryptSensitiveInfo(txtPassword.Text);
                 user.Password = encryptPassword;
             }               
             user.Firstname = txtFirstName.Text;
