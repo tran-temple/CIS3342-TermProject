@@ -71,7 +71,7 @@ namespace CIS3342_TermProject
 
         protected void btnMyCart_Click(object sender, EventArgs e)
         {
-            Response.Redirect("HomePage.aspx");
+            Response.Redirect("ShoppingCart.aspx");
         }
         protected void btnMySub_Click (object sender, EventArgs e)
         {

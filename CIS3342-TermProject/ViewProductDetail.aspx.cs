@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Drawing;
+using System.Globalization;
 
 using System.Web.Script.Serialization;  // needed for JSON serializers
 using System.IO;                        // needed for Stream and Stream Reader
@@ -130,7 +131,26 @@ namespace CIS3342_TermProject
 
         protected void btnAddToCart_Click(object sender, EventArgs e)
         {
+            List<CartItem> cart = null;
 
+            CartItem item = new CartItem();
+            item.ProductID = int.Parse(Request.QueryString["ProdID"]);
+            item.ProductName = lblName.Text;
+            item.ImageURL = imgProduct.ImageUrl;
+            item.ProductPrice = double.Parse(lblPrice.Text.ToString(), NumberStyles.Currency);
+            item.Quantity = 1;
+
+            if (Session["Cart"] != null)
+            {
+                cart = (List<CartItem>)Session["Cart"];
+                cart.Add(item);
+            }
+            else
+            {
+                cart = new List<CartItem>();
+                cart.Add(item);
+                Session["Cart"] = cart;
+            }            
         }
         
         protected void btnModifyProduct_Click(object sender, EventArgs e)

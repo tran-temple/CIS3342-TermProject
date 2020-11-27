@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminSubscription.aspx" />
+    <Content Include="CheckOut.aspx" />
     <Content Include="ConfirmUser.aspx" />
     <Content Include="HomePage.aspx" />
     <Content Include="images\logo.jpg" />
@@ -83,6 +84,7 @@
     <Content Include="ProductPage.aspx" />
     <Content Include="PurchaseHistory.aspx" />
     <Content Include="Registration.aspx" />
+    <Content Include="ShoppingCart.aspx" />
     <Content Include="styles\AdminSubscriptionStyle.css" />
     <Content Include="styles\styles.css" />
     <Content Include="UserControls\ImageUploadUC.ascx" />
@@ -102,6 +104,13 @@
     </Compile>
     <Compile Include="AdminSubscription.aspx.designer.cs">
       <DependentUpon>AdminSubscription.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CheckOut.aspx.cs">
+      <DependentUpon>CheckOut.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CheckOut.aspx.designer.cs">
+      <DependentUpon>CheckOut.aspx</DependentUpon>
     </Compile>
     <Compile Include="ConfirmUser.aspx.cs">
       <DependentUpon>ConfirmUser.aspx</DependentUpon>
@@ -149,6 +158,13 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ShoppingCart.aspx.cs">
+      <DependentUpon>ShoppingCart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShoppingCart.aspx.designer.cs">
+      <DependentUpon>ShoppingCart.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\ImageUploadUC.ascx.cs">
       <DependentUpon>ImageUploadUC.ascx</DependentUpon>
@@ -232,10 +248,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:52372/OrderService.asmx">
+    <WebReferenceUrl Include="http://localhost:52372/OrderService.asmx%3fop=HelloWorld">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\OrderSvc\</RelPath>
-      <UpdateFromURL>http://localhost:52372/OrderService.asmx</UpdateFromURL>
+      <UpdateFromURL>http://localhost:52372/OrderService.asmx%3fop=HelloWorld</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>

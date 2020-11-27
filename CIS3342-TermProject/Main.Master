@@ -24,7 +24,7 @@ The Term Project: ECommercesite (online chocolate store)
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" />    
     
-    <link rel="stylesheet" type="text/css" href="styles/Styles.css" />
+    <link rel="stylesheet" type="text/css" href="styles/styles.css" />
 
     <!-- Bootstrap script -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

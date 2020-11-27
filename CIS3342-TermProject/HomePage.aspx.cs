@@ -126,6 +126,7 @@ namespace CIS3342_TermProject
             }
 
         }
+
         protected void ddlCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             string categorySelected = ddlCategory.SelectedValue;
@@ -146,7 +147,7 @@ namespace CIS3342_TermProject
             }
         }
 
-            protected void gvProducts_SelectedIndexChanged(object sender, EventArgs e)
+        protected void gvProducts_SelectedIndexChanged(object sender, EventArgs e)
         {
             Response.Redirect("ViewProductDetail.aspx?ProdID=" + gvProducts.SelectedRow.Cells[PRODUCTID_COLUMN].Text);
         }
