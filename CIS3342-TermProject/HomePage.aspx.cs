@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using EcommerceLibrary;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 
 namespace CIS3342_TermProject
 {
@@ -16,7 +17,11 @@ namespace CIS3342_TermProject
         DataSet productDS;
 
         //INDEX of USED columns
-        private const int PRODUCTID_COLUMN = 6;
+        private const int PRODUCT_ID_COLUMN = 6;
+        private const int PRODUCT_IMG_COLUMN = 0;
+        private const int PRODUCT_NAME_COLUMN = 1;
+        private const int PRODUCT_PRICE_COLUMN = 2;
+        private const int PRODUCT_QUANTITY_COLUMN = 3;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -149,7 +154,38 @@ namespace CIS3342_TermProject
 
         protected void gvProducts_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Response.Redirect("ViewProductDetail.aspx?ProdID=" + gvProducts.SelectedRow.Cells[PRODUCTID_COLUMN].Text);
+            Response.Redirect("ViewProductDetail.aspx?ProdID=" + gvProducts.SelectedRow.Cells[PRODUCT_ID_COLUMN].Text);
+        }
+        
+        protected void gvProducts_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "AddToCart")
+            {
+                int index = int.Parse(e.CommandArgument.ToString());
+                GridViewRow row = gvProducts.Rows[index];
+                List<CartItem> cart = null;
+
+                CartItem item = new CartItem();
+                item.ProductID = int.Parse(row.Cells[PRODUCT_ID_COLUMN].Text);
+                item.ProductName = row.Cells[PRODUCT_NAME_COLUMN].Text;
+                Image img = (Image) row.FindControl("imgRestaurant");
+                item.ImageURL = img.ImageUrl;
+                item.ProductPrice = double.Parse(row.Cells[PRODUCT_PRICE_COLUMN].Text, NumberStyles.Currency);
+                TextBox txtBox = (TextBox) row.FindControl("txtQuantity");
+                item.Quantity = int.Parse(txtBox.Text);
+
+                if (Session["Cart"] != null)
+                {
+                    cart = (List<CartItem>)Session["Cart"];
+                    cart.Add(item);
+                }
+                else
+                {
+                    cart = new List<CartItem>();
+                    cart.Add(item);
+                    Session["Cart"] = cart;
+                }
+            }
         }
     }
 }

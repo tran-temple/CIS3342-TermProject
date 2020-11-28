@@ -61,6 +61,12 @@ namespace CIS3342_TermProject
                     lblQuantity.Text = "OUT OF STOCK";
                     lblQuantity.ForeColor = Color.Red;
                     lblOutOfStock.Text = "OUT OF STOCK";
+
+                    if (Session["usertype"].Equals(Constant.CUSTOMER))
+                    {
+                        btnAddToCart.Enabled = false;
+                        btnAddToCart.BackColor = Color.LightGray;
+                    }                    
                 }
                 SetOperations();
                 ShowReviews(id);
@@ -137,7 +143,7 @@ namespace CIS3342_TermProject
             item.ProductID = int.Parse(Request.QueryString["ProdID"]);
             item.ProductName = lblName.Text;
             item.ImageURL = imgProduct.ImageUrl;
-            item.ProductPrice = double.Parse(lblPrice.Text.ToString(), NumberStyles.Currency);
+            item.ProductPrice = double.Parse(lblPrice.Text, NumberStyles.Currency);
             item.Quantity = 1;
 
             if (Session["Cart"] != null)

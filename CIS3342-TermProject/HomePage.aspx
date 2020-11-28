@@ -126,7 +126,8 @@
                 <div class="col m-2">
                     <asp:GridView ID="gvProducts" runat="server" AutoGenerateColumns="false" AllowPaging="true" PageSize="5"
                         CellPadding="8" ForeColor="#333333" GridLines="None" OnPageIndexChanging="gvProducts_PageIndexChanging" 
-                        OnSelectedIndexChanged="gvProducts_SelectedIndexChanged" CssClass="w-100" >
+                        OnSelectedIndexChanged="gvProducts_SelectedIndexChanged"
+                        OnRowCommand="gvProducts_RowCommand" CssClass="w-100" >
                         <Columns>                            
                             <asp:TemplateField HeaderText="Image">
                                 <ItemTemplate>
@@ -137,13 +138,14 @@
                             <asp:BoundField DataField="ProductPrice" DataFormatString="{0:c}" HeaderText="Price" />
                             <asp:TemplateField HeaderText="Quantity">
                                 <ItemTemplate>
-                                    <asp:TextBox ID="txtQuantity" runat="server" Width="60px" TextMode="Number"></asp:TextBox>
+                                    <asp:TextBox ID="txtQuantity" runat="server" Width="60px" TextMode="Number" Text="1" CssClass="text-center"></asp:TextBox>
                                     <asp:Label ID="lblQuantity" runat="server" Text="OUT OF STOCK" CssClass="text-danger" Visible="false"></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField>
                                 <ItemTemplate>
-                                   <asp:Button ID="btnAddCart" runat="server" Text="Add To Cart" Enabled='<%# Eval("ProductQuantity").ToString() == "0" ? false : true %>' />
+                                   <asp:Button ID="btnAddCart" runat="server" Text="Add To Cart" Enabled='<%# Eval("ProductQuantity").ToString() == "0" ? false : true %>' 
+                                       CommandName="AddToCart" CommandArgument='<%# Container.DataItemIndex %>' />
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:CommandField ButtonType="Link" ShowSelectButton="true" SelectText="Detail" ControlStyle-CssClass="text-primary"></asp:CommandField>
