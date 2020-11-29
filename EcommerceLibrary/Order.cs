@@ -15,7 +15,6 @@ namespace EcommerceLibrary
         private double orderTotal;
         private DateTime orderDate;
         private string paymentMethod;
-        public byte[] creditcard;
 
         public Order()
         {
@@ -29,6 +28,5 @@ namespace EcommerceLibrary
         public double OrderTotal { get => orderTotal; set => orderTotal = value; }
         public DateTime OrderDate { get => orderDate; set => orderDate = value; }
         public string PaymentMethod { get => paymentMethod; set => paymentMethod = value; }
-        public byte[] Creditcard { get => creditcard; set => creditcard = value; }
     }
 }

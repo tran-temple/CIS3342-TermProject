@@ -20,6 +20,8 @@ namespace CIS3342_TermProject
                     List<CartItem> cart = (List<CartItem>)Session["Cart"];
                     lvShoppingBag.DataSource = cart;
                     lvShoppingBag.DataBind();
+
+                    DisplaySummary();
                 }
                 else
                 {
@@ -27,6 +29,31 @@ namespace CIS3342_TermProject
                 }
             }
 
+        }
+
+        private void DisplaySummary()
+        {
+            double subTotal = 0.0;
+            double total = 0.0;
+            double taxAmount = 0.0;
+            double shippingFee = 0.0;
+
+            List<CartItem> cart = (List<CartItem>)Session["Cart"];
+            foreach (CartItem item in cart)
+            {
+                subTotal += item.ProductPrice * item.Quantity;
+            }
+            if (subTotal < Constant.FREE_SHIPPING_STANDARD)
+            {
+                shippingFee = Constant.SHIPPING_FEE;
+            }
+            taxAmount = subTotal * Constant.TAX;
+            total = subTotal + taxAmount + shippingFee;
+
+            lblSubTotal.Text = subTotal.ToString("C2");
+            lblTax.Text = taxAmount.ToString("C2");
+            lblShippingFee.Text = shippingFee.ToString("C2");
+            lblTotal.Text = total.ToString("C2");
         }
 
         protected void btnCheckOut_Click(object sender, EventArgs e)

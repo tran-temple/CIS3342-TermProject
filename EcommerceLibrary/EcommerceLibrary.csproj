@@ -51,6 +51,7 @@
     <Compile Include="LoginService.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OrderItem.cs" />
+    <Compile Include="ProceedOrderService.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
