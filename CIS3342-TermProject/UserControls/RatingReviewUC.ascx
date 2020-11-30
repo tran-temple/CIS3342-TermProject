@@ -1,9 +1,9 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="RatingReviewUC.ascx.cs" Inherits="CIS3342_TermProject.UserControls.RatingReviewUC" %>
 <asp:Panel ID="pnlRatingReview" runat="server">
+    <div class="modal-backdrop show"></div>
 <!-- Modal -->
-    <div id="modalRatingReview" class="modal fade" role="dialog">
+    <div id="modalRatingReview" class="modal show" style="display: block; padding-right: 19px;" role="dialog" data-backdrop="static"  tabindex="-1" aria-modal="true" role="dialog">
         <div class="modal-dialog">
-
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
@@ -52,7 +52,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn-danger" data-dismiss="modal">Close</button>
+                    <asp:Button ID="btnClose"  class="btn-danger" runat="server" OnClick="btnClose_Click" Text="Close"></asp:Button>
                     <asp:Button class="btn-primary" ID="btnPost" runat="server" Text="Post Review" OnClick="btnPost_Click"></asp:Button>
                 </div>
             </div>

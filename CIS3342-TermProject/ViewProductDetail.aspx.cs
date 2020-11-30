@@ -23,8 +23,7 @@ namespace CIS3342_TermProject
         {
             //Get product ID from URL
             int prodID = int.Parse(Request.QueryString["ProdID"]);
-
-            if (!IsPostBack)
+            if(!IsPostBack)
             {
                 ShowProductDetail(prodID);
             }
@@ -135,6 +134,14 @@ namespace CIS3342_TermProject
             }
         }
 
+        // Handle for post a review successfully
+        protected void ratingSubmitedSuccessful_handler(object sender, EventArgs e)
+        {
+            int prodID = int.Parse(Request.QueryString["ProdID"]);
+            ShowProductDetail(prodID);
+            RatingReviewUC.Visible = false;
+        }
+
         protected void btnAddToCart_Click(object sender, EventArgs e)
         {
             List<CartItem> cart = null;
@@ -190,6 +197,16 @@ namespace CIS3342_TermProject
             {
                 lblGeneral_Error.Text = "Cannot delete product!";
             }            
+        }
+
+        protected void btnAddReview_Click(object sender, EventArgs e)
+        {
+            RatingReviewUC.Visible = true;
+        }
+
+        protected void RatingReviewUC_CloseButtonClicked(object sender, EventArgs e)
+        {
+            RatingReviewUC.Visible = false;
         }
     }
 }

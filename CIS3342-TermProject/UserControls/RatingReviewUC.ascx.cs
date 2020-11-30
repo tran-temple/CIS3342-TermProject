@@ -12,6 +12,10 @@ namespace CIS3342_TermProject.UserControls
     public partial class RatingReviewUC : System.Web.UI.UserControl
     {
         ProductService productService = new ProductService();
+        // Event Handler for post review button
+        public event EventHandler RatingSubmitedSuccessful;
+        // Event Handler for Close button
+        public event EventHandler CloseButtonClicked;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -36,6 +40,16 @@ namespace CIS3342_TermProject.UserControls
             return review;
         }
 
+        private void ClearForm()
+        {
+            rdoStar1.Checked = false;
+            rdoStar2.Checked = false;
+            rdoStar3.Checked = false;
+            rdoStar4.Checked = false;
+            rdoStar5.Checked = false;
+            txtComments.Text = "";
+        }
+
         protected void btnPost_Click(object sender, EventArgs e)
         {
             Review review = CreateReviewObject();
@@ -49,13 +63,22 @@ namespace CIS3342_TermProject.UserControls
                 int ret = productService.InsertReview(review);
                 if (ret > 0)
                 {
-                    pnlRatingReview.Visible = false;
+                    // Clear the form
+                    ClearForm();
+                    // fire the successful event
+                    RatingSubmitedSuccessful(this, EventArgs.Empty);
                 }
                 else
                 {
                     lblMessage.Text = "The review is not posted!";
                 }
             }
+        }
+
+        protected void btnClose_Click(object sender, EventArgs e)
+        {
+            // fire the close event
+            CloseButtonClicked(this, EventArgs.Empty);
         }
     }
 }
