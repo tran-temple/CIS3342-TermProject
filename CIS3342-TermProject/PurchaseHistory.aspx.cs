@@ -19,7 +19,7 @@ namespace CIS3342_TermProject
         protected void Page_Load(object sender, EventArgs e)
         {
             //Test Webservice
-            gvHistory.DataSource = pxy.HelloWorld();
+            gvHistory.DataSource = pxy.GetHistory();
 
             gvHistory.DataBind();
         }

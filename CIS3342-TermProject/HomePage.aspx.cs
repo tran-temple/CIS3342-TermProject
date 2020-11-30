@@ -86,16 +86,52 @@ namespace CIS3342_TermProject
 
             // Retrieve a value from a control in the DL's Items collection
 
-            Label myLabel = (Label)DLSubscriptions.Items[rowIndex].FindControl("lblSubscriptionID");
+            Label lblSubscriptionID = (Label)DLSubscriptions.Items[rowIndex].FindControl("lblSubID");
 
-            String subscriptionID = myLabel.Text;
+            String subscriptionID = lblSubscriptionID.Text;
 
+
+            Label lblSubscriptionName = (Label)DLSubscriptions.Items[rowIndex].FindControl("lblSubName");
+
+            String subscriptionName = lblSubscriptionName.Text;
+
+            Label lblSubscriptionPrice = (Label)DLSubscriptions.Items[rowIndex].FindControl("lblSubPrice");
+
+         Double subscriptionPrice = Double.Parse(lblSubscriptionPrice.Text);
 
 
             lblSubscriptionIDShow.Text = "You selected Subscription ID " + subscriptionID;
+
             // WIll be used to add to cart later on
 
-        }
+            List<CartItem> cart = null;
+
+            CartItem item = new CartItem();
+            item.ProductID = int.Parse(subscriptionID);
+            item.ProductName = subscriptionName;
+           Image img = (Image)DLSubscriptions.Items[rowIndex].FindControl("subImage");
+            item.ImageURL = img.ImageUrl;
+            item.ProductPrice = subscriptionPrice;
+         
+            item.Quantity = 1;
+            
+            if (Session["Cart"] != null)
+            {
+
+             
+                cart = (List<CartItem>)Session["Cart"];
+                cart.Add(item);
+                
+            }
+            else
+            {
+                cart = new List<CartItem>();
+                cart.Add(item);
+                Session["Cart"] = cart;
+            }
+        
+            
+    }
                
         protected void dlSubscriptions_SelectedIndexChanged(object sender, EventArgs e)
         {

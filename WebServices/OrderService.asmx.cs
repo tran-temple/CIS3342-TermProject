@@ -6,6 +6,7 @@ using System.Data;
 using EcommerceLibrary;
 using System.Collections;
 
+using System.Data.SqlClient;
 using System.Web.Services;
 
 namespace WebServices
@@ -21,17 +22,27 @@ namespace WebServices
     public class OrderService : System.Web.Services.WebService
     {
 
-        [WebMethod]
-        public DataSet HelloWorld()
-        {
-            DBConnect objDB = new DBConnect();
-           
-            DataSet ds = objDB.GetDataSet("SELECT * FROM TP_Orders");
-            return ds;
-        }
       
-       
+        [WebMethod]
+        public DataSet GetHistory()
+        {
+          //  string userid = Session["userid"].ToString();
+           // int userid2 = int.Parse(userid);
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
 
-     
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_GetPurchaseHistory";
+           // objCommand.Parameters.AddWithValue("@UserID", "7");
+
+            DataSet myDS = objDB.GetDataSetUsingCmdObj(objCommand);
+            
+
+            return myDS;
+        }
+
+
+
+
     }
 }

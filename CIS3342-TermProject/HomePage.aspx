@@ -77,22 +77,22 @@
         <div class="card mb-4 box-shadow">
           <div class="card-header">
 
-            <h4 class="my-0 font-weight-normal"> <asp:Label ID="Label1" runat="server"  Text='<%# Bind("SubscriptionName") %>'> </asp:Label></h4>
-                <h4 class="my-0 font-weight-normal" aria-hidden="true"> <asp:Label ID="lblSubscriptionID" runat="server" CssClass="hide" Text='<%# Bind("SubscriptionID") %>'> </asp:Label></h4>
+            <h4 class="my-0 font-weight-normal"> <asp:Label ID="lblSubName" runat="server"  Text='<%# Bind("SubscriptionName") %>'> </asp:Label></h4>
+                <h4 class="my-0 font-weight-normal" aria-hidden="true"> <asp:Label ID="lblSubID" runat="server" CssClass="hide" Text='<%# Bind("SubscriptionID") %>'> </asp:Label></h4>
           </div>
           <div class="card-body d-flex flex-column">
 
-               <asp:Image Class="subImg" runat="server" ImageUrl='<%# DataBinder.Eval(Container.DataItem, "SubscriptionImage") %>' Width="150px" Height="150px" />
+               <asp:Image ID="subImage" Class="subImg" runat="server" ImageUrl='<%# DataBinder.Eval(Container.DataItem, "SubscriptionImage") %>' Width="150px" Height="150px" />
  <br />
 
-            <h1 class="card-title pricing-card-title">  <asp:Label ID="Label2" runat="server"  Text= '<%# DataBinder.Eval(Container.DataItem, "SubscriptionPrice") %>'> </asp:Label><small class="text-muted"> <asp:Label ID="Label3" runat="server"  Text='<%# DataBinder.Eval(Container.DataItem, "SubscriptionBillingTime") %>'> </asp:Label>  </small></h1>
+            <h1 class="card-title pricing-card-title">  <asp:Label ID="lblSubPrice" runat="server"  Text= '<%# DataBinder.Eval(Container.DataItem, "SubscriptionPrice") %>'> </asp:Label><small class="text-muted"> <asp:Label ID="Label3" runat="server"  Text='<%# DataBinder.Eval(Container.DataItem, "SubscriptionBillingTime") %>'> </asp:Label>  </small></h1>
             <ul class="list-unstyled mt-3 mb-4">
                 <li>
-                      <asp:Label ID="Label4" runat="server"  Text='<%# DataBinder.Eval(Container.DataItem, "SubscriptionDescription") %>'>
+                      <asp:Label ID="lblSubDescription" runat="server"  Text='<%# DataBinder.Eval(Container.DataItem, "SubscriptionDescription") %>'>
                          </asp:Label>
                 </li>
                   </ul>
-                <asp:Button ID="btnAddSubscriptionToCart" runat="server" Text="Choose Subscription" CssClass=" btn btn-lg btn-block btn-outline-success mt-auto" />
+                <asp:Button ID="btnAddSubscriptionToCart" runat="server" Text="Add To Cart" CssClass=" btn btn-lg btn-block btn-outline-success mt-auto" />
                                
                 </div>
             </div>

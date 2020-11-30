@@ -15,7 +15,7 @@
                                 <asp:Label ID="lblHeadingCart" runat="server" Text="Shopping Bag"></asp:Label>
                             </div>
                             <div class="card-body d-flex flex-column">
-                                <asp:ListView ID="lvShoppingBag" runat="server">
+                                <asp:ListView ID="lvShoppingBag" runat="server" >
                                     <ItemTemplate>
                                         <div class="card border mt-2">
                                             <div class="row form-group">

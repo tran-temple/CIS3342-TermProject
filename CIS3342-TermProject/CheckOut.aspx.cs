@@ -129,7 +129,7 @@ namespace CIS3342_TermProject
                     }
                     if (result)
                     {
-                        lblGeneral_Error.Text = "Order successfully!";
+                        lblGeneral_Error.Text = "Order was placed successfully!";
                         Session.Remove("Cart");
                     }
                 }

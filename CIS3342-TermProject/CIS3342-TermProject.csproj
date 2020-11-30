@@ -224,10 +224,10 @@
     <Content Include="Main.Master" />
     <None Include="packages.config" />
     <None Include="Web References\OrderSvc\OrderService.wsdl" />
-    <Content Include="Web References\OrderSvc\Reference.map">
+    <None Include="Web References\OrderSvc\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
+    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

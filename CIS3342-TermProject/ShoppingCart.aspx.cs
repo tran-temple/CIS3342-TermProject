@@ -60,5 +60,10 @@ namespace CIS3342_TermProject
         {
             Response.Redirect("CheckOut.aspx");
         }
+
+        protected void btnRemove_Click(object sender, EventArgs e)
+        {
+        
+        }
     }
 }
