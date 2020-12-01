@@ -75,22 +75,24 @@ namespace CIS3342_TermProject.OrderSvc {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetHistory", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet GetHistory() {
-            object[] results = this.Invoke("GetHistory", new object[0]);
+        public System.Data.DataSet GetHistory(int userid2) {
+            object[] results = this.Invoke("GetHistory", new object[] {
+                        userid2});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void GetHistoryAsync() {
-            this.GetHistoryAsync(null);
+        public void GetHistoryAsync(int userid2) {
+            this.GetHistoryAsync(userid2, null);
         }
         
         /// <remarks/>
-        public void GetHistoryAsync(object userState) {
+        public void GetHistoryAsync(int userid2, object userState) {
             if ((this.GetHistoryOperationCompleted == null)) {
                 this.GetHistoryOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetHistoryOperationCompleted);
             }
-            this.InvokeAsync("GetHistory", new object[0], this.GetHistoryOperationCompleted, userState);
+            this.InvokeAsync("GetHistory", new object[] {
+                        userid2}, this.GetHistoryOperationCompleted, userState);
         }
         
         private void OnGetHistoryOperationCompleted(object arg) {

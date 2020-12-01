@@ -5,6 +5,7 @@
     <div class="col-lg-12 mt-3">
         <div class="row form-group">
             <asp:Label ID="lblGeneral_Error" runat="server" CssClass="text-danger"></asp:Label>
+             <asp:Label ID="lblSuccess" runat="server" CssClass="text-success"></asp:Label>
         </div>
         <asp:Panel ID="pnlShoppingCart" runat="server">
             <div class="row form-group">

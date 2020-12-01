@@ -24,21 +24,23 @@ namespace WebServices
 
       
         [WebMethod]
-        public DataSet GetHistory()
+        public DataSet GetHistory(int userid2)
         {
-          //  string userid = Session["userid"].ToString();
-           // int userid2 = int.Parse(userid);
+           
             DBConnect objDB = new DBConnect();
             SqlCommand objCommand = new SqlCommand();
+            
+            //   string userid2 = Session["userid"].ToString();
+            //  int userID2 = int.Parse(userid2);
+
 
             objCommand.CommandType = CommandType.StoredProcedure;
             objCommand.CommandText = "TP_GetPurchaseHistory";
-           // objCommand.Parameters.AddWithValue("@UserID", "7");
+            objCommand.Parameters.AddWithValue("@UserID", userid2);
 
-            DataSet myDS = objDB.GetDataSetUsingCmdObj(objCommand);
-            
+            DataSet myDS2 = objDB.GetDataSetUsingCmdObj(objCommand);
 
-            return myDS;
+            return myDS2;
         }
 
 

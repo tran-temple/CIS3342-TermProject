@@ -51,3 +51,7 @@ hr {
 .hiddenCol {
     display: none;
 }
+
+#logo {
+    border-radius: 50%;
+}

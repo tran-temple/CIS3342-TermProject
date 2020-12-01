@@ -28,11 +28,11 @@ namespace CIS3342_TermProject
                 if (userConfirm != null)
                 {
                     loginService.UpdateUserStatus(userConfirm.UserID, 1);
-                    lblSuccessMessage.Text = "Your user is confirmed.";
+                    lblSuccessMessage.Text = "Thank you for verifying your email. You may now login.";
                 }
                 else
                 {
-                    lblErrorMessage.Text = "The link is expired.";
+                    lblErrorMessage.Text = "The link has expired.";
                 }
                 loginService.DeleteVerifiedUser(key);
             }

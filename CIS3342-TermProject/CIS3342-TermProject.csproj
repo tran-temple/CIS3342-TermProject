@@ -79,6 +79,7 @@
     <Content Include="images\logo.jpg" />
     <Content Include="images\logo2.png" />
     <Content Include="images\logo2Transparent.png" />
+    <Content Include="images\logo3.png" />
     <Content Include="Login.aspx" />
     <Content Include="ManageProducts.aspx" />
     <Content Include="ProductPage.aspx" />

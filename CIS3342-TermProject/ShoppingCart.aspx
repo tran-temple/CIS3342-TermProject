@@ -15,7 +15,7 @@
                                 <asp:Label ID="lblHeadingCart" runat="server" Text="Shopping Bag"></asp:Label>
                             </div>
                             <div class="card-body d-flex flex-column">
-                                <asp:ListView ID="lvShoppingBag" runat="server" >
+                                <asp:ListView ID="lvShoppingBag" runat="server" OnSelectedIndexChanged="lvShoppingBag_SelectedIndexChanged"> 
                                     <ItemTemplate>
                                         <div class="card border mt-2">
                                             <div class="row form-group">
@@ -39,7 +39,9 @@
                                                     <asp:Label ID="lblProductPrice" runat="server" CssClass="font-weight-bold"
                                                         Text='<%# DataBinder.Eval(Container.DataItem, "ProductPrice", "{0:c}") %>'></asp:Label>
                                                     <br />
-                                                    <asp:LinkButton ID="btnRemove" runat="server" CssClass="btn-link">Remove</asp:LinkButton>
+                                                   <ItemTemplate>
+                                          <asp:LinkButton ID="btnRemove" runat="server" CommandName="Delete">Delete</asp:LinkButton>
+                                             </ItemTemplate>
                                                 </div>
                                             </div>
                                         </div>

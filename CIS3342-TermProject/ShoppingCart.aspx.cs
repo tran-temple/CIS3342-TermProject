@@ -19,6 +19,9 @@ namespace CIS3342_TermProject
                 {
                     List<CartItem> cart = (List<CartItem>)Session["Cart"];
                     lvShoppingBag.DataSource = cart;
+                    String[] names = new string[1];
+                    names[0] = "ProductID";
+                    lvShoppingBag.DataKeyNames = names;
                     lvShoppingBag.DataBind();
 
                     DisplaySummary();
@@ -30,7 +33,7 @@ namespace CIS3342_TermProject
             }
 
         }
-
+        
         private void DisplaySummary()
         {
             double subTotal = 0.0;
@@ -63,7 +66,16 @@ namespace CIS3342_TermProject
 
         protected void btnRemove_Click(object sender, EventArgs e)
         {
-        
+     
         }
+
+        protected void lvShoppingBag_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+      
+        
+
     }
 }

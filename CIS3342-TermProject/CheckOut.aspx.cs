@@ -34,7 +34,7 @@ namespace CIS3342_TermProject
                 }
                 else
                 {
-                    lblGeneral_Error.Text = "You have not added any cartItem in the shopping cart!";
+                    lblGeneral_Error.Text = "You have not added any items to the shopping cart!";
                 }
             }
         }
@@ -117,6 +117,12 @@ namespace CIS3342_TermProject
                 if (order!=null && items.Count > 0)
                 {
                     Boolean result = service.InsertFullOrder(order, items);
+                    // Update Subscription
+
+
+
+
+
                     if (chkStoreCreditCard.Checked)
                     {
                         int userID = int.Parse(Session["userid"].ToString());
@@ -129,7 +135,10 @@ namespace CIS3342_TermProject
                     }
                     if (result)
                     {
-                        lblGeneral_Error.Text = "Order was placed successfully!";
+                        lblSuccess.Text = "Order was placed successfully!";
+                       // pnlShoppingCart.Visible = false;
+                        pnlShippingInfo.Visible = false;
+                        pnlCreditCardInfo.Visible = false;
                         Session.Remove("Cart");
                     }
                 }

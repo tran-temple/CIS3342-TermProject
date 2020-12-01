@@ -6,7 +6,7 @@
         <div class="m-3 form-group">
             <div class="row form-group justify-content-center">
                 <asp:label ID="lblErrorMessage" runat="server" cssclass="text-danger"></asp:label>
-                <asp:label ID="lblSuccessMessage" runat="server" cssclass="text-success"></asp:label><br />                
+                <asp:label ID="lblSuccessMessage" runat="server" cssclass="text-success"></asp:label><br />  <br />              
                 <asp:LinkButton ID="btnGoToLogin" runat="server" CssClass="btn-link" OnClick="btnGoToLogin_Click">Please click this link to go to Login!</asp:LinkButton>
             </div>
         </div>

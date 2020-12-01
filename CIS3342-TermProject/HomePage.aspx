@@ -117,7 +117,7 @@
                         <asp:ListItem Value="-1" Selected="True">Select a category...</asp:ListItem>
                     </asp:DropDownList>
                     &nbsp;&nbsp;
-                <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn-primary" OnClick="btnSearch_Click" />
+                <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn-sm btn-outline-info" OnClick="btnSearch_Click" />
                 </div>
             </div>
 
@@ -144,7 +144,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField>
                                 <ItemTemplate>
-                                   <asp:Button ID="btnAddCart" runat="server" Text="Add To Cart" Enabled='<%# Eval("ProductQuantity").ToString() == "0" ? false : true %>' 
+                                   <asp:Button ID="btnAddCart" runat="server" CssClass="btn-sm btn-outline-dark" Text="Add To Cart" Enabled='<%# Eval("ProductQuantity").ToString() == "0" ? false : true %>' 
                                        CommandName="AddToCart" CommandArgument='<%# Container.DataItemIndex %>' />
                                 </ItemTemplate>
                             </asp:TemplateField>
