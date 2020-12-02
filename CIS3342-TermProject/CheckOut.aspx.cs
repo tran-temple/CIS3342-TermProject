@@ -207,5 +207,52 @@ namespace CIS3342_TermProject
                 ddlYear.SelectedValue = creditCard.ExpirationYear.ToString();
             }
         }
+
+
+        protected void btnApplyCode_Click(object sender, EventArgs e)
+        {
+
+            double subTotal = 0.0;
+            double total = 0.0;
+            double taxAmount = 0.0;
+            double shippingFee = 0.0;
+            string code = txtCode.Text;
+            List<CartItem> cart = (List<CartItem>)Session["Cart"];
+            foreach (CartItem item in cart)
+            {
+                subTotal += item.ProductPrice * item.Quantity;
+            }
+            if (subTotal < Constant.FREE_SHIPPING_STANDARD)
+            {
+                shippingFee = Constant.SHIPPING_FEE;
+            }
+            taxAmount = subTotal * Constant.TAX;
+            total = subTotal + taxAmount + shippingFee;
+
+            lblSubTotal.Text = subTotal.ToString("C2");
+            lblTax.Text = taxAmount.ToString("C2");
+            lblShippingFee.Text = shippingFee.ToString("C2");
+            lblTotal.Text = total.ToString("C2");
+
+            if (code == "FREE15")
+            {
+
+
+               
+                lblTotal.Text = (total-(total * 0.15)).ToString("c2");
+                txtCode.Text = "";
+
+            }
+
+            else
+            {
+                lblTotal.Text = total.ToString();
+                lblGeneral_Error.Text = "This code did not work.";
+
+            }
+        }
+
+
+
     }
 }
