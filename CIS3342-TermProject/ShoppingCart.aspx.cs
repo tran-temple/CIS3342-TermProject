@@ -33,7 +33,7 @@ namespace CIS3342_TermProject
             }
 
         }
-        
+
         private void DisplaySummary()
         {
             double subTotal = 0.0;
@@ -66,16 +66,12 @@ namespace CIS3342_TermProject
 
         protected void btnRemove_Click(object sender, EventArgs e)
         {
-     
-        }
-
-        protected void lvShoppingBag_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
         }
+
+       
+
 
       
-        
-
     }
 }

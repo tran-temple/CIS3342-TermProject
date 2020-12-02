@@ -47,6 +47,10 @@ namespace CIS3342_TermProject
                 ShowCategoriesList();
                 ShowProductsList();
             }
+
+
+
+            
         }
 
         //Show the list of categories
@@ -77,7 +81,7 @@ namespace CIS3342_TermProject
         protected void DLSubscriptions_ItemCommand(Object sender, System.Web.UI.WebControls.DataListCommandEventArgs e)
 
         {
-
+            
             // Retrieve the row index for the item that fired the ItemCommand event
 
             int rowIndex = e.Item.ItemIndex;
@@ -102,27 +106,47 @@ namespace CIS3342_TermProject
 
             lblSubscriptionIDShow.Text = "You selected Subscription ID " + subscriptionID;
 
-                   
+         
             // WIll be used to add to cart later on
 
             List<CartItem> cart = null;
-
+           
             CartItem item = new CartItem();
+
+
+           
             item.ProductID = int.Parse(subscriptionID);
             item.ProductName = subscriptionName;
            Image img = (Image)DLSubscriptions.Items[rowIndex].FindControl("subImage");
             item.ImageURL = img.ImageUrl;
             item.ProductPrice = subscriptionPrice;
+            item.Type = "Subscription";
          
             item.Quantity = 1;
-            
+
             if (Session["Cart"] != null)
             {
 
-             
+
                 cart = (List<CartItem>)Session["Cart"];
-                cart.Add(item);
+                for (int i = 0; i < cart.Count; i++)
                 
+                    {
+                    if (cart[i].Type == "Subscription")
+                    {
+
+                     
+                        
+                        Response.Write("<script>alert(' You have already selected a subscription type. You must remove it from the cart to add another.')</script>");
+                    }
+
+
+                    else
+                    {
+                        cart.Add(item);
+                    }
+
+                }
             }
             else
             {
@@ -188,7 +212,7 @@ namespace CIS3342_TermProject
 
             }
         }
-
+       
         protected void gvProducts_SelectedIndexChanged(object sender, EventArgs e)
         {
             Response.Redirect("ViewProductDetail.aspx?ProdID=" + gvProducts.SelectedRow.Cells[PRODUCT_ID_COLUMN].Text);
@@ -210,6 +234,7 @@ namespace CIS3342_TermProject
                 item.ProductPrice = double.Parse(row.Cells[PRODUCT_PRICE_COLUMN].Text, NumberStyles.Currency);
                 TextBox txtBox = (TextBox) row.FindControl("txtQuantity");
                 item.Quantity = int.Parse(txtBox.Text);
+                item.Type = "Product";
 
                 if (Session["Cart"] != null)
                 {

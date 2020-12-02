@@ -13,6 +13,7 @@ namespace EcommerceLibrary
         private double productPrice;
         private int quantity;
         private string imageURL;
+        private string type;
 
         public CartItem()
         {
@@ -24,5 +25,7 @@ namespace EcommerceLibrary
         public double ProductPrice { get => productPrice; set => productPrice = value; }
         public int Quantity { get => quantity; set => quantity = value; }
         public string ImageURL { get => imageURL; set => imageURL = value; }
+
+        public string Type { get => type; set => type = value; }
     }
 }

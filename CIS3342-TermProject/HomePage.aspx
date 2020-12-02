@@ -1,6 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="HomePage.aspx.cs" Inherits="CIS3342_TermProject.HomePage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    
+    <script>
+        $(document).ready(function () {
+          
+
+});
+    </script>
     <style type="text/css">
         .auto-style1 {
             width: 105px;
@@ -62,6 +69,7 @@
 
 
     </style>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server" >
    
@@ -92,7 +100,7 @@
                          </asp:Label>
                 </li>
                   </ul>
-                <asp:Button ID="btnAddSubscriptionToCart" runat="server" Text="Add To Cart" CssClass=" btn btn-lg btn-block btn-outline-success mt-auto" />
+                <asp:Button ID="btnAddSubscriptionToCart" runat="server" Text="Add To Cart" CssClass=" btn btn-lg btn-block btn-outline-success mt-auto" ClientIDMode="Static"/>
                                
                 </div>
             </div>

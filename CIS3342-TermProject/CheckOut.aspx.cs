@@ -5,8 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Globalization;
-
+using System.Data.SqlClient;
 using EcommerceLibrary;
+using System.Data;
 
 namespace CIS3342_TermProject
 {
@@ -110,18 +111,19 @@ namespace CIS3342_TermProject
 
         protected void btnPlaceOrder_Click(object sender, EventArgs e)
         {
+            
+
             try
             {
                 Order order = CreateOrder();
                 List<OrderItem> items = CreateOrderItemList();
-                if (order!=null && items.Count > 0)
+                if (order != null && items.Count > 0)
                 {
+
                     Boolean result = service.InsertFullOrder(order, items);
-                    // Update Subscription
-
-
-
-
+                    List<CartItem> cart = (List<CartItem>)Session["Cart"];
+                     
+                 
 
                     if (chkStoreCreditCard.Checked)
                     {
@@ -133,20 +135,45 @@ namespace CIS3342_TermProject
                             lblGeneral_Error.Text = "Your credit card can't be stored!";
                         }
                     }
+
                     if (result)
                     {
+
+
                         lblSuccess.Text = "Order was placed successfully!";
-                       // pnlShoppingCart.Visible = false;
+                        // pnlShoppingCart.Visible = false;
                         pnlShippingInfo.Visible = false;
                         pnlCreditCardInfo.Visible = false;
+
+                        // Need to traverse through shopping cart and update subscription for user who purchased it
+                        for (int i = 0; i < cart.Count; i++)
+
+                        {
+                            if (cart[i].Type == "Subscription")
+                            {
+
+                                string userid = Session["userid"].ToString();
+                                int UserID = int.Parse(userid);
+                                string subID = cart[i].ProductID.ToString();
+                                int SubID = int.Parse(subID);
+                                service.UpdateSubscription(UserID, SubID);
+                            }
+                        }
                         Session.Remove("Cart");
+
+
                     }
+                
                 }
-            }           
+            }
+            
+            
+
             catch (Exception ex)
             {
                 lblGeneral_Error.Text = ex.Message;
             }
+            
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)

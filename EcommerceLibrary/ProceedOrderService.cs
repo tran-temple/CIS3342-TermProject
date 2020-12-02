@@ -187,6 +187,21 @@ namespace EcommerceLibrary
 
             return objDB.DoUpdateUsingCmdObj(objCommand);
         }
+
+
+        public int UpdateSubscription (int UserID, int SubID)
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_UpdateSubscriptionPurchase";
+            objCommand.Parameters.AddWithValue("@UserID", UserID);
+            objCommand.Parameters.AddWithValue("@SubID", SubID);
+
+
+            return objDB.DoUpdateUsingCmdObj(objCommand);
+        }
     }
 }
 

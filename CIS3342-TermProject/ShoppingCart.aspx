@@ -15,7 +15,7 @@
                                 <asp:Label ID="lblHeadingCart" runat="server" Text="Shopping Bag"></asp:Label>
                             </div>
                             <div class="card-body d-flex flex-column">
-                                <asp:ListView ID="lvShoppingBag" runat="server" OnSelectedIndexChanged="lvShoppingBag_SelectedIndexChanged"> 
+                                <asp:ListView ID="lvShoppingBag" runat="server" > 
                                     <ItemTemplate>
                                         <div class="card border mt-2">
                                             <div class="row form-group">
@@ -39,9 +39,9 @@
                                                     <asp:Label ID="lblProductPrice" runat="server" CssClass="font-weight-bold"
                                                         Text='<%# DataBinder.Eval(Container.DataItem, "ProductPrice", "{0:c}") %>'></asp:Label>
                                                     <br />
-                                                   <ItemTemplate>
-                                          <asp:LinkButton ID="btnRemove" runat="server" CommandName="Delete">Delete</asp:LinkButton>
-                                             </ItemTemplate>
+                                                  
+                                            <asp:Button ID="btnRemove" runat="server" Text="Remove" CssClass=" btn btn-sm  btn-outline-danger mt-auto" CommandName="Delete" />
+                                            
                                                 </div>
                                             </div>
                                         </div>
@@ -93,7 +93,7 @@
                                 </div>
                                 <div class="row text-center mt-3">
                                     <div class="col">
-                                        <asp:Button ID="btnCheckOut" runat="server" CssClass="btn-danger" Text="Proceed To Checkout" OnClick="btnCheckOut_Click"/>
+                                        <asp:Button ID="btnCheckOut" runat="server" CssClass="btn-success" Text="Proceed To Checkout" OnClick="btnCheckOut_Click" />
                                     </div>
                                 </div>
                             </div>
