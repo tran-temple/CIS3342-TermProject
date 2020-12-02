@@ -103,13 +103,19 @@ namespace EcommerceLibrary
             return confirmUrl;
         }
 
+        public string CreateNewtPasswordUrl(string host, int port, string key)
+        {
+            string confirmUrl = "http://" + host + ":" + port + "/NewPassword.aspx?key=" + key;
+            return confirmUrl;
+        }
+
         public string CreateKey(string username)
         {
             string key = EncryptSensitiveInfo(username);
             return key;
         }
 
-        public void SendEmail(string key, string recipient, string url)
+        public void SendEmail(string key, string recipient, string url, string information)
         {
             try
             {
@@ -124,9 +130,12 @@ namespace EcommerceLibrary
 
                 mail.From = new MailAddress("tran.temple.2020@gmail.com");
                 mail.To.Add(recipient);
-                mail.Subject = "RH Chocolate Store: Activate";
+                /*mail.Subject = "RH Chocolate Store: Activate";
                 mail.Body = "Please click the link to activate your account! " +
-                    "<br/> <a href='" + url + "'>" + url + "</a>" + "<br/><br> Enter coupoun code NEW15 for 15% off your first order!" ;
+                    "<br/> <a href='" + url + "'>" + url + "</a>" + "<br/><br> Enter coupoun code NEW15 for 15% off your first order!" ;*/
+                mail.Subject = "RH Chocolate Store";
+                mail.Body = information +
+                    "<br/> <a href='" + url + "'>" + url + "</a>" ;
                 mail.IsBodyHtml = true;
 
                 smtpClient.Send(mail);

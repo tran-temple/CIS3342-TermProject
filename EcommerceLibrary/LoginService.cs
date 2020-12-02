@@ -73,6 +73,31 @@ namespace EcommerceLibrary
             return resultDS;
         }
 
+        public Question GetQuestionByID(int id)
+        {
+            Question question = null;
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_GetQuestionByID";
+
+            objCommand.Parameters.AddWithValue("@theID", id);
+
+            DataSet resultDS = objDB.GetDataSetUsingCmdObj(objCommand);
+
+            if (resultDS.Tables.Count > 0)
+            {
+                question = new Question();
+                foreach (DataRow row in resultDS.Tables[0].Rows)
+                {
+                    question.QuestionID = int.Parse(row["QuestionID"].ToString());
+                    question.QuestionDescription = row["QuestionDescription"].ToString();
+
+                }
+            }
+
+            return question;
+        }
+
         //Insert user
         public int InsertUser(User user)
         {
@@ -112,6 +137,20 @@ namespace EcommerceLibrary
             //set value for input parameter
             objCommand.Parameters.AddWithValue("@theID", userID);
             objCommand.Parameters.AddWithValue("@theStatus", status);
+
+            return objDB.DoUpdateUsingCmdObj(objCommand);
+        }
+
+        // Update user password
+        public int UpdateUserPassword(int userID, String password)
+        {
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_UpdateUserPassword";
+
+            //set value for input parameter
+            objCommand.Parameters.AddWithValue("@theID", userID);
+            objCommand.Parameters.AddWithValue("@thePassword", password);
 
             return objDB.DoUpdateUsingCmdObj(objCommand);
         }

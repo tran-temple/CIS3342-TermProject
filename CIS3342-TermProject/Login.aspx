@@ -53,8 +53,9 @@
                 <div class="col">
                 </div>
                 <div class="col-md-8">
-                    <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn-primary" OnClick="btnLogin_Click"/>&nbsp;&nbsp;&nbsp;&nbsp;                
-                    <asp:CheckBox ID="chkRememberMe" runat="server" Text="Remember Me" CssClass="btn-primary" />                
+                    <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn-primary" OnClick="btnLogin_Click"/> &nbsp;&nbsp;&nbsp;               
+                    <asp:CheckBox ID="chkRememberMe" runat="server" Text="Remember Me" CssClass="btn-primary" /> <br />
+                    <asp:LinkButton ID="btnForgetPassword" runat="server" Text="Forget Password" CssClass="btn-link" OnClick="btnForgetPassword_Click"/>
                 </div>                
             </div>
             <div class="row form-group">

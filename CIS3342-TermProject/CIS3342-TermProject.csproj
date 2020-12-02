@@ -75,6 +75,7 @@
     <Content Include="AdminSubscription.aspx" />
     <Content Include="CheckOut.aspx" />
     <Content Include="ConfirmUser.aspx" />
+    <Content Include="ForgetPassword.aspx" />
     <Content Include="HomePage.aspx" />
     <Content Include="images\logo.jpg" />
     <Content Include="images\logo2.png" />
@@ -82,6 +83,7 @@
     <Content Include="images\logo3.png" />
     <Content Include="Login.aspx" />
     <Content Include="ManageProducts.aspx" />
+    <Content Include="NewPassword.aspx" />
     <Content Include="ProductPage.aspx" />
     <Content Include="PurchaseHistory.aspx" />
     <Content Include="Registration.aspx" />
@@ -120,6 +122,13 @@
     <Compile Include="ConfirmUser.aspx.designer.cs">
       <DependentUpon>ConfirmUser.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ForgetPassword.aspx.cs">
+      <DependentUpon>ForgetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ForgetPassword.aspx.designer.cs">
+      <DependentUpon>ForgetPassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="HomePage.aspx.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -147,6 +156,13 @@
     </Compile>
     <Compile Include="ManageProducts.aspx.designer.cs">
       <DependentUpon>ManageProducts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NewPassword.aspx.cs">
+      <DependentUpon>NewPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NewPassword.aspx.designer.cs">
+      <DependentUpon>NewPassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="ProductPage.aspx.cs">
       <DependentUpon>ProductPage.aspx</DependentUpon>

@@ -145,5 +145,10 @@ namespace CIS3342_TermProject
             
             return result;
         }
+
+        protected void btnForgetPassword_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ForgetPassword.aspx");
+        }
     }
 }

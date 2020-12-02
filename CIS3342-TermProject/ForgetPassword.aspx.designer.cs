@@ -10,7 +10,7 @@
 namespace CIS3342_TermProject {
     
     
-    public partial class Login {
+    public partial class ForgetPassword {
         
         /// <summary>
         /// form1 control.
@@ -31,15 +31,6 @@ namespace CIS3342_TermProject {
         protected global::System.Web.UI.WebControls.Label lblGeneral_Error;
         
         /// <summary>
-        /// lblActive_Error control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblActive_Error;
-        
-        /// <summary>
         /// txtUsername control.
         /// </summary>
         /// <remarks>
@@ -58,66 +49,66 @@ namespace CIS3342_TermProject {
         protected global::System.Web.UI.WebControls.Label lblUserName_Error;
         
         /// <summary>
-        /// txtPassword control.
+        /// btnUserName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPassword;
+        protected global::System.Web.UI.WebControls.Button btnUserName;
         
         /// <summary>
-        /// lblPassword_Error control.
+        /// lblQuestion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPassword_Error;
+        protected global::System.Web.UI.WebControls.Label lblQuestion;
         
         /// <summary>
-        /// btnLogin control.
+        /// hidQuestionId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLogin;
+        protected global::System.Web.UI.WebControls.HiddenField hidQuestionId;
         
         /// <summary>
-        /// chkRememberMe control.
+        /// txtAnswer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkRememberMe;
+        protected global::System.Web.UI.WebControls.TextBox txtAnswer;
         
         /// <summary>
-        /// btnForgetPassword control.
+        /// lblAnswer_Error control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnForgetPassword;
+        protected global::System.Web.UI.WebControls.Label lblAnswer_Error;
         
         /// <summary>
-        /// btnVisit control.
+        /// btnCancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnVisit;
+        protected global::System.Web.UI.WebControls.Button btnCancel;
         
         /// <summary>
-        /// btnRegister control.
+        /// btnSubmit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnRegister;
+        protected global::System.Web.UI.WebControls.Button btnSubmit;
     }
 }

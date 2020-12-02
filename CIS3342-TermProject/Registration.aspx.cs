@@ -47,8 +47,9 @@ namespace CIS3342_TermProject
                         string host = HttpContext.Current.Request.Url.Host;
                         int port = HttpContext.Current.Request.Url.Port;
                         string confirmUrl = utils.CreateConfirmUrl(host, port, key);
-                        
-                        utils.SendEmail(key, createdUser.Email, confirmUrl);
+
+                        string information = "Please click on the link to verify your email";
+                        utils.SendEmail(key, createdUser.Email, confirmUrl, information);
                         // redirect to login page
                         Response.Redirect("Login.aspx");
                     } 
