@@ -153,7 +153,7 @@
                             <asp:TemplateField>
                                 <ItemTemplate>
                                    <asp:Button ID="btnAddCart" runat="server" CssClass="btn-sm btn-outline-dark" Text="Add To Cart" Enabled='<%# Eval("ProductQuantity").ToString() == "0" ? false : true %>' 
-                                       CommandName="AddToCart" CommandArgument='<%# Container.DataItemIndex %>' />
+                                       CommandName="AddToCart" CommandArgument='<%# Container.DataItemIndex % 5 %>' />
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:CommandField ButtonType="Link" ShowSelectButton="true" SelectText="Detail" ControlStyle-CssClass="text-primary"></asp:CommandField>
