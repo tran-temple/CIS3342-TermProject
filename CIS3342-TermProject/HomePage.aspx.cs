@@ -222,6 +222,7 @@ namespace CIS3342_TermProject
         {
             if (e.CommandName == "AddToCart")
             {
+                //Proceed to adding item to cart
                 int index = int.Parse(e.CommandArgument.ToString());
                 GridViewRow row = gvProducts.Rows[index];
                 List<CartItem> cart = null;
@@ -238,15 +239,31 @@ namespace CIS3342_TermProject
 
                 if (Session["Cart"] != null)
                 {
-                    cart = (List<CartItem>)Session["Cart"];
-                    cart.Add(item);
+                    cart = (List<CartItem>)Session["Cart"];                    
                 }
                 else
                 {
-                    cart = new List<CartItem>();
-                    cart.Add(item);
+                    cart = new List<CartItem>();                    
                     Session["Cart"] = cart;
                 }
+                // check item inside cart
+                bool isItemExistedInCart = false;
+                foreach (CartItem cartItem in cart)
+                {
+                    if (cartItem.ProductID == item.ProductID)
+                    {
+                        // inscrease the quantity only
+                        cartItem.Quantity = cartItem.Quantity + item.Quantity;
+                        isItemExistedInCart = true;
+                        break;
+                    }
+                }
+                // item is not existed in cart
+                if (!isItemExistedInCart)
+                {
+                    // add new item to cart
+                    cart.Add(item);
+                }                          
             }
         }
     }
