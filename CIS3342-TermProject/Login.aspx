@@ -60,7 +60,7 @@
             </div>
             <div class="row form-group">
                 <span class="ml-3">Click this link for visitors: </span>&nbsp;&nbsp;
-                <asp:LinkButton ID="btnVisit" runat="server" Text="Just Visit" OnClick="btnVisit_Click"/>
+                <asp:LinkButton ID="btnVisit" runat="server" Text="Just Visit" CssClass="pl-5" OnClick="btnVisit_Click"/>
             </div>
             <div class="row form-group">
                 <span class="ml-3">Click this link for registration: </span>&nbsp;&nbsp;

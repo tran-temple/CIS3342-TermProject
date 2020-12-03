@@ -55,14 +55,16 @@ namespace CIS3342_TermProject
                 string host = HttpContext.Current.Request.Url.Host;
                 int port = HttpContext.Current.Request.Url.Port;
                 string resetPasswordUrl = utils.CreateNewtPasswordUrl(host, port, key);
-                string information = "Please click on the link to reset your password.";
-                utils.SendEmail(key, user.Email, resetPasswordUrl, information);
+                string subject = "RH Chocolate Store: Forget Password";
+                string information = "Please click on the link to reset your password! ";
+                string promotion = "";
+                utils.SendEmail(key, user.Email, subject, resetPasswordUrl, information, promotion);
                 // redirect to login page
                 Response.Redirect("Login.aspx");
             }
             else
             {
-                lblGeneral_Error.Text = "The answer is not match";
+                lblGeneral_Error.Text = "The answer is not match!";
             }
         }
 

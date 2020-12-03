@@ -115,7 +115,7 @@ namespace EcommerceLibrary
             return key;
         }
 
-        public void SendEmail(string key, string recipient, string url, string information)
+        public void SendEmail(string key, string recipient, string subject, string url, string information, string promotion)
         {
             try
             {
@@ -133,9 +133,9 @@ namespace EcommerceLibrary
                 /*mail.Subject = "RH Chocolate Store: Activate";
                 mail.Body = "Please click the link to activate your account! " +
                     "<br/> <a href='" + url + "'>" + url + "</a>" + "<br/><br> Enter coupoun code NEW15 for 15% off your first order!" ;*/
-                mail.Subject = "RH Chocolate Store";
+                mail.Subject = subject;
                 mail.Body = information +
-                    "<br/> <a href='" + url + "'>" + url + "</a>" ;
+                    "<br/> <a href='" + url + "'>" + url + "</a>" + "<br/><br/>" + promotion;
                 mail.IsBodyHtml = true;
 
                 smtpClient.Send(mail);
