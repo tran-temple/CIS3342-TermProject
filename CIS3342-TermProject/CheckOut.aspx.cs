@@ -144,6 +144,7 @@ namespace CIS3342_TermProject
                         // pnlShoppingCart.Visible = false;
                         pnlShippingInfo.Visible = false;
                         pnlCreditCardInfo.Visible = false;
+                        txtCode.Visible = false;
 
                         // Need to traverse through shopping cart and update subscription for user who purchased it
                         for (int i = 0; i < cart.Count; i++)
@@ -238,16 +239,25 @@ namespace CIS3342_TermProject
             {
 
 
-               
-                lblTotal.Text = (total-(total * 0.15)).ToString("c2");
+                lblCodeErrorNone.Visible = true;
+                lblTotal.Text =   (total-(total * 0.15)).ToString("c2");
                 txtCode.Text = "";
-
+                btnApplyCode.Visible = false;
+                lblCode.Visible = false;
+                txtCode.Visible = false;
+                lblCodeErrorNone.Text = "Success! 15% Off Order Applied";
+                lblCodeError.Visible = false;
             }
 
             else
             {
-                lblTotal.Text = total.ToString();
-                lblGeneral_Error.Text = "This code did not work.";
+                lblCodeError.Visible = true;
+                lblTotal.Text = total.ToString("c2");
+                lblCodeError.Text = "This code did not work.";
+                lblCodeErrorNone.Visible = false;
+                txtCode.Text = "";
+                btnApplyCode.Visible = true;
+
 
             }
         }

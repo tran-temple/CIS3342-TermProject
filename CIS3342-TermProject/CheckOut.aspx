@@ -227,9 +227,11 @@
                     <div class="card-deck mb-3">
                         <div class="card mb-4 box-shadow">
                             <div class="card-header">
+                               
                                 <asp:Label ID="lblHeadingTotal" runat="server" Text="Summary"></asp:Label>
                             </div>
                             <div class="card-body d-flex flex-column">
+                               
                                 <div class="row">
                                     <div class="col">
                                         <asp:Label ID="lblSubTotalTitle" runat="server" Text="SubTotal"></asp:Label>
@@ -258,32 +260,48 @@
 
                               
                                 
-                                     <div class="row">
+                                     
+                                  
+                                    <asp:UpdatePanel ID="UpdatePanel1" runat="server"> 
+                                           <ContentTemplate>
+                                               <br />
+                                               <div class="row">
+                                                   <div class="col">
+                                 <asp:Label ID="lblCodeError" runat="server" Text="" CssClass="alert-danger" ></asp:Label>
+                                    </div>
+                                                   </div>
+                                                                                              <div class="row">
+                                 <asp:Label ID="lblCodeErrorNone" runat="server" Text="" CssClass="alert-success"></asp:Label>
+                                    </div>
+                                               
+                                               <div class="row">
                                     <div class="col">
                                         <asp:Label ID="lblCode" runat="server" Text=" Coupon Code"></asp:Label>
                                     </div>
-                                    <div class="col">
+                                                </div>
+                                               <div class="row">
+                                                 <div class="col">
                                         <asp:Textbox ID="txtCode" runat="server"></asp:Textbox>
                                     </div>
-                                    <asp:UpdatePanel ID="UpdatePanel1" runat="server"> 
-                                           <ContentTemplate>
-                                        <asp:Button ID="btnApplyCode" runat="server" CssClass="btn-sm btn-outline-primary" Text="Apply" OnClick="btnApplyCode_Click" />
-
+                                               <div class="col">
+                                        <asp:Button ID="btnApplyCode" runat="server" CssClass="btn-sm btn-outline-primary align-content-center " Text="Apply" OnClick="btnApplyCode_Click" />
+                                        </div>
+                                                   </div>
                                                <div class="row">
                                     
                                     <div class="col">
                                         
                                         <asp:Label ID="lblTotalTitle" runat="server" Text="Total"></asp:Label>
-                                    </div>
+                                   
                                    
                                 </div>
-                                  <div class="col">
-                                        
+                               
+                                        <div class="col">
                                        
                                               <asp:Label ID="lblTotal" runat="server" Text="$0.00"></asp:Label>
-                                         
+                                        </div>  
                                                  
-                                    </div>
+
                                 </div>
                                                 </ContentTemplate>
                                          </asp:UpdatePanel>

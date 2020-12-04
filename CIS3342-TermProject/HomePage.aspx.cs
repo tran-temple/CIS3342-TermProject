@@ -25,8 +25,10 @@ namespace CIS3342_TermProject
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            
 
-            if (!IsPostBack)
+
+                if (!IsPostBack)
             {
                 DBConnect objDB = new DBConnect();
                 SqlCommand objCommand = new SqlCommand();
@@ -86,7 +88,8 @@ namespace CIS3342_TermProject
 
             int rowIndex = e.Item.ItemIndex;
 
-
+       
+            
 
             // Retrieve a value from a control in the DL's Items collection
 
@@ -104,7 +107,7 @@ namespace CIS3342_TermProject
          Double subscriptionPrice = Double.Parse(lblSubscriptionPrice.Text);
 
 
-            lblSubscriptionIDShow.Text = "You selected Subscription ID " + subscriptionID;
+       //     lblSubscriptionIDShow.Text = "You selected Subscription ID " + subscriptionID;
 
          
             // WIll be used to add to cart later on
@@ -132,19 +135,31 @@ namespace CIS3342_TermProject
                 for (int i = 0; i < cart.Count; i++)
                 
                     {
-                    if (cart[i].Type == "Subscription")
+                    if (cart[i].Type == "Subscription") // If the cart already has a subscription in it
                     {
 
-                     
-                        
-                        Response.Write("<script>alert(' You have already selected a subscription type. You must remove it from the cart to add another.')</script>");
+
+
+                        cart.RemoveAt(i);
+                        cart.Add(item);
+                        break;
+                       // Response.Write("<script>alert(' You have already selected a subscription type. You must remove it from the cart to add another.')</script>"); // Alert 
+
+        
                     }
+
+
+                
 
 
                     else
                     {
                         cart.Add(item);
+
+                      
                     }
+
+            
 
                 }
             }

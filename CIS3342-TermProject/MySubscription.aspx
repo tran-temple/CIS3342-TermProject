@@ -1,8 +1,24 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="MySubscription.aspx.cs" Inherits="CIS3342_TermProject.MySubscription" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
+    <style>
 
+    .title {
+         text-align: center;
+    font-size: 40px;
+    color: black;
+    margin-top: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+    }
+
+        </style>
+</asp:Content>
+
+
+
+<asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
+    <asp:Label ID="lblTitle" runat="server" CssClass="title"> Current Subscription </asp:Label>
     <asp:Panel ID="panelHasSubscription" runat="server">
         <div class="card text-center">
   <div class="card-header">

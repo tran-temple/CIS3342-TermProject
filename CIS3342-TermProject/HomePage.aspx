@@ -51,7 +51,7 @@
 
 .subtitle {
     text-align: center;
-    font-size: 20px;
+    font-size: 40px;
     color: darkkhaki;
 
 }
@@ -75,7 +75,7 @@
    
     <asp:Label ID ="lblSubtitle" runat="server" CssClass="subtitle">Subscriptions</asp:Label>
     <br /><br />
-       <asp:Label ID="lblSubscriptionIDShow" runat="server" Text="Label"></asp:Label>
+       
        <asp:DataList ID="DLSubscriptions" runat="server" RepeatDirection="Horizontal"  OnItemCommand="DLSubscriptions_ItemCommand">
        <ItemTemplate>
            <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
