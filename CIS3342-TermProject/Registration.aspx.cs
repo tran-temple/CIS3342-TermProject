@@ -35,6 +35,10 @@ namespace CIS3342_TermProject
                 User objUser = CreateUserObject();
                 if (ValidateUserObject(objUser))
                 {
+                    // encode the password
+                    string encryptPassword = utils.EncryptSensitiveInfo(txtPassword.Text);
+                    objUser.Password = encryptPassword;
+                    // write user to database
                     int ret = loginService.InsertUser(objUser);
 
                     if (ret == 1)
@@ -57,7 +61,10 @@ namespace CIS3342_TermProject
                     } 
                     else lblGeneral_Error.Text = "Cannot create user!";                    
                 }
-                else return;
+                else
+                {
+                    return;
+                }
             }
             catch (Exception ex)
             {
@@ -87,6 +94,7 @@ namespace CIS3342_TermProject
             lblAnswer3_Error.Text = "";
         }
 
+        //Create the user object to use
         private User CreateUserObject()
         {            
             string type = "";
@@ -94,10 +102,8 @@ namespace CIS3342_TermProject
             User user = new User();
             user.Username = txtUsername.Text;
             if (!String.IsNullOrWhiteSpace(txtPassword.Text))
-            {
-                //encrypt sensitive password to store DB
-                string encryptPassword = utils.EncryptSensitiveInfo(txtPassword.Text);
-                user.Password = encryptPassword;
+            { 
+                user.Password = txtPassword.Text;
             }               
             user.Firstname = txtFirstName.Text;
             user.Lastname = txtLastName.Text;
@@ -126,9 +132,10 @@ namespace CIS3342_TermProject
             ClearErrorMessage();
             bool result = true;
 
+            //Verify username
             if (String.IsNullOrWhiteSpace(user.Username))
             {
-                lblUserName_Error.Text = "Input username!";
+                lblUserName_Error.Text = "Please input username!";
                 result = false;
             }
             else
@@ -140,60 +147,128 @@ namespace CIS3342_TermProject
                     result = false;
                 }
             }
+            //Verify password
             if (String.IsNullOrWhiteSpace(user.Password))
             {
-                lblPassword_Error.Text = "Input Password!";
+                lblPassword_Error.Text = "Please input Password!";
                 result = false;
             }
+            else
+            {
+                if (!utils.IsValidPassword(user.Password))
+                {
+                    lblPassword_Error.Text = "Password requirements:  must be eight characters or longer, "
+                        + "must contain at least 1 lowercase alphabetical character, "
+                        + "must contain at least 1 uppercase alphabetical character, "
+                        + "must contain at least 1 numeric character, "
+                        + "must contain at least one special character.";
+                    result = false;
+                }
+            }
+            //Verify name
             if (String.IsNullOrWhiteSpace(user.Firstname))
             {
-                lblFirstName_Error.Text = "Input First Name!";
+                lblFirstName_Error.Text = "Please input First Name!";
                 result = false;
             }
             if (String.IsNullOrWhiteSpace(user.Lastname))
             {
-                lblLastName_Error.Text = "Input Last Name!";
+                lblLastName_Error.Text = "Please input Last Name!";
                 result = false;
             }
+            //Verify email address
             if (String.IsNullOrWhiteSpace(user.Email))
             {
-                lblEmail_Error.Text = "Input Email!";
+                lblEmail_Error.Text = "Please input Email!";
                 result = false;
             }
+            else
+            {
+                if (!utils.IsValidEmail(user.Email))
+                {
+                    lblEmail_Error.Text = "Please input a valid email address!";
+                    result = false;
+                }
+            }
+            //Verify usertype
             if (String.IsNullOrWhiteSpace(user.UserType))
             {
-                lblUserType_Error.Text = "Select User Type!";
+                lblUserType_Error.Text = "Please select User Type!";
                 result = false;
             }
+            //Verify selecting security questions and answers
             if (user.QuestionID1.Equals(-1))
             {
-                lblQuestion1_Error.Text = "Select Question 1!";
+                lblQuestion1_Error.Text = "Please select Question 1!";
                 result = false;
             }
             if (String.IsNullOrWhiteSpace(user.Answer1))
             {
-                lblAnswer1_Error.Text = "Input Answer 1!";
+                lblAnswer1_Error.Text = "Please input Answer 1!";
                 result = false;
             }
             if (user.QuestionID2.Equals(-1))
             {
-                lblQuestion2_Error.Text = "Select Question 2!";
+                lblQuestion2_Error.Text = "Please select Question 2!";
                 result = false;
             }
             if (String.IsNullOrWhiteSpace(user.Answer2))
             {
-                lblAnswer2_Error.Text = "Input Answer 2!";
+                lblAnswer2_Error.Text = "Please input Answer 2!";
                 result = false;
             }
             if (user.QuestionID3.Equals(-1))
             {
-                lblQuestion3_Error.Text = "Select Question 3!";
+                lblQuestion3_Error.Text = "Please select Question 3!";
                 result = false;
             }
             if (String.IsNullOrWhiteSpace(user.Answer3))
             {
-                lblAnswer3_Error.Text = "Input Answer 3!";
+                lblAnswer3_Error.Text = "Please input Answer 3!";
                 result = false;
+            }
+            //Verify full address
+            if (String.IsNullOrWhiteSpace(user.Street))
+            {
+                lblAddress_Error.Text = "Please input Address!";
+                result = false;
+            }
+            if (String.IsNullOrWhiteSpace(user.City))
+            {
+                lblCity_Error.Text = "Please input City!";
+                result = false;
+            }
+            if (String.IsNullOrWhiteSpace(user.State))
+            {
+                lblState_Error.Text = "Please select State!";
+                result = false;
+            }
+            if (String.IsNullOrWhiteSpace(user.Zipcode))
+            {
+                lblZipcode_Error.Text = "Please input Zipcode!";
+                result = false;
+            }
+            else
+            {
+                if (!utils.IsValidZipCode(user.Zipcode))
+                {
+                    lblZipcode_Error.Text = "Please input valid Zipcode!";
+                    result = false;
+                }
+            }
+            //Verify phone if has input
+            if (String.IsNullOrWhiteSpace(user.Phone))
+            {
+                lblPhone_Error.Text = "Please input Phone!";
+                result = false;
+            }
+            else
+            {
+                if (!utils.IsValidPhone(user.Phone))
+                {
+                    lblPhone_Error.Text = "Please input valid Phone: xxx-xxx-xxxx!";
+                    result = false;
+                }
             }
             return result;
         }

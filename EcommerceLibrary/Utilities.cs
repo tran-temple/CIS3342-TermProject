@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Security.Cryptography;     // needed for the encryption classes
 using System.IO;                        // needed for the MemoryStream
 using System.Net.Mail;
+using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace EcommerceLibrary
 {
@@ -97,18 +99,21 @@ namespace EcommerceLibrary
             return encryptedPassword;
         }
 
+        //Create URL for confirm password
         public string CreateConfirmUrl(string host, int port, string key)
         {
             string confirmUrl = "http://" + host + ":" + port + "/ConfirmUser.aspx?key=" + key;
             return confirmUrl;
         }
 
+        //Create URL for new password
         public string CreateNewtPasswordUrl(string host, int port, string key)
         {
             string confirmUrl = "http://" + host + ":" + port + "/NewPassword.aspx?key=" + key;
             return confirmUrl;
         }
 
+        //Create key to send email for verfify email user
         public string CreateKey(string username)
         {
             string key = EncryptSensitiveInfo(username);
@@ -144,6 +149,94 @@ namespace EcommerceLibrary
             catch (Exception ex)
             {
                 Console.Write(ex.StackTrace);
+            }
+        }
+
+        //Verify that the email address is valid or not
+        public bool IsValidEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                return false;
+
+            try
+            {
+                // Normalize the domain
+                email = Regex.Replace(email, @"(@)(.+)$", DomainMapper,
+                                      RegexOptions.None, TimeSpan.FromMilliseconds(200));
+
+                // Examines the domain part of the email and normalizes it.
+                string DomainMapper(Match match)
+                {
+                    // Use IdnMapping class to convert Unicode domain names.
+                    var idn = new IdnMapping();
+
+                    // Pull out and process domain name (throws ArgumentException on invalid)
+                    string domainName = idn.GetAscii(match.Groups[2].Value);
+
+                    return match.Groups[1].Value + domainName;
+                }
+            }
+            catch (RegexMatchTimeoutException e)
+            {
+                return false;
+            }
+            catch (ArgumentException e)
+            {
+                return false;
+            }
+
+            try
+            {
+                return Regex.IsMatch(email,
+                    @"^[^@\s]+@[^@\s]+\.[^@\s]+$",
+                    RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
+            }
+            catch (RegexMatchTimeoutException)
+            {
+                return false;
+            }
+        }
+
+        //Verify that the phone number is valid or not
+        public bool IsValidPhone(string phone)
+        {
+            try
+            {
+                Regex phonePattern = new Regex(@"^[2-9]\d{2}-\d{3}-\d{4}$"); // US Phone number pattern
+                return phonePattern.IsMatch(phone);
+            }
+            catch (Exception e)
+            {
+                return false;
+            }            
+        }
+
+        //Verify that the zip code is valid or not
+        public bool IsValidZipCode(string zipcode)
+        {
+            Regex zipCodePattern = new Regex(@"^\d{5}$");
+            return zipCodePattern.IsMatch(zipcode);
+        }
+
+        //Verify that the password is valid or not
+        /* RegEx Description:
+        ^	            The password string will start this way
+        (?=.*[a-z])	    The string must contain at least 1 lowercase alphabetical character
+        (?=.*[A-Z])	    The string must contain at least 1 uppercase alphabetical character
+        (?=.*[0-9])	    The string must contain at least 1 numeric character
+        (?=.*[!@#\$%])	The string must contain at least one special character
+        (?=.{8,})	    The string must be eight characters or longer
+         */
+        public bool IsValidPassword(string password)
+        {
+            try
+            {
+                Regex passwordPattern = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$");
+                return passwordPattern.IsMatch(password);
+            }
+            catch (Exception e)
+            {
+                return false;
             }
         }
     }

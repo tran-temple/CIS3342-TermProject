@@ -221,7 +221,7 @@
                             <asp:ListItem Value="WV">West Virginia</asp:ListItem>
                             <asp:ListItem Value="WI">Wisconsin</asp:ListItem>
                             <asp:ListItem Value="WY">Wyoming</asp:ListItem>
-                        </asp:DropDownList>
+                        </asp:DropDownList><br />
                         <asp:Label ID="lblState_Error" runat="server" CssClass="text-danger"></asp:Label>
                     </div>
                 </div>

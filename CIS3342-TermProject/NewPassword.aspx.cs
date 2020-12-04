@@ -38,24 +38,30 @@ namespace CIS3342_TermProject
 
         private bool ValidatePassword()
         {
-            bool isValid = true;
+            bool result = true;
             if (string.IsNullOrWhiteSpace(txtNewPassword.Text))
             {
                 lblNewPassword_Error.Text = "Password cannot be empty.";
-                isValid = false;
+                result = false;
             }
-            if (txtNewPassword.Text.Length <= 6)
+            else
             {
-                lblNewPassword_Error.Text = "Password should has more than 6 charactor.";
-                isValid = false;
+                if (!utils.IsValidPassword(txtNewPassword.Text))
+                {
+                    lblNewPassword_Error.Text = "Password requirements:  must be eight characters or longer, "
+                        + "must contain at least 1 lowercase alphabetical character, "
+                        + "must contain at least 1 uppercase alphabetical character, "
+                        + "must contain at least 1 numeric character, "
+                        + "must contain at least one special character.";
+                    result = false;
+                }
             }
             if (txtNewPassword.Text != txtConfirmPassword.Text)
             {
                 lblConfirmPassword_Error.Text = "Password is not match.";
-                isValid = false;
+                result = false;
             }
-            return isValid;
-
+            return result;
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
