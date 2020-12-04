@@ -6,7 +6,18 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-
+<style>
+    .title {
+        text-align: center;
+        font-size: 40px;
+        color: black;
+        margin-top: 10px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        margin-bottom: 10px;
+        color: darkkhaki;
+    }
+</style>
 
     
 <link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap" rel="stylesheet">
@@ -16,7 +27,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
     <div class="gvContainer">
-        <asp:Label ID="lblTitle" runat="server" CssClass="title"> Manage Subscriptions</asp:Label>
+        <asp:Label ID="lblTitle" runat="server" CssClass="title"> Manage Subscriptions </asp:Label>
     <asp:Label ID="lblError" runat="server"></asp:Label>
                 <asp:GridView ID="gvSubscriptions" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal"  EnableViewState="False" OnRowCommand="gvSubscriptions_RowCommand" OnRowEditing="gvSubscriptions_RowEditing" OnRowUpdating="gvSubscriptions_RowUpdating" OnSelectedIndexChanged="gvSubscriptions_SelectedIndexChanged" OnRowCancelingEdit="gvSubscriptions_RowCancelingEdit">
         <Columns>

@@ -10,6 +10,7 @@
     padding-top: 20px;
     padding-bottom: 20px;
     margin-bottom: 10px;
+    color: darkkhaki;
     }
 
         </style>
