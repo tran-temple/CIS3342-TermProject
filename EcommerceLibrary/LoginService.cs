@@ -15,7 +15,7 @@ namespace EcommerceLibrary
         // Get user by username
         public User GetUserByUsername(string username)
         {
-            User user = new User();
+            User user = null;
 
             SqlCommand objCommand = new SqlCommand();
             objCommand.CommandType = CommandType.StoredProcedure;
@@ -32,6 +32,7 @@ namespace EcommerceLibrary
 
             if (resultDS.Tables.Count > 0)
             {
+                user = new User();
                 foreach (DataRow row in resultDS.Tables[0].Rows)
                 {
                     user.UserID = int.Parse(row["UserID"].ToString());
