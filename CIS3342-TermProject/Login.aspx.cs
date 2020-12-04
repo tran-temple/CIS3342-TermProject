@@ -26,6 +26,7 @@ namespace CIS3342_TermProject
                 String plainTextPassword = utils.Decrypt(encryptedPassword);
                 txtPassword.Text = plainTextPassword;
             }
+            txtPassword.TextMode = TextBoxMode.Password;
         }
 
         protected void btnVisit_Click(object sender, EventArgs e)
@@ -78,6 +79,7 @@ namespace CIS3342_TermProject
             }
         }
 
+        //Get user login info by username
         private User GetUserLogin(string username)
         {
             User objUser = loginService.GetUserByUsername(username);
@@ -106,16 +108,19 @@ namespace CIS3342_TermProject
             string password = txtPassword.Text;
             User objUser = new User();
 
+            //Verify input username
             if (String.IsNullOrWhiteSpace(username))
             {
                 lblUserName_Error.Text = "Please input username!";
                 result = false;
             }
+            //Verify input password
             if (String.IsNullOrWhiteSpace(password))
             {
                 lblPassword_Error.Text = "Please input Password!";
                 result = false;
             }
+            //Verify valid of username and password
             if (!String.IsNullOrWhiteSpace(username) && !String.IsNullOrWhiteSpace(password))
             {
                 objUser = loginService.GetUserByUsername(username);
