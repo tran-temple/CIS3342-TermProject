@@ -114,48 +114,52 @@ namespace CIS3342_TermProject
         {
             try
             {
-                Order order = CreateOrder();
-                List<OrderItem> items = CreateOrderItemList();
-                if (order != null && items.Count > 0)
+                //Only processing order when user input valid values
+                if (ValidateUserInput())
                 {
-                    Boolean result = service.InsertFullOrder(order, items);
-                    List<CartItem> cart = (List<CartItem>)Session["Cart"];
-                    
-                    if (chkStoreCreditCard.Checked)
+                    Order order = CreateOrder();
+                    List<OrderItem> items = CreateOrderItemList();
+                    if (order != null && items.Count > 0)
                     {
-                        int userID = int.Parse(Session["userid"].ToString());
-                        CreditCard myCard = CreateCreditCard();
-                        int retValue = service.StoreCreditCardInfoByUserID(userID, myCard);
-                        if (retValue == 0)
-                        {
-                            lblGeneral_Error.Text = "Your credit card can't be stored!";
-                        }
-                    }
+                        Boolean result = service.InsertFullOrder(order, items);
+                        List<CartItem> cart = (List<CartItem>)Session["Cart"];
 
-                    if (result)
-                    {
-                        lblSuccess.Text = "Order was placed successfully!";
-                        // pnlShoppingCart.Visible = false;
-                        pnlShippingInfo.Visible = false;
-                        pnlCreditCardInfo.Visible = false;
-                        txtCode.Visible = false;
-
-                        // Need to traverse through shopping cart and update subscription for user who purchased it
-                        for (int i = 0; i < cart.Count; i++)
+                        if (chkStoreCreditCard.Checked)
                         {
-                            if (cart[i].Type == "Subscription")
+                            int userID = int.Parse(Session["userid"].ToString());
+                            CreditCard myCard = CreateCreditCard();
+                            int retValue = service.StoreCreditCardInfoByUserID(userID, myCard);
+                            if (retValue == 0)
                             {
-                                string userid = Session["userid"].ToString();
-                                int UserID = int.Parse(userid);
-                                string subID = cart[i].ProductID.ToString();
-                                int SubID = int.Parse(subID);
-                                service.UpdateSubscription(UserID, SubID);
+                                lblGeneral_Error.Text = "Your credit card can't be stored!";
                             }
                         }
-                        Session.Remove("Cart");
-                        // hide command buttons
-                        btnCancel.Visible = false;
-                        btnPlaceOrder.Visible = false;                                   
+
+                        if (result)
+                        {
+                            lblSuccess.Text = "Order was placed successfully!";
+                            // pnlShoppingCart.Visible = false;
+                            pnlShippingInfo.Visible = false;
+                            pnlCreditCardInfo.Visible = false;
+                            txtCode.Visible = false;
+
+                            // Need to traverse through shopping cart and update subscription for user who purchased it
+                            for (int i = 0; i < cart.Count; i++)
+                            {
+                                if (cart[i].Type == "Subscription")
+                                {
+                                    string userid = Session["userid"].ToString();
+                                    int UserID = int.Parse(userid);
+                                    string subID = cart[i].ProductID.ToString();
+                                    int SubID = int.Parse(subID);
+                                    service.UpdateSubscription(UserID, SubID);
+                                }
+                            }
+                            Session.Remove("Cart");
+                            // hide command buttons
+                            btnCancel.Visible = false;
+                            btnPlaceOrder.Visible = false;
+                        }
                     }
                 }
             }
@@ -248,6 +252,76 @@ namespace CIS3342_TermProject
         protected void txtCardNumber_TextChanged(object sender, EventArgs e)
         {
             hidCardNumber.Value = utils.Encrypt(txtCardNumber.Text);
+        }
+
+        private void ClearErrorMessage()
+        {
+            lblGeneral_Error.Text = "";
+            lblRecipient_Error.Text = "";            
+            lblAddress_Error.Text = "";
+            lblCity_Error.Text = "";
+            lblState_Error.Text = "";
+            lblZipcode_Error.Text = "";
+            lblCardNumber_Error.Text = "";
+        }
+
+        //Valid user input
+        private bool ValidateUserInput()
+        {
+            ClearErrorMessage();
+            bool result = true;
+
+            //Verify recipient
+            if (String.IsNullOrWhiteSpace(txtRecipient.Text))
+            {
+                lblRecipient_Error.Text = "Please input Recipient!";
+                result = false;
+            }                        
+            //Verify full shipping address
+            if (String.IsNullOrWhiteSpace(txtAddress.Text))
+            {
+                lblAddress_Error.Text = "Please input Address!";
+                result = false;
+            }
+            if (String.IsNullOrWhiteSpace(txtCity.Text))
+            {
+                lblCity_Error.Text = "Please input City!";
+                result = false;
+            }
+            if (String.IsNullOrWhiteSpace(ddlState.SelectedValue))
+            {
+                lblState_Error.Text = "Please select State!";
+                result = false;
+            }
+            if (String.IsNullOrWhiteSpace(txtZipcode.Text))
+            {
+                lblZipcode_Error.Text = "Please input Zipcode!";
+                result = false;
+            }
+            else
+            {
+                if (!utils.IsValidZipCode(txtZipcode.Text))
+                {
+                    lblZipcode_Error.Text = "Please input valid Zipcode!";
+                    result = false;
+                }
+            }
+            //Verify card-number
+            String cardNumber = utils.Decrypt(hidCardNumber.Value);
+            if (String.IsNullOrWhiteSpace(cardNumber))
+            {
+                lblCardNumber_Error.Text = "Please input Card number!";
+                result = false;
+            }
+            else
+            {                
+                if (!utils.IsValidCardNumber(cardNumber))
+                {
+                    lblCardNumber_Error.Text = "Please input valid Card number!";
+                    result = false;
+                }
+            }
+            return result;
         }
     }
 }

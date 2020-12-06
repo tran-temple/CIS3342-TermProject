@@ -26,6 +26,7 @@ namespace CIS3342_TermProject
             if (Session["Cart"] != null)
             {
                 List<CartItem> cart = (List<CartItem>)Session["Cart"];
+
                 lvShoppingBag.DataSource = cart;
                 String[] names = new string[1];
                 names[0] = "ProductID";
@@ -33,6 +34,11 @@ namespace CIS3342_TermProject
                 lvShoppingBag.DataBind();
 
                 DisplaySummary();
+
+                if (cart.Count == 0)
+                {
+                    lblGeneral_Error.Text = "You do not have any item in the shopping cart!";
+                }
             }
             else
             {
@@ -112,7 +118,7 @@ namespace CIS3342_TermProject
                     cart.RemoveAt(deleteItemIndex);
                 }
                 // update the list view
-                ShowCart();
+                ShowCart();                
             }
         }
     }

@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
     <div class="col-lg-12 mt-3">
-        <div class="row form-group">
+        <div class="row form-group ml-2">
             <asp:Label ID="lblGeneral_Error" runat="server" CssClass="text-danger"></asp:Label>
         </div>
         <asp:Panel ID="pnlShoppingCart" runat="server">

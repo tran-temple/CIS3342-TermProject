@@ -218,6 +218,13 @@ namespace EcommerceLibrary
             return zipCodePattern.IsMatch(zipcode);
         }
 
+        //Verify card number
+        public bool IsValidCardNumber(string cardNumber)
+        {
+            Regex pattern = new Regex(@"^\d{16}$");
+            return pattern.IsMatch(cardNumber);
+        }
+
         //Verify that the password is valid or not
         /* RegEx Description:
         ^	            The password string will start this way

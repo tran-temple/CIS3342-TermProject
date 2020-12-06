@@ -4,15 +4,16 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
 
      <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+
     <div class="col-lg-12 mt-3">
-        <div class="row form-group">
+        <div class="row form-group ml-2">
             <asp:Label ID="lblGeneral_Error" runat="server" CssClass="text-danger"></asp:Label>
              <asp:Label ID="lblSuccess" runat="server" CssClass="text-success"></asp:Label>
         </div>
        
         <asp:Panel ID="pnlShoppingCart" runat="server">
             <div class="row form-group">
-                <div class="col-8">
+                <div class="col-lg-8">
                     <div class="card-deck mb-3">
                         <div class="card mb-4 box-shadow">
                             <div class="card-header">
@@ -51,7 +52,8 @@
                                 <!-- Shipping info-->
                                 <div class="row col">
                                     <asp:Panel ID="pnlShippingInfo" runat="server">
-                                        <div class="row form-group">
+                                        <span class="h5 font-weight-bold">Customer's Shipping Information: </span>
+                                        <div class="row form-group mt-3">
                                             <div class="col">
                                                 <span>Recipient: </span>
                                             </div>
@@ -136,7 +138,7 @@
                                                     <asp:ListItem Value="WV">West Virginia</asp:ListItem>
                                                     <asp:ListItem Value="WI">Wisconsin</asp:ListItem>
                                                     <asp:ListItem Value="WY">Wyoming</asp:ListItem>
-                                                </asp:DropDownList>
+                                                </asp:DropDownList><br />
                                                 <asp:Label ID="lblState_Error" runat="server" CssClass="text-danger"></asp:Label>
                                             </div>
                                         </div>
@@ -155,7 +157,8 @@
                                 <!-- Credit card info-->
                                 <div class="row col">
                                     <asp:Panel ID="pnlCreditCardInfo" runat="server">
-                                        <div class="row form-group">
+                                        <span class="h5 font-weight-bold">Customer's Payment Information: </span>
+                                        <div class="row form-group mt-3">
                                             <div class="col">
                                                 <span>Card Type: </span>
                                             </div>
@@ -174,8 +177,8 @@
                                             </div>
                                             <div class="col">
                                                 <asp:TextBox ID="txtCardNumber" runat="server" OnTextChanged="txtCardNumber_TextChanged"></asp:TextBox><br />
-                                                <asp:HiddenField ID="hidCardNumber" runat="server"/>
                                                 <asp:Label ID="lblCardNumber_Error" runat="server" CssClass="text-danger"></asp:Label>
+                                                <asp:HiddenField ID="hidCardNumber" runat="server"/>                                                
                                             </div>
                                         </div>
                                         <div class="row form-group">
@@ -183,7 +186,7 @@
                                                 <span>Expire Date: </span>
                                             </div>
                                             <div class="col">
-                                                <asp:DropDownList ID="ddlMonth" runat="server">
+                                                <asp:DropDownList ID="ddlMonth" runat="server" CssClass="pl-3">
                                                     <asp:ListItem>1</asp:ListItem>
                                                     <asp:ListItem>2</asp:ListItem>
                                                     <asp:ListItem>3</asp:ListItem>
@@ -197,9 +200,8 @@
                                                     <asp:ListItem>11</asp:ListItem>
                                                     <asp:ListItem>12</asp:ListItem>
                                                 </asp:DropDownList>
-                                            </div>
-                                            <div class="col">
-                                                <asp:DropDownList ID="ddlYear" runat="server">
+                                            
+                                                <asp:DropDownList ID="ddlYear" runat="server" CssClass="pl-3">
                                                     <asp:ListItem>2020</asp:ListItem>
                                                     <asp:ListItem>2021</asp:ListItem>
                                                     <asp:ListItem>2022</asp:ListItem>
@@ -223,16 +225,17 @@
                         </div>
                     </div>
                 </div>
+
                 <!-- Order summary -->
                 <div class="col">
                     <div class="card-deck mb-3">
                         <div class="card mb-4 box-shadow">
                             <div class="card-header">
-                               
+
                                 <asp:Label ID="lblHeadingTotal" runat="server" Text="Summary"></asp:Label>
                             </div>
                             <div class="card-body d-flex flex-column">
-                               
+
                                 <div class="row">
                                     <div class="col">
                                         <asp:Label ID="lblSubTotalTitle" runat="server" Text="SubTotal"></asp:Label>
@@ -259,58 +262,47 @@
                                 </div>
                                 <hr />
 
-                              
-                                
-                                     
-                                  
-                                    <asp:UpdatePanel ID="UpdatePanel1" runat="server"> 
-                                           <ContentTemplate>
-                                               <br />
-                                               <div class="row">
-                                                   <div class="col">
-                                 <asp:Label ID="lblCodeError" runat="server" Text="" CssClass="alert-danger" ></asp:Label>
-                                    </div>
-                                                   </div>
-                                                                                              <div class="row">
-                                 <asp:Label ID="lblCodeErrorNone" runat="server" Text="" CssClass="alert-success"></asp:Label>
-                                    </div>
-                                               
-                                               <div class="row">
-                                    <div class="col">
-                                        <asp:Label ID="lblCode" runat="server" Text=" Coupon Code"></asp:Label>
-                                    </div>
-                                                </div>
-                                               <div class="row">
-                                                 <div class="col">
-                                        <asp:Textbox ID="txtCode" runat="server"></asp:Textbox>
-                                    </div>
-                                               <div class="col">
-                                        <asp:Button ID="btnApplyCode" runat="server" CssClass="btn-sm btn-outline-primary align-content-center " Text="Apply" OnClick="btnApplyCode_Click" />
+                                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                    <ContentTemplate>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col">
+                                                <asp:Label ID="lblCodeError" runat="server" Text="" CssClass="alert-danger"></asp:Label>
+                                            </div>
                                         </div>
-                                                   </div>
-                                               <div class="row">
-                                    
-                                    <div class="col">
-                                        
-                                        <asp:Label ID="lblTotalTitle" runat="server" Text="Total"></asp:Label>
-                                   
-                                   
-                                </div>
-                               
-                                        <div class="col">
-                                       
-                                              <asp:Label ID="lblTotal" runat="server" Text="$0.00"></asp:Label>
-                                        </div>  
-                                                 
+                                        <div class="row">
+                                            <asp:Label ID="lblCodeErrorNone" runat="server" Text="" CssClass="alert-success"></asp:Label>
+                                        </div>
 
-                                </div>
-                                                </ContentTemplate>
-                                         </asp:UpdatePanel>
-                            
+                                        <div class="row">
+                                            <div class="col">
+                                                <asp:Label ID="lblCode" runat="server" Text=" Coupon Code"></asp:Label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <asp:TextBox ID="txtCode" runat="server"></asp:TextBox>
+                                            </div>
+                                            <div class="col">
+                                                <asp:Button ID="btnApplyCode" runat="server" CssClass="btn-sm btn-outline-primary align-content-center " Text="Apply" OnClick="btnApplyCode_Click" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <asp:Label ID="lblTotalTitle" runat="server" Text="Total"></asp:Label>
+                                            </div>
+                                            <div class="col">
+                                                <asp:Label ID="lblTotal" runat="server" Text="$0.00"></asp:Label>
+                                            </div>
+                                        </div>
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
+
                                 <div class="row text-center mt-3">
                                     <div class="col">
-                                        <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn-danger" OnClick="btnCancel_Click"/> &nbsp;&nbsp;
-                                        <asp:Button ID="btnPlaceOrder" runat="server" CssClass="btn-success" Text="Place Order" OnClick="btnPlaceOrder_Click"/>                                        
+                                        <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn-danger" OnClick="btnCancel_Click" />
+                                        &nbsp;&nbsp;
+                                        <asp:Button ID="btnPlaceOrder" runat="server" CssClass="btn-success" Text="Place Order" OnClick="btnPlaceOrder_Click" />
                                     </div>
                                 </div>
                             </div>
