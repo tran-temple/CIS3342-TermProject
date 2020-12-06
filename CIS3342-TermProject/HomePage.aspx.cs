@@ -25,34 +25,32 @@ namespace CIS3342_TermProject
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-
-
-                if (!IsPostBack)
+            if (!IsPostBack)
             {
-                DBConnect objDB = new DBConnect();
-                SqlCommand objCommand = new SqlCommand();
-
-                objCommand.CommandType = CommandType.StoredProcedure;
-                objCommand.CommandText = "TP_GetAllSubscriptions";
-                DataSet myDS = objDB.GetDataSetUsingCmdObj(objCommand);
-
-                if (myDS.Tables[0].Rows.Count > 0)
-                {
-                    DLSubscriptions.DataSource = myDS;
-                    DLSubscriptions.DataBind();
-                }
-
-
+                //Show subscriptions
+                ShowSubscriptions();
 
                 //Show list categories and products
                 ShowCategoriesList();
                 ShowProductsList();
             }
+        }
+        
+        //Show subscriptions
+        private void ShowSubscriptions()
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
 
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_GetAllSubscriptions";
+            DataSet myDS = objDB.GetDataSetUsingCmdObj(objCommand);
 
-
-            
+            if (myDS.Tables[0].Rows.Count > 0)
+            {
+                DLSubscriptions.DataSource = myDS;
+                DLSubscriptions.DataBind();
+            }
         }
 
         //Show the list of categories
@@ -78,18 +76,13 @@ namespace CIS3342_TermProject
             Session["productDS"] = productDS;
         }
 
-
-      
         protected void DLSubscriptions_ItemCommand(Object sender, System.Web.UI.WebControls.DataListCommandEventArgs e)
 
         {
-            
+
             // Retrieve the row index for the item that fired the ItemCommand event
 
             int rowIndex = e.Item.ItemIndex;
-
-       
-            
 
             // Retrieve a value from a control in the DL's Items collection
 
@@ -104,63 +97,47 @@ namespace CIS3342_TermProject
 
             Label lblSubscriptionPrice = (Label)DLSubscriptions.Items[rowIndex].FindControl("lblSubPrice");
 
-         Double subscriptionPrice = Double.Parse(lblSubscriptionPrice.Text);
+            Double subscriptionPrice = Double.Parse(lblSubscriptionPrice.Text);
 
 
-       //     lblSubscriptionIDShow.Text = "You selected Subscription ID " + subscriptionID;
+            //     lblSubscriptionIDShow.Text = "You selected Subscription ID " + subscriptionID;
 
-         
+
             // WIll be used to add to cart later on
 
             List<CartItem> cart = null;
-           
+
             CartItem item = new CartItem();
 
-
-           
             item.ProductID = int.Parse(subscriptionID);
             item.ProductName = subscriptionName;
-           Image img = (Image)DLSubscriptions.Items[rowIndex].FindControl("subImage");
+            Image img = (Image)DLSubscriptions.Items[rowIndex].FindControl("subImage");
             item.ImageURL = img.ImageUrl;
             item.ProductPrice = subscriptionPrice;
             item.Type = "Subscription";
-         
+
             item.Quantity = 1;
 
             if (Session["Cart"] != null)
             {
 
-
                 cart = (List<CartItem>)Session["Cart"];
                 for (int i = 0; i < cart.Count; i++)
-                
-                    {
+
+                {
                     if (cart[i].Type == "Subscription") // If the cart already has a subscription in it
                     {
-
-
-
                         cart.RemoveAt(i);
                         cart.Add(item);
                         break;
-                       // Response.Write("<script>alert(' You have already selected a subscription type. You must remove it from the cart to add another.')</script>"); // Alert 
+                        // Response.Write("<script>alert(' You have already selected a subscription type. You must remove it from the cart to add another.')</script>"); // Alert 
 
-        
                     }
-
-
-                
-
 
                     else
                     {
                         cart.Add(item);
-
-                      
                     }
-
-            
-
                 }
             }
             else
@@ -169,10 +146,8 @@ namespace CIS3342_TermProject
                 cart.Add(item);
                 Session["Cart"] = cart;
             }
-        
-            
-    }
-               
+        }
+
         protected void dlSubscriptions_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -227,12 +202,12 @@ namespace CIS3342_TermProject
 
             }
         }
-       
+
         protected void gvProducts_SelectedIndexChanged(object sender, EventArgs e)
         {
             Response.Redirect("ViewProductDetail.aspx?ProdID=" + gvProducts.SelectedRow.Cells[PRODUCT_ID_COLUMN].Text);
         }
-        
+
         protected void gvProducts_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "AddToCart")
@@ -245,20 +220,20 @@ namespace CIS3342_TermProject
                 CartItem item = new CartItem();
                 item.ProductID = int.Parse(row.Cells[PRODUCT_ID_COLUMN].Text);
                 item.ProductName = row.Cells[PRODUCT_NAME_COLUMN].Text;
-                Image img = (Image) row.FindControl("imgRestaurant");
+                Image img = (Image)row.FindControl("imgRestaurant");
                 item.ImageURL = img.ImageUrl;
                 item.ProductPrice = double.Parse(row.Cells[PRODUCT_PRICE_COLUMN].Text, NumberStyles.Currency);
-                TextBox txtBox = (TextBox) row.FindControl("txtQuantity");
+                TextBox txtBox = (TextBox)row.FindControl("txtQuantity");
                 item.Quantity = int.Parse(txtBox.Text);
                 item.Type = "Product";
 
                 if (Session["Cart"] != null)
                 {
-                    cart = (List<CartItem>)Session["Cart"];                    
+                    cart = (List<CartItem>)Session["Cart"];
                 }
                 else
                 {
-                    cart = new List<CartItem>();                    
+                    cart = new List<CartItem>();
                     Session["Cart"] = cart;
                 }
                 // check item inside cart
@@ -278,7 +253,7 @@ namespace CIS3342_TermProject
                 {
                     // add new item to cart
                     cart.Add(item);
-                }                          
+                }
             }
         }
 
@@ -290,6 +265,6 @@ namespace CIS3342_TermProject
             }
             return false;
         }
-        
+
     }
 }
