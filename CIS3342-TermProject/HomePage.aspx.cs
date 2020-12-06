@@ -77,19 +77,14 @@ namespace CIS3342_TermProject
         }
 
         protected void DLSubscriptions_ItemCommand(Object sender, System.Web.UI.WebControls.DataListCommandEventArgs e)
-
         {
-
             // Retrieve the row index for the item that fired the ItemCommand event
-
             int rowIndex = e.Item.ItemIndex;
 
             // Retrieve a value from a control in the DL's Items collection
-
             Label lblSubscriptionID = (Label)DLSubscriptions.Items[rowIndex].FindControl("lblSubID");
 
             String subscriptionID = lblSubscriptionID.Text;
-
 
             Label lblSubscriptionName = (Label)DLSubscriptions.Items[rowIndex].FindControl("lblSubName");
 
@@ -99,9 +94,7 @@ namespace CIS3342_TermProject
 
             Double subscriptionPrice = Double.Parse(lblSubscriptionPrice.Text);
 
-
             //     lblSubscriptionIDShow.Text = "You selected Subscription ID " + subscriptionID;
-
 
             // WIll be used to add to cart later on
 
@@ -120,10 +113,8 @@ namespace CIS3342_TermProject
 
             if (Session["Cart"] != null)
             {
-
                 cart = (List<CartItem>)Session["Cart"];
                 for (int i = 0; i < cart.Count; i++)
-
                 {
                     if (cart[i].Type == "Subscription") // If the cart already has a subscription in it
                     {
@@ -131,9 +122,7 @@ namespace CIS3342_TermProject
                         cart.Add(item);
                         break;
                         // Response.Write("<script>alert(' You have already selected a subscription type. You must remove it from the cart to add another.')</script>"); // Alert 
-
                     }
-
                     else
                     {
                         cart.Add(item);
@@ -163,44 +152,26 @@ namespace CIS3342_TermProject
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
-        {
+        {            
             string searchText = txtSearch.Text;
-            DBConnect objDB = new DBConnect();
-            SqlCommand objCommand = new SqlCommand();
-            objCommand.Parameters.Clear();
-            objCommand.CommandType = CommandType.StoredProcedure;
-            objCommand.CommandText = "TP_SearchByText";
-            objCommand.Parameters.AddWithValue("@SearchText", searchText);
-            DataSet myDS4 = objDB.GetDataSetUsingCmdObj(objCommand);
+            int cateID = int.Parse(ddlCategory.SelectedValue);
 
-            if (myDS4.Tables[0].Rows.Count > 0)
-            {
-                gvProducts.DataSource = myDS4;
-                gvProducts.DataBind();
+            productDS = productService.GetSearchProduct(searchText, cateID);
+            gvProducts.DataSource = productDS;
+            gvProducts.DataBind();
 
-
-            }
-
+            Session["productDS"] = productDS;
         }
 
         protected void ddlCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string categorySelected = ddlCategory.SelectedValue;
+            int cateID = int.Parse(ddlCategory.SelectedValue);
 
-            DBConnect objDB = new DBConnect();
-            SqlCommand objCommand = new SqlCommand();
-            objCommand.Parameters.Clear();
-            objCommand.CommandType = CommandType.StoredProcedure;
-            objCommand.CommandText = "TP_SearchByCategory";
-            objCommand.Parameters.AddWithValue("@CategorySelected", categorySelected);
-            DataSet myDS3 = objDB.GetDataSetUsingCmdObj(objCommand);
+            productDS = productService.GetSearchProductByCategory(cateID);
+            gvProducts.DataSource = productDS;
+            gvProducts.DataBind();
 
-            if (myDS3.Tables[0].Rows.Count > 0)
-            {
-                gvProducts.DataSource = myDS3;
-                gvProducts.DataBind();
-
-            }
+            Session["productDS"] = productDS;
         }
 
         protected void gvProducts_SelectedIndexChanged(object sender, EventArgs e)
@@ -217,10 +188,11 @@ namespace CIS3342_TermProject
                 GridViewRow row = gvProducts.Rows[index];
                 List<CartItem> cart = null;
 
+                //create item
                 CartItem item = new CartItem();
                 item.ProductID = int.Parse(row.Cells[PRODUCT_ID_COLUMN].Text);
                 item.ProductName = row.Cells[PRODUCT_NAME_COLUMN].Text;
-                Image img = (Image)row.FindControl("imgRestaurant");
+                Image img = (Image)row.FindControl("imgProduct");
                 item.ImageURL = img.ImageUrl;
                 item.ProductPrice = double.Parse(row.Cells[PRODUCT_PRICE_COLUMN].Text, NumberStyles.Currency);
                 TextBox txtBox = (TextBox)row.FindControl("txtQuantity");
@@ -240,7 +212,7 @@ namespace CIS3342_TermProject
                 bool isItemExistedInCart = false;
                 foreach (CartItem cartItem in cart)
                 {
-                    if (cartItem.ProductID == item.ProductID)
+                    if (cartItem.ProductID == item.ProductID && cartItem.Type == "Product")
                     {
                         // inscrease the quantity only
                         cartItem.Quantity = cartItem.Quantity + item.Quantity;
@@ -257,6 +229,7 @@ namespace CIS3342_TermProject
             }
         }
 
+        //Check customer login
         protected bool CustomerLogin()
         {
             if (Session["usertype"].ToString() == Constant.CUSTOMER)

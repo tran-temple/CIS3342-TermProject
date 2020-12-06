@@ -34,6 +34,48 @@ namespace EcommerceLibrary
             return resultDS;
         }
 
+        //Get the result of search Products
+        public DataSet GetSearchProduct(string search, int cateID)
+        {
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_SearchByText";
+
+            //set value for input parameter
+            SqlParameter inputParam = new SqlParameter("@theID", cateID);
+            inputParam.Direction = ParameterDirection.Input;
+            inputParam.SqlDbType = SqlDbType.Int;
+            inputParam.Size = 4;
+            objCommand.Parameters.Add(inputParam);
+
+            inputParam = new SqlParameter("@theSearch", search);
+            inputParam.Direction = ParameterDirection.Input;
+            inputParam.SqlDbType = SqlDbType.VarChar;
+            inputParam.Size = 100;
+            objCommand.Parameters.Add(inputParam);
+
+            DataSet resultDS = objDB.GetDataSetUsingCmdObj(objCommand);
+            return resultDS;
+        }
+
+        //Get the result of search Products by category
+        public DataSet GetSearchProductByCategory(int cateID)
+        {
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_SearchByCategory";
+
+            //set value for input parameter
+            SqlParameter inputParam = new SqlParameter("@theID", cateID);
+            inputParam.Direction = ParameterDirection.Input;
+            inputParam.SqlDbType = SqlDbType.Int;
+            inputParam.Size = 4;
+            objCommand.Parameters.Add(inputParam);            
+
+            DataSet resultDS = objDB.GetDataSetUsingCmdObj(objCommand);
+            return resultDS;
+        }
+
         //Get a product by ID
         public Product GetProductByID(int id)
         {

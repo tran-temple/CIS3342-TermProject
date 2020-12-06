@@ -146,12 +146,14 @@ namespace CIS3342_TermProject
         {
             List<CartItem> cart = null;
 
+            //Create item
             CartItem item = new CartItem();
             item.ProductID = int.Parse(Request.QueryString["ProdID"]);
             item.ProductName = lblName.Text;
             item.ImageURL = imgProduct.ImageUrl;
             item.ProductPrice = double.Parse(lblPrice.Text, NumberStyles.Currency);
             item.Quantity = 1;
+            item.Type = "Product";
 
             if (Session["Cart"] != null)
             {
@@ -162,20 +164,23 @@ namespace CIS3342_TermProject
                 cart = new List<CartItem>();
                 Session["Cart"] = cart;
             }
-            bool isItemInCart = false;
+
+            // check item inside cart
+            bool isItemExistedInCart = false;
             foreach (CartItem cartItem in cart)
             {
-                
-                if (cartItem.ProductID == item.ProductID && cartItem.Type == null)
+                if (cartItem.ProductID == item.ProductID && cartItem.Type == "Product")
                 {
-                    // find product item in cart
+                    // inscrease the quantity only
                     cartItem.Quantity = cartItem.Quantity + item.Quantity;
-                    isItemInCart = true;
+                    isItemExistedInCart = true;
+                    break;
                 }
-                break;
             }
-            if (!isItemInCart)
+            // item is not existed in cart
+            if (!isItemExistedInCart)
             {
+                // add new item to cart
                 cart.Add(item);
             }
         }

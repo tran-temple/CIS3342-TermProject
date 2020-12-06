@@ -129,7 +129,7 @@
 
     
 <asp:Label ID="lblProductsTitle" runat="server" CssClass="subtitle">Products</asp:Label>
-<div class="card box-shadow col-lg-12 mt-2 ">
+<div class="card box-shadow col-lg-12 mt-2 bg-white">
     <!-- Search area -->
     <div class="row justify-content-center mt-2 ">
         <div class="col-md-6 m-2">
@@ -154,15 +154,15 @@
                 <Columns>
                     <asp:TemplateField HeaderText="Image">
                         <ItemTemplate>
-                            <asp:Image ID="imgRestaurant" runat="server" ImageUrl='<%# Eval("ProductImage") %>' Width="150px" Height="150px" CssClass="rounded-circle shadow-lg m-2" />
+                            <asp:Image ID="imgProduct" runat="server" ImageUrl='<%# Eval("ProductImage") %>' Width="150px" Height="150px" CssClass="rounded-circle shadow-lg m-2" />
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField DataField="ProductName" HeaderText="Product Name" ItemStyle-Width="30%" />
                     <asp:BoundField DataField="ProductPrice" DataFormatString="{0:c}" HeaderText="Price" />
                     <asp:TemplateField HeaderText="Quantity">
                         <ItemTemplate>
-                            <asp:TextBox ID="txtQuantity" runat="server" Width="60px" TextMode="Number" min="1" max="10" Text="1" CssClass="text-center" Visible='<%# CustomerLogin()%>' Enabled='<%# Eval("ProductQuantity").ToString() == "0" ? false : true %>'></asp:TextBox><br />
-                            <asp:Label ID="lblQuantity" runat="server" Text="OUT OF STOCK" CssClass="text-danger" Visible='<%# Eval("ProductQuantity").ToString() == "0" ? true : false %>'></asp:Label>
+                            <asp:TextBox ID="txtQuantity" runat="server" Width="60px" TextMode="Number" min="1" max="10" Text='<%# Eval("ProductQuantity").ToString() == "0" ? "0" : "1" %>' CssClass="text-center" Visible='<%# CustomerLogin()%>' Enabled='<%# Eval("ProductQuantity").ToString() == "0" ? false : true %>'></asp:TextBox><br />
+                            <asp:Label ID="lblQuantity" runat="server" Text="OUT OF STOCK" CssClass="text-danger font-weight-bold" Visible='<%# Eval("ProductQuantity").ToString() == "0" ? true : false %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField>
