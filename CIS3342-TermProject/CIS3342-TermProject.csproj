@@ -77,6 +77,9 @@
     <Content Include="ConfirmUser.aspx" />
     <Content Include="ForgetPassword.aspx" />
     <Content Include="HomePage.aspx" />
+    <Content Include="images\cake.jpg" />
+    <Content Include="images\chocolate1.jpg" />
+    <Content Include="images\chocolate2.jpg" />
     <Content Include="images\logo.jpg" />
     <Content Include="images\logo2.png" />
     <Content Include="images\logo2Transparent.png" />
