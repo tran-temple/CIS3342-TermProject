@@ -26,7 +26,7 @@ namespace CIS3342_TermProject
                 String plainTextPassword = utils.Decrypt(encryptedPassword);
                 txtPassword.Text = plainTextPassword;
             }
-            txtPassword.TextMode = TextBoxMode.Password;
+            //txtPassword.TextMode = TextBoxMode.Password;
         }
 
         protected void btnVisit_Click(object sender, EventArgs e)

@@ -100,7 +100,7 @@
                          </asp:Label>
                 </li>
                   </ul>
-                <asp:Button ID="btnAddSubscriptionToCart" runat="server" Text="Add To Cart" CssClass=" btn btn-lg btn-block btn-outline-success mt-auto" ClientIDMode="Static"/>
+                <asp:Button ID="btnAddSubscriptionToCart" runat="server" Text="Add To Cart" CssClass=" btn btn-lg btn-block btn-outline-success mt-auto" ClientIDMode="Static" Visible='<%# CustomerLogin()%>'/>
                                
                 </div>
             </div>
@@ -146,14 +146,14 @@
                             <asp:BoundField DataField="ProductPrice" DataFormatString="{0:c}" HeaderText="Price" />
                             <asp:TemplateField HeaderText="Quantity">
                                 <ItemTemplate>
-                                    <asp:TextBox ID="txtQuantity" runat="server" Width="60px" TextMode="Number" Text="1" CssClass="text-center"></asp:TextBox>
-                                    <asp:Label ID="lblQuantity" runat="server" Text="OUT OF STOCK" CssClass="text-danger" Visible="false"></asp:Label>
+                                    <asp:TextBox ID="txtQuantity" runat="server" Width="60px" TextMode="Number" min="1" max="10" Text="1" CssClass="text-center" Visible='<%# CustomerLogin()%>' Enabled='<%# Eval("ProductQuantity").ToString() == "0" ? false : true %>'></asp:TextBox><br />
+                                    <asp:Label ID="lblQuantity" runat="server" Text="OUT OF STOCK" CssClass="text-danger" Visible='<%# Eval("ProductQuantity").ToString() == "0" ? true : false %>' ></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField>
                                 <ItemTemplate>
                                    <asp:Button ID="btnAddCart" runat="server" CssClass="btn-sm btn-outline-dark" Text="Add To Cart" Enabled='<%# Eval("ProductQuantity").ToString() == "0" ? false : true %>' 
-                                       CommandName="AddToCart" CommandArgument='<%# Container.DataItemIndex % 5 %>' />
+                                       CommandName="AddToCart" CommandArgument='<%# Container.DataItemIndex % 5 %>' Visible='<%# CustomerLogin()%>' />
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:CommandField ButtonType="Link" ShowSelectButton="true" SelectText="Detail" ControlStyle-CssClass="text-primary"></asp:CommandField>

@@ -281,5 +281,15 @@ namespace CIS3342_TermProject
                 }                          
             }
         }
+
+        protected bool CustomerLogin()
+        {
+            if (Session["usertype"].ToString() == Constant.CUSTOMER)
+            {
+                return true;
+            }
+            return false;
+        }
+        
     }
 }

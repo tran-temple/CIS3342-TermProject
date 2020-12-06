@@ -51,6 +51,7 @@ namespace CIS3342_TermProject
                 case Constant.CUSTOMER:
                     btnMyCart.Visible = true;
                     btnPurchaseHistory.Visible = true;
+                    btnMySub.Visible = true;
                     break;
                 case Constant.OWNER:
                     btnAddProduct.Visible = true;
