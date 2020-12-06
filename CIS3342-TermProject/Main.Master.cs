@@ -23,7 +23,7 @@ namespace CIS3342_TermProject
                 {
                     lblUsername.Visible = true;
                     btnSignOut.Visible = true;
-                    lblUsername.Text = "Logged in as " + Session["username"] + Session["userid"];
+                    lblUsername.Text = "Logged in as " + Session["username"];
                 }
                 else
                 {
