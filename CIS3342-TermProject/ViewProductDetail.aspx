@@ -38,7 +38,7 @@
                     <div class="row mt-2 ml-1 mb-2"><asp:Image ID="imgProduct" Width="200px" Height="200px" runat="server" CssClass="border shadow"/></div>
                     <div class="row ml-1"><asp:Button ID="btnAddToCart" runat="server" Text="Add to cart" CssClass="btn-primary mt-2" Visible="false" OnClick="btnAddToCart_Click" /></div>
                     <div class="row ml-1">
-                        <asp:LinkButton ID="btnAddReview" runat="server" CssClass="btn-link mt-2" OnClick="btnAddReview_Click">Write a review</asp:LinkButton></div>                    
+                        <asp:LinkButton ID="btnAddReview" runat="server" CssClass="btn-link mt-2" OnClick="btnAddReview_Click" Visible="false">Write a review</asp:LinkButton></div>                    
                     <div class="row ml-1"><asp:Button ID="btnModifyProduct" runat="server" Text="Modify Product" CssClass="btn-primary mt-2" Visible="false" OnClick="btnModifyProduct_Click" /></div>
                     <div class="row ml-1"><asp:Button ID="btnDeleteProduct" runat="server" Text="Delete Product" CssClass="btn-primary mt-2" Visible="false" OnClick="btnDeleteProduct_Click" /></div>                    
                 </div>

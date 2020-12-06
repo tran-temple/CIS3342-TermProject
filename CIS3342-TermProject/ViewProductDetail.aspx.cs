@@ -125,6 +125,7 @@ namespace CIS3342_TermProject
                     btnAddReview.Visible = true;
                     btnAddToCart.Visible = true;
                     lblOutOfStock.Visible = true;
+                    btnAddReview.Visible = true;
                     break;
                 case Constant.OWNER:
                     btnModifyProduct.Visible = true;

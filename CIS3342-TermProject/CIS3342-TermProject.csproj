@@ -82,7 +82,6 @@
     <Content Include="images\logo2Transparent.png" />
     <Content Include="images\logo3.png" />
     <Content Include="Login.aspx" />
-    <Content Include="ManageProducts.aspx" />
     <Content Include="NewPassword.aspx" />
     <Content Include="ProductPage.aspx" />
     <Content Include="PurchaseHistory.aspx" />
@@ -149,13 +148,6 @@
     </Compile>
     <Compile Include="Main.Master.designer.cs">
       <DependentUpon>Main.Master</DependentUpon>
-    </Compile>
-    <Compile Include="ManageProducts.aspx.cs">
-      <DependentUpon>ManageProducts.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ManageProducts.aspx.designer.cs">
-      <DependentUpon>ManageProducts.aspx</DependentUpon>
     </Compile>
     <Compile Include="NewPassword.aspx.cs">
       <DependentUpon>NewPassword.aspx</DependentUpon>

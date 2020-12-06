@@ -21,7 +21,10 @@ namespace CIS3342_TermProject.UserControls
         {
             //Get product ID from URL
             hidProductID.Value = Request.QueryString["ProdID"];
-            hidUserID.Value = Session["userID"].ToString();
+            if (Session["userID"] != null)
+            {
+                hidUserID.Value = Session["userID"].ToString();
+            }
         }
 
         //Create a review for insert
