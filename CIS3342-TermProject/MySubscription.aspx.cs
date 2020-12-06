@@ -20,6 +20,16 @@ namespace CIS3342_TermProject
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            //prevent bypass
+            if (Session["usertype"] != null && Session["usertype"].ToString() == Constant.CUSTOMER)
+            {
+                //do nothing
+            }
+            else
+            {
+                Response.Redirect("Login.aspx");
+            }
+
             if (!IsPostBack)
             {
                 string userid2 = Session["userid"].ToString();

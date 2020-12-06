@@ -21,8 +21,15 @@ namespace CIS3342_TermProject
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["userid"] != null) action = Request.QueryString["action"];
-            else Response.Redirect("Login.aspx");
+            //prevent bypass
+            if (Session["usertype"] != null && Session["usertype"].ToString() == Constant.OWNER)
+            {
+                action = Request.QueryString["action"];
+            }
+            else
+            {
+                Response.Redirect("Login.aspx");
+            }
 
             if (!IsPostBack)
             {

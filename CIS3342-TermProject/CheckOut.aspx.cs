@@ -21,23 +21,31 @@ namespace CIS3342_TermProject
         {
             if (!IsPostBack)
             {
-                if (Session["Cart"] != null)
+                //prevent bypass
+                if (Session["usertype"] != null && Session["usertype"].ToString() == Constant.CUSTOMER)
                 {
-                    List<CartItem> cart = (List<CartItem>)Session["Cart"];
-                    lvShoppingBag.DataSource = cart;
-                    lvShoppingBag.DataBind();
+                    if (Session["Cart"] != null)
+                    {
+                        List<CartItem> cart = (List<CartItem>)Session["Cart"];
+                        lvShoppingBag.DataSource = cart;
+                        lvShoppingBag.DataBind();
 
-                    //Show info
-                    DisplaySummary();
-                    string userName = Session["username"].ToString();
-                    int userID = int.Parse(Session["userid"].ToString());
-                    ShowCustomerInfo(userName);
-                    ShowCreditCardInfo(userID);                    
+                        //Show info
+                        DisplaySummary();
+                        string userName = Session["username"].ToString();
+                        int userID = int.Parse(Session["userid"].ToString());
+                        ShowCustomerInfo(userName);
+                        ShowCreditCardInfo(userID);
+                    }
+                    else
+                    {
+                        lblGeneral_Error.Text = "You have not added any items to the shopping cart!";
+                    }
                 }
                 else
                 {
-                    lblGeneral_Error.Text = "You have not added any items to the shopping cart!";
-                }
+                    Response.Redirect("Login.aspx");
+                }                
             }
         }
 

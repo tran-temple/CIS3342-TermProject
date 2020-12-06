@@ -22,12 +22,18 @@ namespace CIS3342_TermProject
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            //prevent bypass
+            if (Session["usertype"] != null && Session["usertype"].ToString() == Constant.CUSTOMER)
+            {
+                //do nothing
+            }
+            else
+            {
+                Response.Redirect("Login.aspx");
+            }
 
             string userid = Session["userid"].ToString();
             userid2 = int.Parse(userid);
-
-
-
 
             lblHeading.Text = "Purchase History for:  " + Session["username"].ToString();
 

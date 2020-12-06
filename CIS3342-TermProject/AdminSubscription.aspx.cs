@@ -16,6 +16,15 @@ namespace CIS3342_TermProject
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //prevent bypass
+            if (Session["usertype"] != null && Session["usertype"].ToString() == Constant.OWNER)
+            {
+                //do nothing
+            }
+            else
+            {
+                Response.Redirect("Login.aspx");
+            }
             // make sure the user is an ADMIN and not a member.
             // get user type from session obj
             // if user type == amdin { 

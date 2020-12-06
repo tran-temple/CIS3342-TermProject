@@ -27,9 +27,9 @@ namespace CIS3342_TermProject.UserControls
 
                 filename = Path.GetFileName(FileUploadControl.PostedFile.FileName);
 
-                FileUploadControl.SaveAs(Server.MapPath("~/images") + filename);
+                FileUploadControl.SaveAs(Server.MapPath("~/images/") + filename);
                 uploadedImage = FileUploadControl.PostedFile.FileName.ToString();
-                Object file = (Server.MapPath("~/images") + filename);
+                Object file = (Server.MapPath("~/images/") + filename);
                 BinaryFormatter serializer = new BinaryFormatter();
                 MemoryStream memStream = new MemoryStream();
                 serializer.Serialize(memStream, file);

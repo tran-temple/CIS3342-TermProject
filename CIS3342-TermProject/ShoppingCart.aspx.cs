@@ -12,10 +12,18 @@ namespace CIS3342_TermProject
     public partial class ShoppingCart : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
+        {  
             if (!IsPostBack)
             {
-                ShowCart();
+                //prevent bypass
+                if (Session["usertype"] != null && Session["usertype"].ToString() == Constant.CUSTOMER)
+                {
+                    ShowCart();
+                }
+                else
+                {
+                    Response.Redirect("Login.aspx");
+                }
             }
         }
 
