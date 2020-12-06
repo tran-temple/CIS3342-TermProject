@@ -156,14 +156,28 @@ namespace CIS3342_TermProject
             if (Session["Cart"] != null)
             {
                 cart = (List<CartItem>)Session["Cart"];
-                cart.Add(item);
             }
             else
             {
                 cart = new List<CartItem>();
-                cart.Add(item);
                 Session["Cart"] = cart;
-            }            
+            }
+            bool isItemInCart = false;
+            foreach (CartItem cartItem in cart)
+            {
+                
+                if (cartItem.ProductID == item.ProductID && cartItem.Type == null)
+                {
+                    // find product item in cart
+                    cartItem.Quantity = cartItem.Quantity + item.Quantity;
+                    isItemInCart = true;
+                }
+                break;
+            }
+            if (!isItemInCart)
+            {
+                cart.Add(item);
+            }
         }
         
         protected void btnModifyProduct_Click(object sender, EventArgs e)

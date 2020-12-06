@@ -115,41 +115,67 @@ namespace CIS3342_TermProject
             bool result = true;
             ClearErrorMessage();
 
+            //Verify the category
             if (ddlCategory.SelectedValue == "-1")
             {                
                 lblCategory_Error.Text = "Select one category!";
                 result = false;
             }
+            //Verify the name
             if (string.IsNullOrWhiteSpace(txtProductName.Text))
             {
-                lblProductName_Error.Text = "Input Name!";
+                lblProductName_Error.Text = "Please input Name!";
                 result = false;                
             }
+            //Verify Description
             if (string.IsNullOrWhiteSpace(txtDescription.Text))
             {
-                lblDescription_Error.Text = "Input Description!";
+                lblDescription_Error.Text = "Please input Description!";
                 result = false;                
             }
+            //Verify the Price
             if (string.IsNullOrWhiteSpace(txtPrice.Text))
             {
-                lblPrice_Error.Text = "Input Price!";
+                lblPrice_Error.Text = "Please input Price!";
                 result = false;
             }
+            else
+            {
+                try
+                {
+                    double.Parse(txtPrice.Text);
+                }
+                catch (Exception e)
+                {
+                    lblPrice_Error.Text = "Please input the correct format";
+                    result = false;
+                }
+                
+            }
+            //Verify the Quantity
             if (string.IsNullOrWhiteSpace(txtQuantity.Text))
             {
-                lblQuantity_Error.Text = "Input Quantity!";
+                lblQuantity_Error.Text = "Please input Quantity!";
                 result = false;
             }
-            if (string.IsNullOrWhiteSpace(ImageUploadUC.uploadedImage))
+            else
             {
-                lblImage_Error.Text = "Choose a image!";
-                result = false;
-            }
+                try
+                {
+                    int.Parse(txtQuantity.Text);
+                }
+                catch (Exception e)
+                {
+                    lblQuantity_Error.Text = "Please input Quantity!";
+                    result = false;
+                }
+            }            
             return result;
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
+            //redirect previous page
             if (action == "add")
             {
                 Response.Redirect("HomePage.aspx");
@@ -165,7 +191,7 @@ namespace CIS3342_TermProject
             try
             {
                 Product product;
-
+                //insert product with action: add and update product with action: modify
                 if (action == "add")
                 {                    
                     if (ValidateProductObject())

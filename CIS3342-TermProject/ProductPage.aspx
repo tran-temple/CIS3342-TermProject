@@ -50,7 +50,7 @@
                 <div class="row form-group">
                     <div class="col"><span>Product Quantity: </span></div>
                     <div class="col-md-8">
-                        <asp:TextBox ID="txtQuantity" runat="server" TextMode="Number"></asp:TextBox>
+                        <asp:TextBox ID="txtQuantity" runat="server" min="0" TextMode="Number"></asp:TextBox>
                         &nbsp;&nbsp;<asp:Label ID="lblQuantity_Error" runat="server" CssClass="text-danger"></asp:Label>
                     </div>
                 </div>
