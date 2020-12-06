@@ -24,7 +24,7 @@ namespace CIS3342_TermProject
                 //Decrypt the encrypted password
                 String encryptedPassword = myCookie.Values["Password"];
                 String plainTextPassword = utils.Decrypt(encryptedPassword);
-                txtPassword.Text = plainTextPassword;
+                txtPassword.Attributes["value"] = plainTextPassword;
             }
             //txtPassword.TextMode = TextBoxMode.Password;
         }

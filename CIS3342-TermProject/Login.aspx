@@ -45,7 +45,7 @@
                     <span>Password: </span>
                 </div>
                 <div class="col-8">
-                    <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox><br />
+                    <asp:TextBox ID="txtPassword" TextMode="Password" runat="server"></asp:TextBox><br />
                     <asp:Label ID="lblPassword_Error" runat="server" CssClass="text-danger"></asp:Label>
                 </div>
             </div>
