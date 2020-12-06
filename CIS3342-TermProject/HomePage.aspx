@@ -62,8 +62,8 @@
         .intro {
             text-align: center;
             font-size: 20px;
-            font-weight: bold;
-            color: darkkhaki;
+          
+            color: black;
         }
 
         .subImg {
@@ -78,8 +78,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
     <div class="mt-3">
+             
+
         <asp:Label ID="lblIntro" runat="server" CssClass="intro">
-            This is the sweet chocolate store! We offer FREE TAX and FREE SHIPPING from $50+.</asp:Label>
+            Welcome to RH Chocolates, we offer FREE TAX and FREE SHIPPING when you spend $50+.</asp:Label>
     </div>
     <asp:Label ID="lblSubtitle" runat="server" CssClass="subtitle">Subscriptions</asp:Label>
     <br />
