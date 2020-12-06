@@ -50,7 +50,7 @@ namespace CIS3342_TermProject
             if (product != null)
             {
                 int quantity = product.ProductQuantity;
-                imgProduct.ImageUrl = product.ImageURL;
+                imgProduct.ImageUrl = "images/" + product.ImageURL;
                 lblName.Text = product.ProductName;
                 lblDescription.Text = product.Description;
                 lblPrice.Text = String.Format("{0:C}", product.ProductPrice);

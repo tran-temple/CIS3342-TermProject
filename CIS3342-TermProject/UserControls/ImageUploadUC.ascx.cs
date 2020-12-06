@@ -39,7 +39,7 @@ namespace CIS3342_TermProject.UserControls
 
             else
             {
-                uploadedImage = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png";
+                uploadedImage = "default.png";
             }
 
             }

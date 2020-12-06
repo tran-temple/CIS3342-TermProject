@@ -104,7 +104,7 @@ namespace CIS3342_TermProject
 
 
 
-                            imgSubscription.ImageUrl = subImage;
+                            imgSubscription.ImageUrl = "images/" + subImage;
                             lblSubscriptionName.Text = subName;
                             lblSubscriptionDescription.Text = subDescription;
                             lblSubscriptionPrice.Text = subPrice;
