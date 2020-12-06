@@ -53,7 +53,7 @@ namespace CIS3342_TermProject
                         string confirmUrl = utils.CreateConfirmUrl(host, port, key);
                         string subject = "RH Chocolate Store: Activate";
                         string information = "Please click on the link to verify your email and activate your account! ";
-                        string promotion = "Enter coupon code NEW15 for 15% off your first order!";
+                        string promotion = "Enter coupon code FREE15 for 15% off your first order!";
                         //string promotion = "";
                         utils.SendEmail(key, createdUser.Email, subject, confirmUrl, information, promotion);
                         // redirect to login page

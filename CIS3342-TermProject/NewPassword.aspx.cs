@@ -26,7 +26,9 @@ namespace CIS3342_TermProject
                 // verify successful
                 if (userConfirm != null)
                 {
-                   // currently do nothing
+                    // show username information
+                    User user = loginService.GetUserByUserID(userConfirm.UserID);
+                    txtUsername.Text = user.Username;
                 }
                 else
                 {

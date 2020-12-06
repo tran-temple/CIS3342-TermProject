@@ -16,14 +16,14 @@
 
     <title>New Password</title>
 </head>
-<body>
+<body class="bg-light">
     <form id="form1" runat="server">
-        <div class="col-lg-4 offset-lg-4 mt-2">
+        <div class="col-lg-4 offset-lg-4 mt-3">
             <div class="row form-group justify-content-center mt-2">
-                <img src="images/logo2.png" width="500" height="500" class="d-inline-block img-fluid" alt="Logo" />                
+                <img id="logo" src="images/logo3.png" width="350" height="350" class="d-inline-block img-fluid shadow" alt="Logo" />                
             </div>            
         </div>        
-        <div class="col-lg-4 offset-lg-4 mt-2 border">            
+        <div class="col-lg-4 offset-lg-4 mt-3 border bg-white shadow">            
             <div class="row form-group justify-content-center mt-2">
                 <h2 class="font-weight-bold">Create New Password</h2>                
             </div>

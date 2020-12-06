@@ -16,14 +16,14 @@
 
     <title>Registration</title>
 </head>
-<body>
+<body class="bg-light">
     <form id="form1" runat="server">
-        <div class="col-lg-4 offset-lg-4 mt-2">
+        <div class="col-lg-4 offset-lg-4 mt-3">
             <div class="row form-group justify-content-center mt-2">
-                <img id="logo" src="images/logo3.png" width="500" height="500" class="d-inline-block img-fluid" alt="Logo" />                                
+                <img id="logo" src="images/logo3.png" width="350" height="350" class="d-inline-block img-fluid shadow" alt="Logo" />                
             </div>            
         </div>
-        <div class="col-lg-6 offset-lg-3 mt-2 border">
+        <div class="col-lg-4 offset-lg-4 mt-3 border shadow bg-white">
             <div class="row form-group justify-content-center mt-2">
                 <h2 class="font-weight-bold">Registration</h2>
             </div>
@@ -34,7 +34,7 @@
                 <div class="col">
                     <span>Username: </span>
                 </div>
-                <div class="col-md-10">
+                <div class="col-md-8">
                     <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox><br />
                     <asp:Label ID="lblUserName_Error" runat="server" CssClass="text-danger"></asp:Label>
                 </div>
@@ -43,7 +43,7 @@
                 <div class="col">
                     <span>Password: </span>
                 </div>
-                <div class="col-md-10">
+                <div class="col-md-8">
                     <asp:TextBox ID="txtPassword" runat="server" ></asp:TextBox><br />
                     <asp:Label ID="lblPassword_Error" runat="server" CssClass="text-danger"></asp:Label>
                 </div>
@@ -52,7 +52,7 @@
                 <div class="col">
                     <span>First Name: </span>
                 </div>
-                <div class="col-md-10">
+                <div class="col-md-8">
                     <asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox><br />
                     <asp:Label ID="lblFirstName_Error" runat="server" CssClass="text-danger"></asp:Label>
                 </div>
@@ -61,7 +61,7 @@
                 <div class="col">
                     <span>Last Name: </span>
                 </div>
-                <div class="col-md-10">
+                <div class="col-md-8">
                     <asp:TextBox ID="txtLastName" runat="server"></asp:TextBox><br />
                     <asp:Label ID="lblLastName_Error" runat="server" CssClass="text-danger"></asp:Label>
                 </div>
@@ -70,7 +70,7 @@
                 <div class="col">
                     <span>Email: </span>
                 </div>
-                <div class="col-md-10">
+                <div class="col-md-8">
                     <asp:TextBox ID="txtEmail" runat="server" TextMode="Email"></asp:TextBox><br />
                     <asp:Label ID="lblEmail_Error" runat="server" CssClass="text-danger"></asp:Label>
                 </div>
@@ -79,8 +79,8 @@
                 <div class="col">
                     <span>Question 1: </span>
                 </div>
-                <div class="col-md-10">
-                    <asp:DropDownList ID="ddlQuestion1" runat="server">
+                <div class="col-md-8">
+                    <asp:DropDownList ID="ddlQuestion1" runat="server" CssClass="w-50">
                         <asp:ListItem Value="-1" Selected="True">Select a question...</asp:ListItem>
                     </asp:DropDownList><br />
                     <asp:Label ID="lblQuestion1_Error" runat="server" CssClass="text-danger"></asp:Label>
@@ -90,7 +90,7 @@
                 <div class="col">
                     <span>Answer 1: </span>
                 </div>
-                <div class="col-md-10">
+                <div class="col-md-8">
                     <asp:TextBox ID="txtAnswer1" runat="server"></asp:TextBox><br />
                     <asp:Label ID="lblAnswer1_Error" runat="server" CssClass="text-danger"></asp:Label>
                 </div>
@@ -99,8 +99,8 @@
                 <div class="col">
                     <span>Question 2: </span>
                 </div>
-                <div class="col-md-10">
-                    <asp:DropDownList ID="ddlQuestion2" runat="server">
+                <div class="col-md-8">
+                    <asp:DropDownList ID="ddlQuestion2" runat="server" CssClass="w-50">
                         <asp:ListItem Value="-1" Selected="True">Select a question...</asp:ListItem>
                     </asp:DropDownList><br />
                     <asp:Label ID="lblQuestion2_Error" runat="server" CssClass="text-danger"></asp:Label>
@@ -110,7 +110,7 @@
                 <div class="col">
                     <span>Answer 2: </span>
                 </div>
-                <div class="col-md-10">
+                <div class="col-md-8">
                     <asp:TextBox ID="txtAnswer2" runat="server"></asp:TextBox><br />
                     <asp:Label ID="lblAnswer2_Error" runat="server" CssClass="text-danger"></asp:Label>
                 </div>
@@ -119,8 +119,8 @@
                 <div class="col">
                     <span>Question 3: </span>
                 </div>
-                <div class="col-md-10">
-                    <asp:DropDownList ID="ddlQuestion3" runat="server">
+                <div class="col-md-8">
+                    <asp:DropDownList ID="ddlQuestion3" runat="server" CssClass="w-50">
                         <asp:ListItem Value="-1" Selected="True">Select a question...</asp:ListItem>
                     </asp:DropDownList><br />
                     <asp:Label ID="lblQuestion3_Error" runat="server" CssClass="text-danger"></asp:Label>
@@ -130,7 +130,7 @@
                 <div class="col">
                     <span>Answer 3: </span>
                 </div>
-                <div class="col-md-10">
+                <div class="col-md-8">
                     <asp:TextBox ID="txtAnswer3" runat="server"></asp:TextBox><br />
                     <asp:Label ID="lblAnswer3_Error" runat="server" CssClass="text-danger"></asp:Label>
                 </div>
@@ -138,7 +138,7 @@
             <div class="row form-group">
                 <div class="col">
                 </div>
-                <div class="col-md-10">
+                <div class="col-md-8">
                     <asp:RadioButton ID="rdoCustomer" GroupName="UserType" runat="server" Text="Registerd Customer" />&nbsp;&nbsp;&nbsp;&nbsp;
                     <asp:RadioButton ID="rdoOwner" GroupName="UserType" runat="server" Text="Owner" /><br />
                     <asp:Label ID="lblUserType_Error" runat="server" CssClass="text-danger"></asp:Label>
@@ -149,7 +149,7 @@
                     <div class="col">
                         <span>Address: </span>
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-8">
                         <asp:TextBox ID="txtAddress" runat="server"></asp:TextBox><br />
                         <asp:Label ID="lblAddress_Error" runat="server" CssClass="text-danger"></asp:Label>
                     </div>
@@ -158,7 +158,7 @@
                     <div class="col">
                         <span>City: </span>
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-8">
                         <asp:TextBox ID="txtCity" runat="server"></asp:TextBox><br />
                         <asp:Label ID="lblCity_Error" runat="server" CssClass="text-danger"></asp:Label>
                     </div>
@@ -167,7 +167,7 @@
                     <div class="col">
                         <span>State: </span>
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-8">
                         <asp:DropDownList ID="ddlState" runat="server">
                             <asp:ListItem Value="">Choose a state...</asp:ListItem>
                             <asp:ListItem Value="AL">Alabama</asp:ListItem>
@@ -229,7 +229,7 @@
                     <div class="col">
                         <span>Zipcode: </span>
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-8">
                         <asp:TextBox ID="txtZipcode" runat="server"></asp:TextBox><br />
                         <asp:Label ID="lblZipcode_Error" runat="server" CssClass="text-danger"></asp:Label>
                     </div>
@@ -238,7 +238,7 @@
                     <div class="col">
                         <span>Phone: </span>
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-8">
                         <asp:TextBox ID="txtPhone" runat="server" TextMode="Phone"></asp:TextBox><br />
                         <asp:Label ID="lblPhone_Error" runat="server" CssClass="text-danger"></asp:Label>
                     </div>

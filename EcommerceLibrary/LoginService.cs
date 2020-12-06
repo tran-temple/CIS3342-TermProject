@@ -15,8 +15,6 @@ namespace EcommerceLibrary
         // Get user by username
         public User GetUserByUsername(string username)
         {
-            User user = null;
-
             SqlCommand objCommand = new SqlCommand();
             objCommand.CommandType = CommandType.StoredProcedure;
             objCommand.CommandText = "TP_GetUserByUsername";
@@ -29,39 +27,69 @@ namespace EcommerceLibrary
             objCommand.Parameters.Add(inputParam);
 
             DataSet resultDS = objDB.GetDataSetUsingCmdObj(objCommand);
-
+            User user = null;
             if (resultDS.Tables.Count > 0)
             {
                 user = new User();
-                foreach (DataRow row in resultDS.Tables[0].Rows)
-                {
-                    user.UserID = int.Parse(row["UserID"].ToString());
-                    user.Username = row["Username"].ToString();
-                    user.Password = row["Password"].ToString();
-                    user.Firstname = row["FirstName"].ToString();
-                    user.Lastname = row["LastName"].ToString();
-                    user.UserType = row["UserType"].ToString();
-                    user.Email = row["Email"].ToString();
-                    user.QuestionID1 = int.Parse(row["QuestionID_1"].ToString());
-                    user.QuestionID2 = int.Parse(row["QuestionID_2"].ToString());
-                    user.QuestionID3 = int.Parse(row["QuestionID_3"].ToString());
-                    user.Answer1 = row["Answer_1"].ToString();
-                    user.Answer2 = row["Answer_2"].ToString();
-                    user.Answer3 = row["Answer_3"].ToString();
-                    user.Street = row["Street"].ToString();
-                    user.City = row["City"].ToString();
-                    user.State = row["State"].ToString();
-                    user.Zipcode = row["Zipcode"].ToString();
-                    user.Status = int.Parse(row["Status"].ToString());
-                    string subcriptionId = row["SubscriptionID"].ToString();
-                    if (!string.IsNullOrWhiteSpace(subcriptionId))
-                    {
-                        user.SubscriptionID = int.Parse(row["SubscriptionID"].ToString());
-                    }
-                }
+                ConvertDataSetToUser(user, resultDS);
             }
             return user;
         }
+
+        private static User ConvertDataSetToUser(User user, DataSet resultDS)
+        {
+            foreach (DataRow row in resultDS.Tables[0].Rows)
+            {
+                user.UserID = int.Parse(row["UserID"].ToString());
+                user.Username = row["Username"].ToString();
+                user.Password = row["Password"].ToString();
+                user.Firstname = row["FirstName"].ToString();
+                user.Lastname = row["LastName"].ToString();
+                user.UserType = row["UserType"].ToString();
+                user.Email = row["Email"].ToString();
+                user.QuestionID1 = int.Parse(row["QuestionID_1"].ToString());
+                user.QuestionID2 = int.Parse(row["QuestionID_2"].ToString());
+                user.QuestionID3 = int.Parse(row["QuestionID_3"].ToString());
+                user.Answer1 = row["Answer_1"].ToString();
+                user.Answer2 = row["Answer_2"].ToString();
+                user.Answer3 = row["Answer_3"].ToString();
+                user.Street = row["Street"].ToString();
+                user.City = row["City"].ToString();
+                user.State = row["State"].ToString();
+                user.Zipcode = row["Zipcode"].ToString();
+                user.Status = int.Parse(row["Status"].ToString());
+                string subcriptionId = row["SubscriptionID"].ToString();
+                if (!string.IsNullOrWhiteSpace(subcriptionId))
+                {
+                    user.SubscriptionID = int.Parse(row["SubscriptionID"].ToString());
+                }
+            }
+
+            return user;
+        }
+
+        public User GetUserByUserID(int userID)
+        {
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_GetUserByUserID";
+
+            //set value for input parameter
+            SqlParameter inputParam = new SqlParameter("@theUserID", userID);
+            inputParam.Direction = ParameterDirection.Input;
+            inputParam.SqlDbType = SqlDbType.Int;
+            objCommand.Parameters.Add(inputParam);
+
+            DataSet resultDS = objDB.GetDataSetUsingCmdObj(objCommand);
+            User user = null;
+            if (resultDS.Tables.Count > 0)
+            {
+                user = new User();
+                ConvertDataSetToUser(user, resultDS);
+            }
+            return user;
+        }
+    
 
         //Get the list of questions
         public DataSet GetQuestions()
