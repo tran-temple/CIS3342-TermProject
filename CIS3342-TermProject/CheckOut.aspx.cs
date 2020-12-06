@@ -15,6 +15,7 @@ namespace CIS3342_TermProject
     {
         ProceedOrderService service = new ProceedOrderService();
         LoginService loginService = new LoginService();
+        Utilities utils = new Utilities();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -75,7 +76,7 @@ namespace CIS3342_TermProject
         private CreditCard CreateCreditCard()
         {
             CreditCard creditCard = new CreditCard();
-            creditCard.CardNumber = txtCardNumber.Text;
+            creditCard.CardNumber = utils.Decrypt(hidCardNumber.Value);
             creditCard.CardType = ddlCardType.SelectedValue;
             creditCard.ExpirationMonth = int.Parse(ddlMonth.SelectedValue);
             creditCard.ExpirationYear = int.Parse(ddlYear.SelectedValue);
@@ -111,20 +112,15 @@ namespace CIS3342_TermProject
 
         protected void btnPlaceOrder_Click(object sender, EventArgs e)
         {
-            
-
             try
             {
                 Order order = CreateOrder();
                 List<OrderItem> items = CreateOrderItemList();
                 if (order != null && items.Count > 0)
                 {
-
                     Boolean result = service.InsertFullOrder(order, items);
                     List<CartItem> cart = (List<CartItem>)Session["Cart"];
-                     
-                 
-
+                    
                     if (chkStoreCreditCard.Checked)
                     {
                         int userID = int.Parse(Session["userid"].ToString());
@@ -138,8 +134,6 @@ namespace CIS3342_TermProject
 
                     if (result)
                     {
-
-
                         lblSuccess.Text = "Order was placed successfully!";
                         // pnlShoppingCart.Visible = false;
                         pnlShippingInfo.Visible = false;
@@ -148,11 +142,9 @@ namespace CIS3342_TermProject
 
                         // Need to traverse through shopping cart and update subscription for user who purchased it
                         for (int i = 0; i < cart.Count; i++)
-
                         {
                             if (cart[i].Type == "Subscription")
                             {
-
                                 string userid = Session["userid"].ToString();
                                 int UserID = int.Parse(userid);
                                 string subID = cart[i].ProductID.ToString();
@@ -161,15 +153,12 @@ namespace CIS3342_TermProject
                             }
                         }
                         Session.Remove("Cart");
-
-
+                        // hide command buttons
+                        btnCancel.Visible = false;
+                        btnPlaceOrder.Visible = false;                                   
                     }
-                
                 }
             }
-            
-            
-
             catch (Exception ex)
             {
                 lblGeneral_Error.Text = ex.Message;
@@ -203,16 +192,15 @@ namespace CIS3342_TermProject
             if (creditCard != null)
             {
                 txtCardNumber.Text = creditCard.CardNumber.Substring(0, 4) + " xxxx xxxx " + creditCard.CardNumber.Substring(12, 4);
+                hidCardNumber.Value = utils.Encrypt(creditCard.CardNumber);
                 ddlCardType.SelectedValue = creditCard.CardType;
                 ddlMonth.SelectedValue = creditCard.ExpirationMonth.ToString();
                 ddlYear.SelectedValue = creditCard.ExpirationYear.ToString();
             }
         }
 
-
         protected void btnApplyCode_Click(object sender, EventArgs e)
         {
-
             double subTotal = 0.0;
             double total = 0.0;
             double taxAmount = 0.0;
@@ -236,9 +224,7 @@ namespace CIS3342_TermProject
             lblTotal.Text = total.ToString("C2");
 
             if (code == "FREE15")
-            {
-
-
+            {                
                 lblCodeErrorNone.Visible = true;
                 lblTotal.Text =   (total-(total * 0.15)).ToString("c2");
                 txtCode.Text = "";
@@ -248,7 +234,6 @@ namespace CIS3342_TermProject
                 lblCodeErrorNone.Text = "Success! 15% Off Order Applied";
                 lblCodeError.Visible = false;
             }
-
             else
             {
                 lblCodeError.Visible = true;
@@ -257,12 +242,12 @@ namespace CIS3342_TermProject
                 lblCodeErrorNone.Visible = false;
                 txtCode.Text = "";
                 btnApplyCode.Visible = true;
-
-
             }
         }
 
-
-
+        protected void txtCardNumber_TextChanged(object sender, EventArgs e)
+        {
+            hidCardNumber.Value = utils.Encrypt(txtCardNumber.Text);
+        }
     }
 }

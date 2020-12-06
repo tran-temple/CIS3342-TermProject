@@ -173,7 +173,8 @@
                                                 <span>Card number: </span>
                                             </div>
                                             <div class="col">
-                                                <asp:TextBox ID="txtCardNumber" runat="server"></asp:TextBox><br />
+                                                <asp:TextBox ID="txtCardNumber" runat="server" OnTextChanged="txtCardNumber_TextChanged"></asp:TextBox><br />
+                                                <asp:HiddenField ID="hidCardNumber" runat="server"/>
                                                 <asp:Label ID="lblCardNumber_Error" runat="server" CssClass="text-danger"></asp:Label>
                                             </div>
                                         </div>
