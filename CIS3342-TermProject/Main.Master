@@ -36,10 +36,25 @@ The Term Project: ECommercesite (online chocolate store)
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <title>Sweet Chocolate</title>
+    <script type="text/javascript" >
+
+        function BodyOnLoad()
+        {
+            setTimeout(RedirectWhenTimeout, <%=sessionTimeoutInMilliseconds%>);
+        }
+        
+        //Notify the user that his session HAS expired.
+        function RedirectWhenTimeout()
+        {
+            //Send the user to a new page.
+            window.location = '<%=timeOutUrl%>';
+        }     
+    </script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+
 </head>
-<body>
+<body onload="BodyOnLoad()">
     <form id="form1" runat="server">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="#">

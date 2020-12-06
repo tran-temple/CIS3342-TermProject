@@ -10,8 +10,13 @@ namespace CIS3342_TermProject
 {
     public partial class Main : System.Web.UI.MasterPage
     {
+        public int sessionTimeoutInMilliseconds = 10000;
+        public string timeOutUrl = "Login.aspx";
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            // get the session timeout value in milisecond
+            sessionTimeoutInMilliseconds = Session.Timeout * 1000 * 60;
             if (Session["usertype"] != null)
             {
                 if (Session["usertype"].ToString() != Constant.GUEST)
