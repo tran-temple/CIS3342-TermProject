@@ -29,7 +29,14 @@
                     </div>
                 </div>     
                 
-                    <asp:GridView ID="gvHistory" runat="server" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" Width="466px">
+                    <asp:GridView ID="gvHistory" runat="server" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" Width="673px" AutoGenerateColumns="False">
+                        <Columns>
+                            <asp:BoundField DataField="OrderID" HeaderText="Order ID" SortExpression="OrderID" />
+                            <asp:BoundField DataField="ShippingAddress" HeaderText="Shipping Address" SortExpression="ShippingAddress" />
+                            <asp:BoundField DataField="OrderDate" HeaderText="Order Date" SortExpression="OrderDate" />
+                            <asp:BoundField DataField="OrderTotal" HeaderText="Order Total" SortExpression="OrderTotal" />
+                            <asp:BoundField DataField="PaymentMethod" HeaderText="Payment Method" SortExpression="PaymentMethod" />
+                        </Columns>
                         <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
                         <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
                         <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
