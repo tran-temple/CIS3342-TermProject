@@ -167,6 +167,8 @@ namespace CIS3342_TermProject
                             // hide command buttons
                             btnCancel.Visible = false;
                             btnPlaceOrder.Visible = false;
+                            btnApplyCode.Visible = false;
+                            lblCode.Visible = false;
                         }
                     }
                 }
