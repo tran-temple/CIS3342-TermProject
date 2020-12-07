@@ -75,7 +75,9 @@ namespace CIS3342_TermProject
                                 string promotion = "";
                                 utils.SendEmail(key, user.Email, subject, resetPasswordUrl, information, promotion);
                                 // redirect to login page
-                                Response.Redirect("Login.aspx");
+                                //Response.Redirect("Login.aspx");
+                                // show message
+                                lblGeneral_Error.Text = "It is approved. Please go to your email and click on the link to reset your password!";
                             }
                             else
                             {

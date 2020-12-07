@@ -57,7 +57,9 @@ namespace CIS3342_TermProject
                         //string promotion = "";
                         utils.SendEmail(key, createdUser.Email, subject, confirmUrl, information, promotion);
                         // redirect to login page
-                        Response.Redirect("Login.aspx");
+                        //Response.Redirect("Login.aspx");
+                        // show message
+                        lblGeneral_Error.Text = "You registered successfully. Please go to your email, and click on the link to verify your email and activate your account!";
                     } 
                     else lblGeneral_Error.Text = "Cannot create user!";                    
                 }

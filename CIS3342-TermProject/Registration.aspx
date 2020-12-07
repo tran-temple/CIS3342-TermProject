@@ -27,7 +27,7 @@
             <div class="row form-group justify-content-center mt-2">
                 <h2 class="font-weight-bold">Registration</h2>
             </div>
-            <div class="row form-group justify-content-center">
+            <div class="row form-group justify-content-center ml-1">
                 <asp:Label ID="lblGeneral_Error" runat="server" CssClass="text-danger"></asp:Label>
             </div>
             <div class="row form-group">

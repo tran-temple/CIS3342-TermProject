@@ -76,6 +76,8 @@ namespace CIS3342_TermProject
                 // update password to database
                 string enscriptedPassword = utils.EncryptSensitiveInfo(txtNewPassword.Text.Trim());
                 loginService.UpdateUserPassword(userConfirm.UserID, enscriptedPassword);
+                // show message
+                lblGeneral_Error.Text = "Reset successfully!";
                 // redirect to login
                 Response.Redirect("Login.aspx");
             }
