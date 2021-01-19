@@ -11,7 +11,7 @@ namespace EcommerceLibrary
     public class DBConnect
     {        
         // Home Connection String - used for working from home using SSH Tunneling.
-        
+        String SqlConnectString = "xxxxxx";
 
         SqlConnection myConnectionSql;
         SqlCommand objCmd;
